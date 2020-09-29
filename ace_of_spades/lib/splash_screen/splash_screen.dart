@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
 
+const fosTextStyle = TextStyle(
+  fontFamily: 'OpenSans',
+  fontSize: 25,
+);
+
+const uopTextStyle = TextStyle(
+  fontFamily: 'OpenSans',
+  fontStyle: FontStyle.italic,
+  fontWeight: FontWeight.w300,
+  fontSize: 20,
+);
+
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -27,19 +39,11 @@ class SplashScreen extends StatelessWidget {
               children: <Widget>[
                 Text(
                   'Faculty of Science',
-                  style: TextStyle(
-                    fontFamily: 'OpenSans',
-                    fontSize: 25,
-                  ),
+                  style: fosTextStyle,
                 ),
                 Text(
                   'University of Peradeniya',
-                  style: TextStyle(
-                    fontFamily: 'OpenSans',
-                    fontStyle: FontStyle.italic,
-                    fontWeight: FontWeight.w300,
-                    fontSize: 20,
-                  ),
+                  style: uopTextStyle,
                 )
               ],
             ),

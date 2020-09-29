@@ -9,6 +9,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Color(0xFF9D170E),
+        scaffoldBackgroundColor: Colors.white,
+      ),
       home: SafeArea(child: SplashScreen()),
     );
   }
