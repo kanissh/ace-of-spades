@@ -19,6 +19,7 @@ dev_dependencies:
 flutter:
   assets:
     - images/crest.png
+    - images/google_logo.png
   
   uses-material-design: true
   fonts:
