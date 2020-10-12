@@ -1,8 +1,7 @@
-import 'package:ace_of_spades/login/login.dart';
+import 'package:ace_of_spades/profile/profile.dart';
 import 'package:flutter/material.dart';
-import 'package:ace_of_spades/splash_screen/splash_screen.dart';
 
-void main() {
+void main(List<String> args) {
   runApp(MyApp());
 }
 
@@ -11,13 +10,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-          primaryColor: Color(0xFF9D170E),
-          scaffoldBackgroundColor: Colors.white,
-          fontFamily: 'OpenSans'),
-      //home: SafeArea(child: SplashScreen()),
-      routes: {
-        '/': (context) => Login(),
-      },
+        primaryColor: Color(0xFF9D170E),
+        scaffoldBackgroundColor: Colors.white,
+        // TODO: define TextStyleTheme for body, heading and others
+        fontFamily: 'OpenSans',
+      ),
+      home: SafeArea(child: ProfilePage()),
+      routes: {},
     );
   }
 }

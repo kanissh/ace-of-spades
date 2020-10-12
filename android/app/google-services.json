@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "6796144806",
+    "firebase_url": "https://sign-in-demo-kanissh.firebaseio.com",
+    "project_id": "sign-in-demo-kanissh",
+    "storage_bucket": "sign-in-demo-kanissh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6796144806:android:c18f2173b7a7c6ef7d0467",
+        "android_client_info": {
+          "package_name": "com.kanissh.ace_of_spades"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6796144806-a3a65qnhlijpeemr1kdagcfbka5dbmkh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_gKhlrZ0Qr6fOPJ2A7rJDngpukXxtrl0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "6796144806-a3a65qnhlijpeemr1kdagcfbka5dbmkh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
