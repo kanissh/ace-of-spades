@@ -1,4 +1,6 @@
+import 'package:ace_of_spades/buttons/menu_button.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProfilePage extends StatelessWidget {
   final Color backgroundColor = Color(0xFFDDDDDD);
@@ -23,8 +25,7 @@ class ProfilePage extends StatelessWidget {
             ),
             CircleAvatar(
               //Avatar circle profile image
-              backgroundImage:
-                  NetworkImage(''), // add route from google profile
+              backgroundImage: NetworkImage(''), // add route from google profile
               backgroundColor: Colors.white,
               radius: 64,
             ),
@@ -54,24 +55,17 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
 
+            SizedBox(
+              height: 10,
+            ),
             // TODO: seperate this button widget and refactor
 
-            TextButton(
-              onPressed: () {},
-              child: SizedBox(
-                height: 44,
-                child: Row(
-                  children: [
-                    Text(
-                      'Manage Courses',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
+            MenuButton(buttonIcon: FontAwesomeIcons.graduationCap, buttonText: 'Manage Courses'),
+            MenuButton(buttonIcon: FontAwesomeIcons.font, buttonText: 'Grades'),
+            MenuButton(buttonIcon: FontAwesomeIcons.clock, buttonText: 'Class Schedule'),
+            MenuButton(buttonIcon: FontAwesomeIcons.clipboard, buttonText: 'Exam Schedule'),
+            MenuButton(buttonIcon: FontAwesomeIcons.star, buttonText: 'Course Evaluation'),
+            //MenuButton(buttonIcon: FontAwesomeIcons.signOutAlt, buttonText: 'Sign out'),
           ],
         ),
       ),

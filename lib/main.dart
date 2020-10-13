@@ -10,12 +10,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+          primary: Colors.black,
+          backgroundColor: Colors.white,
+        )),
         primaryColor: Color(0xFF9D170E),
         scaffoldBackgroundColor: Colors.white,
         // TODO: define TextStyleTheme for body, heading and others
         fontFamily: 'OpenSans',
       ),
-      home: SafeArea(child: ProfilePage()),
+      home: SafeArea(
+          child: Scaffold(
+        body: ProfilePage(),
+        //bottomNavigationBar: BottomNavigationBar(),
+      )),
       routes: {},
     );
   }
