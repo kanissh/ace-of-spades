@@ -1,5 +1,6 @@
 import 'package:ace_of_spades/profile/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main(List<String> args) {
   runApp(MyApp());
@@ -22,8 +23,21 @@ class MyApp extends StatelessWidget {
       ),
       home: SafeArea(
           child: Scaffold(
+        appBar: AppBar(),
+
+        // TODO: dynamically pass title
+
         body: ProfilePage(),
-        //bottomNavigationBar: BottomNavigationBar(),
+        bottomNavigationBar: BottomNavigationBar(
+          iconSize: 24,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          items: [
+            BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.userAlt), label: 'Profile'),
+            BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.mapMarkedAlt), label: 'Map')
+          ],
+        ),
       )),
       routes: {},
     );
