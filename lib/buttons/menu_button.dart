@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+// TODO: refactor styles to a constant seperately
+
 class MenuButton extends StatelessWidget {
+  static const Color menuIconColor = Color(0xFF9D170E);
+
   MenuButton({@required this.buttonIcon, @required this.buttonText});
 
   final IconData buttonIcon;
@@ -19,6 +23,7 @@ class MenuButton extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
               child: FaIcon(
                 buttonIcon,
+                color: menuIconColor,
               ),
             ),
             Text(
