@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "6796144806-ipid5s7fnkj42vqm9veghve3mmfv0bqt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kanissh.ace_of_spades",
+            "certificate_hash": "60c56005e5f20802bd357b4ac74239a1d147b0c5"
+          }
+        },
+        {
           "client_id": "6796144806-a3a65qnhlijpeemr1kdagcfbka5dbmkh.apps.googleusercontent.com",
           "client_type": 3
         }

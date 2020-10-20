@@ -14,6 +14,7 @@ class MenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
+      // TODO: define constructor parameter for onPressed function
       onPressed: () {},
       child: SizedBox(
         height: 35,

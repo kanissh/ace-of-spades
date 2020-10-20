@@ -50,6 +50,7 @@ class ProfilePage extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
+            Divider(),
 
             MenuButton(buttonIcon: FontAwesomeIcons.graduationCap, buttonText: 'Manage Courses'),
             MenuButton(buttonIcon: FontAwesomeIcons.font, buttonText: 'Grades'),

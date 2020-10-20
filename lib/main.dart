@@ -1,3 +1,5 @@
+import 'package:ace_of_spades/home/home_screen.dart';
+import 'package:ace_of_spades/login/login.dart';
 import 'package:ace_of_spades/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
 
         // TODO: dynamically pass title
 
-        body: ProfilePage(),
+        body: Login(),
         bottomNavigationBar: BottomNavigationBar(
           iconSize: 24,
           showSelectedLabels: false,
