@@ -48,15 +48,3 @@ Future<void> signOutGoogle() async {
   await googleSignIn.signOut();
   print('User signed out');
 }
-
-String getUserName() {
-  return _name;
-}
-
-String getUserEmail() {
-  return _email;
-}
-
-String getUserImageUrl() {
-  return _imageUrl;
-}

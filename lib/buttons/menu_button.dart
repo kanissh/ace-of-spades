@@ -13,27 +13,29 @@ class MenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      // TODO: define constructor parameter for onPressed function
-      onPressed: () {},
-      child: SizedBox(
-        height: 35,
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-              child: FaIcon(
-                buttonIcon,
-                color: menuIconColor,
+    return Material(
+      child: TextButton(
+        // TODO: define constructor parameter for onPressed function
+        onPressed: () {},
+        child: SizedBox(
+          height: 35,
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                child: FaIcon(
+                  buttonIcon,
+                  color: menuIconColor,
+                ),
               ),
-            ),
-            Text(
-              buttonText,
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            )
-          ],
+              Text(
+                buttonText,
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
