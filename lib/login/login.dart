@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'signin_service.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -21,15 +22,16 @@ class Login extends StatelessWidget {
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                      (Set<MaterialState> states) {
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
                     if (states.contains(MaterialState.pressed)) {
                       return Colors.grey.shade400;
                     } else
                       return Colors.white;
                   }),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  signInWithGoogle();
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
