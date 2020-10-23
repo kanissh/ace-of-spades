@@ -64,6 +64,7 @@ class _MyAppState extends State<MyApp> {
         HomePage.id: (context) => HomePage(),
         ProfilePage.id: (context) => ProfilePage(),
         SignIn.id: (context) => SignIn(),
+        MapPage.id: (context) => MapPage(),
       },
     );
   }

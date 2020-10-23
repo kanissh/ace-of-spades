@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MapPage extends StatefulWidget {
+  static String id = '/mapPage';
   @override
   _MapPageState createState() => _MapPageState();
 }
