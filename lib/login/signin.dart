@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'signin_service.dart';
 
-class Login extends StatelessWidget {
+class SignIn extends StatelessWidget {
+  static String id = '/signIn';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
