@@ -1,12 +1,19 @@
-import 'package:ace_of_spades/profile/map_page.dart';
+import 'dart:ffi';
+
+import 'package:ace_of_spades/map/map_page.dart';
 import 'package:ace_of_spades/profile/profile.dart';
 import 'package:ace_of_spades/signin/signin.dart';
+import 'package:ace_of_spades/splashscreen/splashscreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'home/home_screen.dart';
 
 class TheStage extends StatefulWidget {
+  final User _user;
+  TheStage(@required this._user);
+
   @override
   _TheStageState createState() => _TheStageState();
 }
@@ -14,7 +21,7 @@ class TheStage extends StatefulWidget {
 class _TheStageState extends State<TheStage> {
   List<Widget> _bottomNavPages = [
     HomePage(),
-    ProfilePage(),
+    //ProfilePage(widget._user),
     MapPage(),
   ];
 
@@ -59,7 +66,7 @@ class _TheStageState extends State<TheStage> {
       ),
       routes: {
         HomePage.id: (context) => HomePage(),
-        ProfilePage.id: (context) => ProfilePage(),
+        ProfilePage.id: (context) => ProfilePage(widget._user),
         SignIn.id: (context) => SignIn(),
         MapPage.id: (context) => MapPage(),
       },

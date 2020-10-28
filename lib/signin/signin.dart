@@ -1,3 +1,5 @@
+import 'package:ace_of_spades/profile/profile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'signin_service.dart';
 
@@ -30,9 +32,7 @@ class SignIn extends StatelessWidget {
                       return Colors.white;
                   }),
                 ),
-                onPressed: () {
-                  signInWithGoogle();
-                },
+                onPressed: () {},
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

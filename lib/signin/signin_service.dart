@@ -3,14 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class SignInService {
-  String _name;
-  String _email;
-  String _imageUrl;
-
   final _auth = FirebaseAuth.instance;
   final googleSignIn = GoogleSignIn();
 
-  Future<String> signInWithGoogle() async {
+  Future<User> signInWithGoogle() async {
     await Firebase.initializeApp();
 
     final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
@@ -26,11 +22,6 @@ class SignInService {
       assert(user.email != null);
       assert(user.displayName != null);
       assert(user.photoURL != null);
-
-      _name = user.displayName;
-      _email = user.email;
-      _imageUrl = user.photoURL;
-
       assert(!user.isAnonymous);
       assert(await user.getIdToken() != null);
 
@@ -39,7 +30,7 @@ class SignInService {
 
       print('Sign in with google succeded: $user');
 
-      return '$user';
+      return user;
     }
 
     return null;

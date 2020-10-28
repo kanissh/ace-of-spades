@@ -1,11 +1,17 @@
 import 'package:ace_of_spades/buttons/menu_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProfilePage extends StatelessWidget {
   static String id = 'profilePage';
-
   final Color backgroundColor = Color(0xFFDDDDDD);
+
+  final User _user;
+  ProfilePage(@required this._user);
+
+  //TODO: add error handling for user
+  //TODO: add null checking for user
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +29,7 @@ class ProfilePage extends StatelessWidget {
               ),
               CircleAvatar(
                 //Avatar circle profile image
-                backgroundImage: NetworkImage(''), // TODO: add route from google profile
+                backgroundImage: NetworkImage(_user.photoURL), // TODO: add route from google profile
                 backgroundColor: Colors.white,
                 radius: 64,
               ),
@@ -31,13 +37,13 @@ class ProfilePage extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                'Firstname Lastname',
+                _user.displayName,
                 style: TextStyle(
                   fontSize: 18,
                   color: Color(0xFF9D170E),
                 ),
               ), // TODO: pass argumwnt from login network name
-              Text('email',
+              Text(_user.email,
                   style: TextStyle(
                     fontSize: 18,
                   )),
