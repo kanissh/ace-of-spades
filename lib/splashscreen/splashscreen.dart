@@ -16,9 +16,11 @@ class _SplashScreenState extends State<SplashScreen> {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Container(
-            child: Text('Checking...'), // FIXME: error show directionality
-            color: Colors.white,
+          return Scaffold(
+            body: Container(
+              child: Text('Checking...'), // FIXME: error show directionality
+              color: Colors.white,
+            ),
           );
         } else {
           if (snapshot.hasData) {

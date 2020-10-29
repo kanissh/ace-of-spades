@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:ace_of_spades/map/map_page.dart';
 import 'package:ace_of_spades/profile/profile.dart';
 import 'package:ace_of_spades/signin/signin.dart';

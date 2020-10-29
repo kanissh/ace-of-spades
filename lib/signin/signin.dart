@@ -32,7 +32,11 @@ class SignIn extends StatelessWidget {
                       return Colors.white;
                   }),
                 ),
-                onPressed: () {},
+                onPressed: () async {
+                  SignInService signInService = SignInService();
+                  User _user = await signInService.signInWithGoogle();
+                  return ProfilePage(_user);
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

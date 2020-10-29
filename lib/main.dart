@@ -23,9 +23,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: SafeArea(
-          child: Scaffold(
-        body: SplashScreen(),
-      )),
+        child: SplashScreen(),
+      ),
     );
   }
 }
