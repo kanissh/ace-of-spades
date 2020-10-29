@@ -1,4 +1,3 @@
-import 'package:ace_of_spades/profile/profile.dart';
 import 'package:ace_of_spades/signin/signin.dart';
 import 'package:ace_of_spades/the_stage.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
           );
         } else {
           if (snapshot.hasData) {
-            return ProfilePage(snapshot.data);
+            return TheStage(snapshot.data);
           } else {
             return SignIn();
           }

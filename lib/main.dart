@@ -22,9 +22,25 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+          primary: Colors.black,
+          backgroundColor: Colors.white,
+        )),
+        primaryColor: Color(0xFF9D170E),
+        scaffoldBackgroundColor: Colors.white,
+        // TODO: define TextStyleTheme for body, heading and others
+        fontFamily: 'OpenSans',
+      ),
       home: SafeArea(
         child: SplashScreen(),
       ),
+      routes: {
+        HomePage.id: (context) => HomePage(),
+        SignIn.id: (context) => SignIn(),
+        MapPage.id: (context) => MapPage(),
+      },
     );
   }
 }
