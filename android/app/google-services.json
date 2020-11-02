@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "6796144806",
-    "firebase_url": "https://sign-in-demo-kanissh.firebaseio.com",
-    "project_id": "sign-in-demo-kanissh",
-    "storage_bucket": "sign-in-demo-kanissh.appspot.com"
+    "project_number": "769057300457",
+    "firebase_url": "https://ace-of-spades-kanissh.firebaseio.com",
+    "project_id": "ace-of-spades-kanissh",
+    "storage_bucket": "ace-of-spades-kanissh.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:6796144806:android:c18f2173b7a7c6ef7d0467",
+        "mobilesdk_app_id": "1:769057300457:android:0e0662970c5f4436a4b578",
         "android_client_info": {
           "package_name": "com.kanissh.ace_of_spades"
         }
       },
       "oauth_client": [
         {
-          "client_id": "6796144806-ipid5s7fnkj42vqm9veghve3mmfv0bqt.apps.googleusercontent.com",
+          "client_id": "769057300457-sglf7se6pg298tn3pees6teb8mruo3tj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.kanissh.ace_of_spades",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "6796144806-a3a65qnhlijpeemr1kdagcfbka5dbmkh.apps.googleusercontent.com",
+          "client_id": "769057300457-6akqe7m5mkdudqc0jaundcun2faumetn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA_gKhlrZ0Qr6fOPJ2A7rJDngpukXxtrl0"
+          "current_key": "AIzaSyCaOB7hzbZZ7Ba_cHIEMd0luEFj8-YFyqE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "6796144806-a3a65qnhlijpeemr1kdagcfbka5dbmkh.apps.googleusercontent.com",
+              "client_id": "769057300457-6akqe7m5mkdudqc0jaundcun2faumetn.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

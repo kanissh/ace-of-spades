@@ -1,10 +1,11 @@
 import 'package:ace_of_spades/buttons/menu_button.dart';
+import 'package:ace_of_spades/grades/grades_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProfilePage extends StatelessWidget {
-  static String id = 'profilePage';
+  static String id = '/profilePage';
   final Color backgroundColor = Color(0xFFDDDDDD);
 
   final User _user;
@@ -48,11 +49,11 @@ class ProfilePage extends StatelessWidget {
                     fontSize: 18,
                   )),
               Text(
-                'S16XXXX',
+                _user.email.split('@')[0].toUpperCase(),
                 style: TextStyle(fontSize: 18),
               ),
               Text(
-                'Bsc in physical science',
+                'Bsc in physical science', //TODO: figureout a way to rectify this dynamically
                 style: TextStyle(
                   fontSize: 16,
                   fontStyle: FontStyle.italic,
@@ -65,11 +66,16 @@ class ProfilePage extends StatelessWidget {
               Divider(),
 
               MenuButton(buttonIcon: FontAwesomeIcons.graduationCap, buttonText: 'Manage Courses'),
-              MenuButton(buttonIcon: FontAwesomeIcons.font, buttonText: 'Grades'),
+              MenuButton(
+                  buttonIcon: FontAwesomeIcons.font,
+                  buttonText: 'Grades',
+                  onTap: () {
+                    Navigator.pushNamed(context, GradesPage.id);
+                  }),
               MenuButton(buttonIcon: FontAwesomeIcons.clock, buttonText: 'Class Schedule'),
               MenuButton(buttonIcon: FontAwesomeIcons.clipboard, buttonText: 'Exam Schedule'),
               MenuButton(buttonIcon: FontAwesomeIcons.star, buttonText: 'Course Evaluation'),
-              MenuButton(buttonIcon: FontAwesomeIcons.signOutAlt, buttonText: 'Sign out'),
+              MenuButton(buttonIcon: FontAwesomeIcons.signOutAlt, buttonText: 'Sign out'), //TODO: add logout logic
             ],
           ),
         ),

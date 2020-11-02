@@ -6,6 +6,8 @@ class SignInService {
   final _auth = FirebaseAuth.instance;
   final googleSignIn = GoogleSignIn();
 
+  //TODO: Add email authentication logic
+
   Future<User> signInWithGoogle() async {
     await Firebase.initializeApp();
 

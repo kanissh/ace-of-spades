@@ -3,7 +3,7 @@ import 'package:ace_of_spades/profile/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'home/home_screen.dart';
+import 'home/home_page.dart';
 
 class TheStage extends StatefulWidget {
   final User _user;

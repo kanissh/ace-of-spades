@@ -1,11 +1,12 @@
-import 'package:ace_of_spades/home/home_screen.dart';
+import 'package:ace_of_spades/grades/grades_page.dart';
+import 'package:ace_of_spades/home/home_page.dart';
 import 'package:ace_of_spades/map/map_page.dart';
-import 'package:ace_of_spades/signin/signin.dart';
 import 'package:ace_of_spades/profile/profile.dart';
+import 'package:ace_of_spades/signin/signin.dart';
 import 'package:ace_of_spades/splashscreen/splashscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter/rendering.dart';
 
 Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,9 +38,7 @@ class _MyAppState extends State<MyApp> {
         child: SplashScreen(),
       ),
       routes: {
-        HomePage.id: (context) => HomePage(),
-        SignIn.id: (context) => SignIn(),
-        MapPage.id: (context) => MapPage(),
+        GradesPage.id: (context) => GradesPage(),
       },
     );
   }

@@ -6,11 +6,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class MenuButton extends StatelessWidget {
   static const Color menuIconColor = Color(0xFF9D170E);
 
-  MenuButton({@required this.buttonIcon, @required this.buttonText});
+  MenuButton({@required this.buttonIcon, @required this.buttonText, this.onTap});
+
+  // TODO: make onTap required
 
   final IconData buttonIcon;
   final String buttonText;
-  // final Function onTap;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,9 @@ class MenuButton extends StatelessWidget {
       child: TextButton(
         // TODO: try ListTile for buttons
         // TODO: define constructor parameter for onPressed function
-        onPressed: () {},
+        onPressed: () {
+          onTap();
+        },
         child: SizedBox(
           height: 35,
           child: Row(
