@@ -1,3 +1,6 @@
+import 'package:ace_of_spades/grades/student_course_result.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class GradesPage extends StatefulWidget {
@@ -8,11 +11,42 @@ class GradesPage extends StatefulWidget {
 }
 
 class _GradesPageState extends State<GradesPage> {
+  final String _userEmail = FirebaseAuth.instance.currentUser.email;
+
+  getDocumentPath(String email) {
+    String level = email.substring(0, 3);
+    // String regNo = email.substring(3, 6);
+    //String path = 'students/${level}/${level}stu';
+    String path = 'students/s16/s16stu';
+    String regNo = '001';
+    return [regNo, path];
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('Grades work'),
+    List<String> documentInfo = getDocumentPath(_userEmail);
+    CollectionReference students = FirebaseFirestore.instance.collection(documentInfo[1]);
+
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: FutureBuilder<DocumentSnapshot>(
+            future: students.doc(documentInfo[0]).get(),
+            builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+              if (snapshot.hasError) {
+                return Text('Something went wrong');
+                //TODO: Add error animation
+              }
+
+              if (snapshot.connectionState == ConnectionState.done) {
+                Map<String, dynamic> data = snapshot.data.data();
+                return StudentCourseGrades(studentDetails: data);
+              }
+
+              return Text('Loading'); //TODO: add loading animation
+            },
+          ),
+        ),
       ),
     );
   }
