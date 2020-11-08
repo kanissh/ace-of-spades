@@ -41,7 +41,8 @@ class _GradesPageState extends State<GradesPage> {
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(20),
-                        child: // Column(
+                        child: //FIXME: fix "CURRENT gpa" part, overflows
+                            // Column(
                             //children: [
                             // Text(
                             //   'Current',

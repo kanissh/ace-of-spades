@@ -1,6 +1,9 @@
 import 'package:ace_of_spades/buttons/menu_button.dart';
 import 'package:ace_of_spades/grades/grades_page.dart';
+import 'package:ace_of_spades/signin/signin_service.dart';
+import 'package:ace_of_spades/splashscreen/splashscreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -30,7 +33,8 @@ class ProfilePage extends StatelessWidget {
               ),
               CircleAvatar(
                 //Avatar circle profile image
-                backgroundImage: NetworkImage(_user.photoURL), // TODO: add route from google profile
+                backgroundImage: NetworkImage(
+                    _user.photoURL), // TODO: add route from google profile
                 backgroundColor: Colors.white,
                 radius: 64,
               ),
@@ -65,17 +69,28 @@ class ProfilePage extends StatelessWidget {
               ),
               Divider(),
 
-              MenuButton(buttonIcon: FontAwesomeIcons.graduationCap, buttonText: 'Manage Courses'),
+              MenuButton(
+                  buttonIcon: FontAwesomeIcons.graduationCap,
+                  buttonText: 'Manage Courses'),
               MenuButton(
                   buttonIcon: FontAwesomeIcons.font,
                   buttonText: 'Grades',
                   onTap: () {
                     Navigator.pushNamed(context, GradesPage.id);
                   }),
-              MenuButton(buttonIcon: FontAwesomeIcons.clock, buttonText: 'Class Schedule'),
-              MenuButton(buttonIcon: FontAwesomeIcons.clipboard, buttonText: 'Exam Schedule'),
-              MenuButton(buttonIcon: FontAwesomeIcons.star, buttonText: 'Course Evaluation'),
-              MenuButton(buttonIcon: FontAwesomeIcons.signOutAlt, buttonText: 'Sign out'), //TODO: add logout logic
+              MenuButton(
+                  buttonIcon: FontAwesomeIcons.clock,
+                  buttonText: 'Class Schedule'),
+              MenuButton(
+                  buttonIcon: FontAwesomeIcons.clipboard,
+                  buttonText: 'Exam Schedule'),
+              MenuButton(
+                  buttonIcon: FontAwesomeIcons.star,
+                  buttonText: 'Course Evaluation'),
+              MenuButton(
+                buttonIcon: FontAwesomeIcons.signOutAlt,
+                buttonText: 'Sign out',
+              ), //TODO: add logout logic
             ],
           ),
         ),
