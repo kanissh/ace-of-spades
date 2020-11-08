@@ -1,16 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class StudentCourseGrades extends StatelessWidget {
+class StudentCourseGrades extends StatefulWidget {
   Map<String, dynamic> studentDetails;
-  List<Widget> _courseList = List();
+
   StudentCourseGrades({@required this.studentDetails});
 
   @override
+  _StudentCourseGradesState createState() => _StudentCourseGradesState();
+}
+
+class _StudentCourseGradesState extends State<StudentCourseGrades> {
+  List<Widget> _courseList = List();
+
+  @override
   Widget build(BuildContext context) {
-    Map _courses = studentDetails['courses'];
+    Map _courses = widget.studentDetails['courses'];
 
     for (dynamic sem in _courses.keys) {
+      _courseList.add(createSemester(sem));
       for (Map course in _courses[sem]) {
         _Course tempCourse = _Course(
             courseName: course['name'].toString(),
@@ -23,6 +31,30 @@ class StudentCourseGrades extends StatelessWidget {
 
     return Column(
       children: _courseList,
+    );
+  }
+
+  Widget createSemester(String semester) {
+    return Container(
+      child: Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 5, 5, 5),
+              child: Text(
+                semester,
+                style: TextStyle(fontSize: 14),
+              ),
+            ),
+          ),
+          /*Expanded(
+            flex: 1,
+            child: TextButton(
+              child: Text('Unmark All'),
+            ),
+          ),*/
+        ],
+      ),
     );
   }
 }
@@ -44,6 +76,7 @@ class _Course {
       decoration: BoxDecoration(
         border: Border.symmetric(
           horizontal: BorderSide(
+            //FIXME:  fix border overlap
             color: Colors.grey,
             width: 1,
           ),
@@ -101,7 +134,7 @@ class _Course {
             Expanded(
               flex: 1,
               child: Text(
-                this.courseGrade,
+                this.courseGrade, //FIXME: fix pending grade display
                 style: TextStyle(fontSize: 26, fontWeight: FontWeight.w600),
                 textAlign: TextAlign.center,
               ),

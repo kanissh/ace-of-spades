@@ -27,27 +27,74 @@ class _GradesPageState extends State<GradesPage> {
   @override
   Widget build(BuildContext context) {
     List<String> documentInfo = getDocumentPath(_userEmail);
-    CollectionReference students = FirebaseFirestore.instance.collection(documentInfo[1]);
+    CollectionReference students =
+        FirebaseFirestore.instance.collection(documentInfo[1]);
 
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: FutureBuilder<DocumentSnapshot>(
-            future: students.doc(documentInfo[0]).get(),
-            builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-              if (snapshot.hasError) {
-                return Text('Something went wrong');
-                //TODO: Add error animation
-              }
+        body: Column(
+          children: [
+            Expanded(
+              child: Container(
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: // Column(
+                            //children: [
+                            // Text(
+                            //   'Current',
+                            //   style: TextStyle(
+                            //     fontSize: 18,
+                            //   ),
+                            // ),
+                            Text(
+                          'GPA',
+                          style: TextStyle(fontSize: 53),
+                        ), //TODO: Refactor textstyles
+                        //],
+                      ),
+                    ),
+                    //),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Text(
+                          '4.00',
+                          style: TextStyle(fontSize: 53),
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              flex: 1,
+            ),
+            Expanded(
+              flex: 5,
+              child: SingleChildScrollView(
+                child: FutureBuilder<DocumentSnapshot>(
+                  future: students.doc(documentInfo[0]).get(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<DocumentSnapshot> snapshot) {
+                    if (snapshot.hasError) {
+                      return Text('Something went wrong');
+                      //TODO: Add error animation
+                    }
 
-              if (snapshot.connectionState == ConnectionState.done) {
-                Map<String, dynamic> data = snapshot.data.data();
-                return StudentCourseGrades(studentDetails: data);
-              }
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      Map<String, dynamic> data = snapshot.data.data();
+                      return StudentCourseGrades(studentDetails: data);
+                    }
 
-              return Text('Loading'); //TODO: add loading animation
-            },
-          ),
+                    return Text('Loading'); //TODO: add loading animation
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
