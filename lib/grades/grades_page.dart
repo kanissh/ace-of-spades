@@ -17,6 +17,8 @@ class _GradesPageState extends State<GradesPage> {
     String level = email.substring(0, 3);
     // String regNo = email.substring(3, 6);
     //String path = 'students/${level}/${level}stu';
+
+    // FIXME: set the above to normal for using with uni email
     String path = 'students/s16/s16stu';
     String regNo = '001';
     return [regNo, path];

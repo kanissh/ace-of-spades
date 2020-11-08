@@ -1,8 +1,4 @@
 import 'package:ace_of_spades/grades/grades_page.dart';
-import 'package:ace_of_spades/home/home_page.dart';
-import 'package:ace_of_spades/map/map_page.dart';
-import 'package:ace_of_spades/profile/profile.dart';
-import 'package:ace_of_spades/signin/signin.dart';
 import 'package:ace_of_spades/splashscreen/splashscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +14,7 @@ class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
+
 
 class _MyAppState extends State<MyApp> {
   @override
@@ -43,3 +40,4 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
