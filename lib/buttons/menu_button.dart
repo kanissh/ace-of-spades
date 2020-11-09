@@ -1,12 +1,12 @@
+import 'package:ace_of_spades/constants/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // TODO: refactor styles to a constant seperately
 
 class MenuButton extends StatelessWidget {
-  static const Color menuIconColor = Color(0xFF9D170E);
-
-  MenuButton({@required this.buttonIcon, @required this.buttonText, this.onTap});
+  MenuButton(
+      {@required this.buttonIcon, @required this.buttonText, this.onTap});
 
   // TODO: make onTap required
 
@@ -31,15 +31,13 @@ class MenuButton extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                 child: FaIcon(
                   buttonIcon,
-                  color: menuIconColor,
+                  color: Constant.menuIconColor,
                 ),
               ),
               Text(
                 buttonText,
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              )
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
             ],
           ),
         ),

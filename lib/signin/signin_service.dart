@@ -2,44 +2,45 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class SignInService {
-  final _auth = FirebaseAuth.instance;
-  final googleSignIn = GoogleSignIn();
+final _auth = FirebaseAuth.instance;
+final googleSignIn = GoogleSignIn();
 
-  //TODO: Add email authentication logic
+//TODO: Add email authentication logic
 
-  Future<User> signInWithGoogle() async {
-    await Firebase.initializeApp();
+Future<User> signInWithGoogle() async {
+  await Firebase.initializeApp();
 
-    final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
-    final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
+  final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
+  final GoogleSignInAuthentication googleSignInAuthentication =
+      await googleSignInAccount.authentication;
 
-    final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleSignInAuthentication.accessToken, idToken: googleSignInAuthentication.idToken);
+  final AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleSignInAuthentication.accessToken,
+      idToken: googleSignInAuthentication.idToken);
 
-    final UserCredential authResult = await _auth.signInWithCredential(credential);
-    final User user = authResult.user;
+  final UserCredential authResult =
+      await _auth.signInWithCredential(credential);
+  final User user = authResult.user;
 
-    if (user != null) {
-      assert(user.email != null);
-      assert(user.displayName != null);
-      assert(user.photoURL != null);
-      assert(!user.isAnonymous);
-      assert(await user.getIdToken() != null);
+  if (user != null) {
+    assert(user.email != null);
+    assert(user.displayName != null);
+    assert(user.photoURL != null);
+    assert(!user.isAnonymous);
+    assert(await user.getIdToken() != null);
 
-      final User currentUser = _auth.currentUser;
-      assert(user.uid == currentUser.uid);
+    final User currentUser = _auth.currentUser;
+    assert(user.uid == currentUser.uid);
 
-      print('Sign in with google succeded: $user');
+    print('Sign in with google succeded: $user');
 
-      return user;
-    }
-
-    return null;
+    return user;
   }
 
-  Future<void> signOutGoogle() async {
-    await googleSignIn.signOut();
-    print('User signed out');
-  }
+  return null;
+}
+
+Future<void> signOutGoogle() async {
+  await googleSignIn.signOut();
+  print('User signed out');
 }

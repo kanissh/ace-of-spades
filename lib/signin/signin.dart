@@ -25,7 +25,8 @@ class SignIn extends StatelessWidget {
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
                     if (states.contains(MaterialState.pressed)) {
                       return Colors.grey.shade400;
                     } else
@@ -33,8 +34,7 @@ class SignIn extends StatelessWidget {
                   }),
                 ),
                 onPressed: () async {
-                  SignInService signInService = SignInService();
-                  User _user = await signInService.signInWithGoogle();
+                  User _user = await signInWithGoogle();
                   return ProfilePage(_user);
                 },
                 child: Row(

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class StudentCourseGrades extends StatefulWidget {
-  Map<String, dynamic> studentDetails;
+  final Map<String, dynamic> studentDetails;
 
   StudentCourseGrades({@required this.studentDetails});
 

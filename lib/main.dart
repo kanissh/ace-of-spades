@@ -15,7 +15,6 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
@@ -30,6 +29,12 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: Colors.white,
         // TODO: define TextStyleTheme for body, heading and others
         fontFamily: 'OpenSans',
+        textTheme: TextTheme(
+          bodyText1: TextStyle(
+            fontSize: 18,
+          ),
+          subtitle1: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+        ),
       ),
       home: SafeArea(
         child: SplashScreen(),
@@ -40,4 +45,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-

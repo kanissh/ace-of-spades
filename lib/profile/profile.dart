@@ -1,7 +1,9 @@
 import 'package:ace_of_spades/buttons/menu_button.dart';
 import 'package:ace_of_spades/grades/grades_page.dart';
+
 import 'package:ace_of_spades/signin/signin_service.dart';
 import 'package:ace_of_spades/splashscreen/splashscreen.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -48,13 +50,10 @@ class ProfilePage extends StatelessWidget {
                   color: Color(0xFF9D170E),
                 ),
               ), // TODO: pass argumwnt from login network name
-              Text(_user.email,
-                  style: TextStyle(
-                    fontSize: 18,
-                  )),
+              Text(_user.email, style: Theme.of(context).textTheme.bodyText1),
               Text(
                 _user.email.split('@')[0].toUpperCase(),
-                style: TextStyle(fontSize: 18),
+                style: Theme.of(context).textTheme.bodyText1,
               ),
               Text(
                 'Bsc in physical science', //TODO: figureout a way to rectify this dynamically
@@ -90,6 +89,13 @@ class ProfilePage extends StatelessWidget {
               MenuButton(
                 buttonIcon: FontAwesomeIcons.signOutAlt,
                 buttonText: 'Sign out',
+                onTap: () async {
+                  await signOutGoogle();
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => SplashScreen()),
+                      (route) => false);
+                }, //FIXME: logout not working fix it
               ), //TODO: add logout logic
             ],
           ),
