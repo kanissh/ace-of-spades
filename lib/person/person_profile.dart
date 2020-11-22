@@ -1,10 +1,9 @@
 import 'package:ace_of_spades/person/person.dart';
-import 'package:ace_of_spades/person/person_details_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class PersonInfo extends StatelessWidget {
-  const PersonInfo({
+class PersonProfile extends StatelessWidget {
+  const PersonProfile({
     Key key,
     @required this.person,
   }) : super(key: key);
@@ -49,7 +48,7 @@ class PersonInfo extends StatelessWidget {
         ),
         PersonDetailsTile(
           icon: FontAwesomeIcons.userTie,
-          content: person.designation,
+          content: person.position,
         ),
         PersonDetailsTile(
           icon: FontAwesomeIcons.building,
@@ -68,6 +67,24 @@ class PersonInfo extends StatelessWidget {
           content: person.mobile,
         ),
       ],
+    );
+  }
+}
+
+class PersonDetailsTile extends StatelessWidget {
+  final IconData icon;
+  final String content;
+
+  PersonDetailsTile({@required this.icon, @required this.content});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: FaIcon(this.icon),
+      title: Text(
+        this.content,
+        style: Theme.of(context).textTheme.bodyText1,
+      ),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Person {
   String name;
-  String designation;
+  String position;
   String academicCred;
   String email;
   // List<String> email;
@@ -12,7 +12,7 @@ class Person {
 
   Person(
       {@required this.name,
-      @required this.designation,
+      @required this.position,
       this.academicCred,
       @required this.email,
       this.phone,

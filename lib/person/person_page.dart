@@ -1,24 +1,43 @@
-import 'package:ace_of_spades/person/person.dart';
-import 'package:ace_of_spades/person/person_details_tile.dart';
-import 'package:ace_of_spades/person/person_info.dart';
+import 'package:ace_of_spades/person/person_card.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class PersonPage extends StatelessWidget {
-  Person person = Person(
-      name: 'John Adams',
-      designation: 'Professor',
-      academicCred: 'PhD',
-      email: 'johnadams@email.com',
-      phone: '0000000000',
-      mobile: '0000000000',
-      department: 'Department of Statistics and Computer Science');
+class PersonPage extends StatefulWidget {
+  @override
+  _PersonPageState createState() => _PersonPageState();
+}
+
+class _PersonPageState extends State<PersonPage> {
+  CollectionReference people = FirebaseFirestore.instance.collection('people');
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: PersonInfo(person: person),
+    return Scaffold(
+      body: SafeArea(
+        child: FutureBuilder<QuerySnapshot>(
+          future: people.get(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              print('Error detected');
+            }
+
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              print('Waiting');
+            }
+
+            return ListView(
+              children:
+                  snapshot.data.docs.map((DocumentSnapshot documentSnapshot) {
+                return PersonCard(
+                  name: documentSnapshot.data()['name'].toString(),
+                  position: documentSnapshot.data()['position'].toString(),
+                  department: documentSnapshot.data()['department'].toString(),
+                );
+              }).toList(),
+            );
+          },
+        ),
       ),
     );
   }
