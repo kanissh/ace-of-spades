@@ -1,12 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PeopleSearch extends SearchDelegate {
+  CollectionReference people = FirebaseFirestore.instance.collection('people');
+
+  List<String> listExample;
+  List<String> recentList = [];
+  String selectedResult;
+
+  PeopleSearch();
+
   @override
   List<Widget> buildActions(BuildContext context) {
     return <Widget>[
       IconButton(
-        icon: FaIcon(FontAwesomeIcons.times),
+        icon: Icon(Icons.close),
         onPressed: () {
           query = '';
         },
@@ -17,14 +25,12 @@ class PeopleSearch extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: FaIcon(FontAwesomeIcons.arrowLeft),
+      icon: Icon(Icons.arrow_back),
       onPressed: () {
         Navigator.pop(context);
       },
     );
   }
-
-  String selectedResult;
 
   @override
   Widget buildResults(BuildContext context) {
@@ -34,11 +40,6 @@ class PeopleSearch extends SearchDelegate {
       ),
     );
   }
-
-  final List<String> listExample;
-  PeopleSearch(this.listExample);
-
-  List<String> recentList = ['Text 4', 'Text 3'];
 
   @override
   Widget buildSuggestions(BuildContext context) {

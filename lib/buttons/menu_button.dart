@@ -19,7 +19,6 @@ class MenuButton extends StatelessWidget {
     return Material(
       child: TextButton(
         // TODO: try ListTile for buttons
-        // TODO: define constructor parameter for onPressed function
         onPressed: () {
           onTap();
         },
