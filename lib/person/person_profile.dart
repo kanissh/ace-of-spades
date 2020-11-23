@@ -1,4 +1,3 @@
-import 'package:ace_of_spades/person/person.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -8,7 +7,16 @@ class PersonProfile extends StatelessWidget {
     @required this.person,
   }) : super(key: key);
 
-  final Person person;
+  final Map<String, dynamic> person;
+
+  //null checking for the person key value pair
+  String checkNull(value) {
+    if (value == null || value == '') {
+      return 'Not Available';
+    } else {
+      return value;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,49 +27,61 @@ class PersonProfile extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
               child: CircleAvatar(
-                minRadius: 40,
-                maxRadius: 55,
+                backgroundImage: NetworkImage(person['imageUrl']),
+                radius: 64,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(10, 0, 20, 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    person.name,
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                  /*Text(
-                    person.academicCred,
-                    style: Theme.of(context).textTheme.subtitle1,
-                  ),*/
-                ],
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
+              child: Text(
+                person['name'],
+                style: Theme.of(context).textTheme.bodyText1,
+                textAlign: TextAlign.center,
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
+              child: Text(
+                checkNull(person['academicCred']),
+                style: Theme.of(context).textTheme.subtitle1,
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Divider(
+              thickness: 1,
+            ),
             SizedBox(
-              height: 20,
+              height: 0,
             ),
             PersonDetailsTile(
               icon: FontAwesomeIcons.userTie,
-              content: person.position,
+              content: checkNull(person['position']),
             ),
             PersonDetailsTile(
               icon: FontAwesomeIcons.building,
-              content: person.department,
+              content: checkNull(person['department']),
             ),
-            /*PersonDetailsTile(
+            PersonDetailsTile(
               icon: FontAwesomeIcons.solidEnvelope,
-              content: person.email,
+              content: checkNull(person['email']
+                  .toString()
+                  .replaceAll(',', '\n')
+                  .replaceAll(RegExp(r'[\[\]]'), '')),
             ),
             PersonDetailsTile(
               icon: FontAwesomeIcons.phoneAlt,
-              content: person.phone,
+              content: checkNull(person['phone']
+                  .toString()
+                  .replaceAll(',', '\n')
+                  .replaceAll(RegExp(r'[\[\]]'), '')),
             ),
             PersonDetailsTile(
               icon: FontAwesomeIcons.mobileAlt,
-              content: person.mobile,
-            ),*/
+              content: checkNull(person['mobile']
+                  .toString()
+                  .replaceAll(',', '\n')
+                  .replaceAll(RegExp(r'[\[\]]'), '')),
+            ),
           ],
         ),
       ),

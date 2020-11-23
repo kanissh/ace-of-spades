@@ -44,6 +44,10 @@ class _PersonPageState extends State<PersonPage> {
               print('Waiting');
             }
 
+            if (snapshot == null) {
+              print('null snapshot');
+            }
+
             return ListView(
               children:
                   snapshot.data.docs.map((DocumentSnapshot documentSnapshot) {
@@ -51,7 +55,7 @@ class _PersonPageState extends State<PersonPage> {
                   name: documentSnapshot.data()['name'],
                   position: documentSnapshot.data()['position'],
                   department: documentSnapshot.data()['department'],
-                  documentSnapshot: documentSnapshot,
+                  personDocument: documentSnapshot.data(),
                 );
               }).toList(),
             );

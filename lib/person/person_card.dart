@@ -8,28 +8,29 @@ class PersonCard extends StatelessWidget {
   final String name;
   final String position;
   final String department;
-  final DocumentSnapshot documentSnapshot;
+  final Map<String, dynamic> personDocument;
 
   PersonCard(
       {@required this.name,
       @required this.position,
       @required this.department,
-      this.documentSnapshot});
+      this.personDocument});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Person _person = Person(
-            name: documentSnapshot.data()['name'],
-            position: documentSnapshot.data()['position'],
-            department: documentSnapshot.data()['department']);
+            name: personDocument['name'],
+            position: personDocument['position'],
+            department: personDocument['department']);
 
-        print('Tapped');
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => PersonProfile(person: _person)));
+                builder: (context) => PersonProfile(
+                      person: personDocument,
+                    )));
       },
       child: Container(
         decoration: BoxDecoration(
