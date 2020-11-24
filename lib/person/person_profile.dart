@@ -66,7 +66,7 @@ class PersonProfile extends StatelessWidget {
               content: checkNull(person['email']
                   .toString()
                   .replaceAll(',', '\n')
-                  .replaceAll(RegExp(r'[\[\]]'), '')),
+                  .replaceAll(RegExp(r'[\[\] ]'), '')),
             ),
             PersonDetailsTile(
               icon: FontAwesomeIcons.phoneAlt,

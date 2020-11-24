@@ -1,7 +1,6 @@
 import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/person/person.dart';
 import 'package:ace_of_spades/person/person_profile.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class PersonCard extends StatelessWidget {

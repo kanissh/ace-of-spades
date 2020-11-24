@@ -1,24 +1,21 @@
+import 'package:ace_of_spades/person/person_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class PeopleSearch extends SearchDelegate {
-  CollectionReference people = FirebaseFirestore.instance.collection('people');
+  final Future<QuerySnapshot> peopleList;
 
-  List<String> listExample;
-  List<String> recentList = [];
-  String selectedResult;
-
-  PeopleSearch();
+  PeopleSearch(this.peopleList);
 
   @override
   List<Widget> buildActions(BuildContext context) {
-    return <Widget>[
+    return [
       IconButton(
         icon: Icon(Icons.close),
         onPressed: () {
           query = '';
         },
-      )
+      ),
     ];
   }
 
@@ -27,41 +24,78 @@ class PeopleSearch extends SearchDelegate {
     return IconButton(
       icon: Icon(Icons.arrow_back),
       onPressed: () {
-        Navigator.pop(context);
+        close(context, null);
       },
     );
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text(selectedResult),
-      ),
+    return FutureBuilder<QuerySnapshot>(
+      future: peopleList,
+      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (!snapshot.hasData) {
+          return Center(
+            child: Text(
+              'No Data!',
+            ),
+          );
+        }
+        //TODO: handle this
+
+        final results = snapshot.data.docs.where((p) =>
+            p['name'].toString().toLowerCase().contains(query.toLowerCase()));
+
+        return ListView(
+          //display list during typing the query
+          children: results.map(
+            (DocumentSnapshot documentSnapshot) {
+              return PersonCard(
+                name: documentSnapshot.data()['name'],
+                position: documentSnapshot.data()['position'],
+                department: documentSnapshot.data()['department'],
+                personDocument: documentSnapshot.data(),
+              );
+            },
+          ).toList(),
+        );
+      },
     );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<String> suggestionList = [];
-
-    query.isEmpty
-        ? suggestionList = recentList
-        : suggestionList.addAll(listExample.where(
-            (element) => element.contains(query),
-          ));
-    return ListView.builder(
-        itemCount: suggestionList.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(
-              suggestionList[index],
+    return FutureBuilder<QuerySnapshot>(
+      future: peopleList,
+      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (!snapshot.hasData) {
+          return Center(
+            child: Text(
+              'No Data!',
             ),
-            onTap: () {
-              selectedResult = suggestionList[index];
-              showResults(context);
-            },
           );
-        });
+        }
+        //TODO: handle this
+
+        final results = snapshot.data.docs.where((p) =>
+            p['name'].toString().toLowerCase().contains(query.toLowerCase()));
+
+        return ListView(
+          //display list during typing the query
+          children: results.map(
+            (DocumentSnapshot documentSnapshot) {
+              return ListTile(
+                title: Text(documentSnapshot.data()['name']),
+                onTap: () => query = documentSnapshot
+                    .data()['name'], //on tap display the name in query
+              );
+            },
+          ).toList(),
+        );
+      },
+    );
   }
 }
+
+//TODO: add recent list
+//TODO: add page title to scaffold in person profile
