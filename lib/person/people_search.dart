@@ -85,6 +85,7 @@ class PeopleSearch extends SearchDelegate {
           children: results.map(
             (DocumentSnapshot documentSnapshot) {
               return ListTile(
+                //FIXME: fix display text style
                 title: Text(documentSnapshot.data()['name']),
                 onTap: () => query = documentSnapshot
                     .data()['name'], //on tap display the name in query

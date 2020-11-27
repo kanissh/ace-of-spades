@@ -1,4 +1,5 @@
 import 'package:ace_of_spades/buttons/menu_button.dart';
+import 'package:ace_of_spades/courses/course_search_page.dart';
 import 'package:ace_of_spades/person/person_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,7 +22,15 @@ class HomePage extends StatelessWidget {
             MenuButton(
                 buttonIcon: FontAwesomeIcons.calendarDay, buttonText: 'Events'),
             MenuButton(
-                buttonIcon: FontAwesomeIcons.book, buttonText: 'Course Search'),
+              buttonIcon: FontAwesomeIcons.book,
+              buttonText: 'Course Search',
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CourseSearchPage()));
+              },
+            ),
             MenuButton(
                 buttonIcon: FontAwesomeIcons.users,
                 buttonText: 'Find People',
