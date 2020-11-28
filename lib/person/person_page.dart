@@ -17,6 +17,7 @@ class _PersonPageState extends State<PersonPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          title: Text('Find People'),
           actions: [
             IconButton(
               icon: Icon(Icons.search),
