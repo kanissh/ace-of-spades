@@ -14,7 +14,7 @@ class ProfilePage extends StatelessWidget {
   final Color backgroundColor = Color(0xFFDDDDDD);
 
   final User _user;
-  ProfilePage(@required this._user);
+  ProfilePage(this._user);
 
   //TODO: add error handling for user
   //TODO: add null checking for user
