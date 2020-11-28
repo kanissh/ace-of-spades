@@ -1,9 +1,10 @@
 import 'package:ace_of_spades/constants.dart';
 import 'package:flutter/material.dart';
 import 'course.dart';
+import 'credit_label.dart';
 
 class CourseTile extends StatelessWidget {
-  Course course;
+  final Course course;
 
   CourseTile(this.course);
 
@@ -29,21 +30,7 @@ class CourseTile extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: creditsLabelColor,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-                    child: Text(
-                      course.credits[DateTime.now().year.toString()]
-                              .toString() +
-                          ' Credits',
-                      style: creditsLabelText,
-                    ),
-                  ),
-                )
+                CreditLabel(course: course)
               ],
             ),
             Text(
@@ -63,5 +50,3 @@ class CourseTile extends StatelessWidget {
     );
   }
 }
-
-//TODO: add enrol button

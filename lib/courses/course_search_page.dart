@@ -1,5 +1,6 @@
 import 'package:ace_of_spades/courses/course.dart';
 import 'package:ace_of_spades/courses/course_card.dart';
+import 'package:ace_of_spades/courses/course_details_page.dart';
 import 'package:flutter/material.dart';
 
 class CourseSearchPage extends StatefulWidget {
@@ -27,7 +28,7 @@ class _CourseSearchPageState extends State<CourseSearchPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: CourseTile(c),
+        body: CourseDetailsPage(c),
       ),
     );
   }

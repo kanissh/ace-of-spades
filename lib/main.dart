@@ -21,10 +21,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: ThemeData(
         textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(
-          primary: Colors.black,
-          backgroundColor: Colors.white,
-        )),
+          style: TextButton.styleFrom(
+            primary: Colors.black,
+            backgroundColor: Colors.white,
+          ),
+        ),
         primaryColor: Color(0xFF9D170E),
         scaffoldBackgroundColor: Colors.white,
         // TODO: define TextStyleTheme for body, heading and others

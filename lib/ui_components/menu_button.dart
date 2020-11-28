@@ -1,4 +1,4 @@
-import 'package:ace_of_spades/constants/constant.dart';
+import 'package:ace_of_spades/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -30,7 +30,7 @@ class MenuButton extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                 child: FaIcon(
                   buttonIcon,
-                  color: Constant.menuIconColor,
+                  color: menuIconColor,
                 ),
               ),
               Text(
