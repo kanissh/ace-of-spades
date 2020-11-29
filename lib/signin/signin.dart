@@ -1,3 +1,4 @@
+import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/profile/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -49,10 +50,7 @@ class SignIn extends StatelessWidget {
                     ),
                     Text(
                       'Sign in with Google',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                      ),
+                      style: bodyText18,
                     ),
                   ],
                 ),
@@ -60,7 +58,7 @@ class SignIn extends StatelessWidget {
             ],
           ),
         ),
-        backgroundColor: Color(0xFF9D170E),
+        backgroundColor: redColor,
       ),
     );
   }

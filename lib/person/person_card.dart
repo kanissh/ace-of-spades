@@ -42,18 +42,18 @@ class PersonCard extends StatelessWidget {
             children: [
               Text(
                 name,
-                style: Theme.of(context).textTheme.bodyText1,
+                style: bodyText18,
               ),
               SizedBox(
                 height: 10,
               ),
               Text(
                 position,
-                style: Theme.of(context).textTheme.subtitle1,
+                style: subtitle18ired,
               ),
               Text(
                 department,
-                style: Theme.of(context).textTheme.subtitle2,
+                style: subtitle18i,
               )
             ],
           ),

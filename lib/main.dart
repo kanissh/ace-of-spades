@@ -30,16 +30,6 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: Colors.white,
         // TODO: define TextStyleTheme for body, heading and others
         fontFamily: 'OpenSans',
-        textTheme: TextTheme(
-          bodyText1: TextStyle(
-            fontSize: 18,
-          ),
-          subtitle1: TextStyle(
-              fontSize: 18,
-              fontStyle: FontStyle.italic,
-              color: Color(0xFF9D170E)),
-          subtitle2: TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
-        ),
       ),
       home: SafeArea(
         child: SplashScreen(),

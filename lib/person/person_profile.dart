@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../constants.dart';
+
 class PersonProfile extends StatelessWidget {
   const PersonProfile({
     Key key,
@@ -35,7 +37,7 @@ class PersonProfile extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
               child: Text(
                 person['name'],
-                style: Theme.of(context).textTheme.bodyText1,
+                style: bodyText18,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -43,7 +45,7 @@ class PersonProfile extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
               child: Text(
                 checkNull(person['academicCred']),
-                style: Theme.of(context).textTheme.subtitle1,
+                style: subtitle18i,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -101,7 +103,7 @@ class PersonDetailsTile extends StatelessWidget {
       leading: FaIcon(this.icon),
       title: Text(
         this.content,
-        style: Theme.of(context).textTheme.bodyText1,
+        style: bodyText18,
       ),
     );
   }

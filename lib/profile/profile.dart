@@ -1,4 +1,5 @@
 import 'file:///F:/FOS/SEM%201/CS304-Project-in-Computing-1/ace-of-spades/lib/ui_components/menu_button.dart';
+import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/grades/grades_page.dart';
 
 import 'package:ace_of_spades/signin/signin_service.dart';
@@ -50,10 +51,10 @@ class ProfilePage extends StatelessWidget {
                   color: Color(0xFF9D170E),
                 ),
               ), // TODO: pass argumwnt from login network name
-              Text(_user.email, style: Theme.of(context).textTheme.bodyText1),
+              Text(_user.email, style: bodyText18),
               Text(
                 _user.email.split('@')[0].toUpperCase(),
-                style: Theme.of(context).textTheme.bodyText1,
+                style: bodyText18,
               ),
               Text(
                 'Bsc in physical science', //TODO: figureout a way to rectify this dynamically
