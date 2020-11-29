@@ -7,27 +7,33 @@ import 'package:ace_of_spades/ui_components/subheading_red.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'filter_check_box_list_tile.dart';
+
 class CourseSearchPage extends StatefulWidget {
-  bool ch = true;
-  bool bl = true;
-  bool zl = true;
-  bool bt = true;
-  bool gl = true;
-  bool cs = true;
-  bool mb = true;
-  bool st = true;
-  bool en = true;
-  bool mt = true;
-  bool ec = true;
-  bool mgt = true;
-  bool l100 = true;
-  bool l200 = true;
-  bool l300 = true;
-  bool l400 = true;
-  bool cr1 = true;
-  bool cr2 = true;
-  bool cr3 = true;
-  bool crVariable = true;
+  bool ch = false;
+  bool bl = false;
+  bool zl = false;
+  bool bt = false;
+  bool gl = false;
+  bool cs = false;
+  bool mb = false;
+  bool st = false;
+  bool en = false;
+  bool mt = false;
+  bool ec = false;
+  bool mgt = false;
+  bool l100 = false;
+  bool l200 = false;
+  bool l300 = false;
+  bool l400 = false;
+  bool cr1 = false;
+  bool cr2 = false;
+  bool cr3 = false;
+  bool crVariable = false;
+
+  List<String> subject = <String>[];
+  List<String> level = <String>[];
+  List<String> credit = <String>[];
 
   @override
   _CourseSearchPageState createState() => _CourseSearchPageState();
@@ -71,14 +77,17 @@ class _CourseSearchPageState extends State<CourseSearchPage> {
                       FilterCheckBoxListTile(
                         value: widget.ch,
                         tileTitle: 'Chemistry',
+                        list: widget.subject,
                       ),
                       FilterCheckBoxListTile(
                         value: widget.cs,
                         tileTitle: 'Computer Science',
+                        list: widget.subject,
                       ),
                       FilterCheckBoxListTile(
                         value: widget.st,
                         tileTitle: 'Statistics',
+                        list: widget.subject,
                       ),
                     ],
                   ),
@@ -121,34 +130,3 @@ class _CourseSearchPageState extends State<CourseSearchPage> {
     );
   }
 }
-
-class FilterCheckBoxListTile extends StatefulWidget {
-  bool value;
-  String tileTitle;
-
-  FilterCheckBoxListTile({this.value, this.tileTitle});
-
-  @override
-  _FilterCheckBoxListTileState createState() => _FilterCheckBoxListTileState();
-}
-
-class _FilterCheckBoxListTileState extends State<FilterCheckBoxListTile> {
-  @override
-  Widget build(BuildContext context) {
-    return CheckboxListTile(
-      title: Text(
-        widget.tileTitle,
-        style: bodyText18,
-      ),
-      value: widget.value,
-      onChanged: (bool val) {
-        setState(() {
-          widget.value = val;
-        });
-      },
-      controlAffinity: ListTileControlAffinity.leading,
-    );
-  }
-}
-
-// ST306,{"code":"ST 306","name":"Data analysis & Preparation of Reports","subject" : "Statistics","credits": {"2019" : 1,"2020" : 1},"desc" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat","general_comp" : false,"special_comp" : true,"prereq": ["st302","st301"],"ref_books" : [],"type_theory" : true,"avail":false,"tags":[]}
