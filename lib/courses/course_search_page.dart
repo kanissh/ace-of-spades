@@ -1,6 +1,8 @@
+import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/courses/course.dart';
 import 'package:ace_of_spades/courses/course_card.dart';
 import 'package:ace_of_spades/courses/course_details_page.dart';
+import 'package:ace_of_spades/courses/course_search.dart';
 import 'package:flutter/material.dart';
 
 class CourseSearchPage extends StatefulWidget {
@@ -28,7 +30,24 @@ class _CourseSearchPageState extends State<CourseSearchPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: CourseDetailsPage(c),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: redColor,
+          onPressed: () {},
+          child: Icon(Icons.filter_list_alt),
+        ),
+        appBar: AppBar(
+          title: Text('Course Search'),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                showSearch(context: context, delegate: CourseSearch());
+              },
+            ),
+          ],
+          centerTitle: true,
+        ),
+        body: Container(),
       ),
     );
   }
