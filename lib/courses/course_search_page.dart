@@ -1,5 +1,6 @@
 import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/courses/course_search.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,9 @@ class CourseSearchPage extends StatefulWidget {
 }
 
 class _CourseSearchPageState extends State<CourseSearchPage> {
+  CollectionReference courses =
+      FirebaseFirestore.instance.collection('courses');
+
   List<String> subjectFilters = <String>[];
   List<String> levelFilters = <String>[];
   List<String> creditFilters = <String>[];
@@ -47,7 +51,15 @@ class _CourseSearchPageState extends State<CourseSearchPage> {
             IconButton(
               icon: Icon(Icons.search),
               onPressed: () {
-                showSearch(context: context, delegate: CourseSearch());
+                showSearch(
+                  context: context,
+                  delegate: CourseSearch(
+                    courseList: courses.get(),
+                    subjectFilters: subjectFilters,
+                    levelFilters: levelFilters,
+                    creditFilters: creditFilters,
+                  ),
+                );
               },
             ),
           ],
@@ -55,11 +67,9 @@ class _CourseSearchPageState extends State<CourseSearchPage> {
         ),
         body: Container(
           child: Center(
-            child: Text(
-              subjectFilters.toString() +
-                  creditFilters.toString() +
-                  levelFilters.toString(),
-            ),
+            child: Text(subjectFilters.toString() +
+                creditFilters.toString() +
+                levelFilters.toString()),
           ),
         ),
       ),
