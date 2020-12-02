@@ -12,10 +12,10 @@ class FilterData {
   static const String ec = 'Economics';
   static const String mgt = 'Management';
 
-  static const String level100 = '1';
-  static const String level200 = '2';
-  static const String level300 = '3';
-  static const String level400 = '4';
+  static const String level100 = '100';
+  static const String level200 = '200';
+  static const String level300 = '300';
+  static const String level400 = '400';
 
   static const String credit1 = '1';
   static const String credit2 = '2';

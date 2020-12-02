@@ -66,7 +66,8 @@ class CourseSearch extends SearchDelegate {
 
         if (levelFilters.isNotEmpty) {
           results = results.where((c) {
-            return levelFilters.contains(c['code'].toString().split(' ')[1][0]);
+            return levelFilters
+                .contains(c['code'].toString().split(' ')[1][0] + '00');
           }).toList();
         }
 
@@ -120,7 +121,8 @@ class CourseSearch extends SearchDelegate {
 
         if (levelFilters.isNotEmpty) {
           results = results.where((c) {
-            return levelFilters.contains(c['code'].toString().split(' ')[1][0]);
+            return levelFilters.contains(c['code'].toString().split(' ')[1][0] +
+                '00'); //to make 3 => 300
           }).toList();
         }
 

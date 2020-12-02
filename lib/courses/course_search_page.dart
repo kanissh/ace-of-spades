@@ -65,13 +65,7 @@ class _CourseSearchPageState extends State<CourseSearchPage> {
           ],
           centerTitle: true,
         ),
-        body: Container(
-          child: Center(
-            child: Text(subjectFilters.toString() +
-                creditFilters.toString() +
-                levelFilters.toString()),
-          ),
-        ),
+        body: Container(),
       ),
     );
   }

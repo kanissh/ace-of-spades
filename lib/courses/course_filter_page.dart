@@ -29,50 +29,65 @@ class _CourseFilterPageState extends State<CourseFilterPage> {
           return false;
         },
         child: Scaffold(
-          body: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SubHeadingRed(
-                  title: 'department',
-                ),
-                Wrap(
-                  spacing: 10,
-                  children: [
-                    buildFilterChip(FilterData.bl, widget.subjectFilters),
-                    buildFilterChip(FilterData.bt, widget.subjectFilters),
-                    buildFilterChip(FilterData.zl, widget.subjectFilters),
-                    buildFilterChip(FilterData.gl, widget.subjectFilters),
-                    buildFilterChip(FilterData.ch, widget.subjectFilters),
-                    buildFilterChip(FilterData.cs, widget.subjectFilters),
-                    buildFilterChip(FilterData.mb, widget.subjectFilters),
-                    buildFilterChip(FilterData.st, widget.subjectFilters),
-                    buildFilterChip(FilterData.en, widget.subjectFilters),
-                    buildFilterChip(FilterData.mt, widget.subjectFilters),
-                    buildFilterChip(FilterData.ec, widget.subjectFilters),
-                    buildFilterChip(FilterData.mgt, widget.subjectFilters),
-                  ],
-                ),
-                blockDivider,
-                Wrap(
-                  spacing: 10,
-                  children: [
-                    buildFilterChip(FilterData.level100, widget.levelFilters),
-                    buildFilterChip(FilterData.level200, widget.levelFilters),
-                    buildFilterChip(FilterData.level300, widget.levelFilters),
-                    buildFilterChip(FilterData.level400, widget.levelFilters),
-                  ],
-                ),
-                Wrap(
-                  spacing: 10,
-                  children: [
-                    buildFilterChip(FilterData.credit1, widget.creditFilters),
-                    buildFilterChip(FilterData.credit2, widget.creditFilters),
-                    buildFilterChip(FilterData.credit3, widget.creditFilters),
-                  ],
-                ),
-              ],
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text('Add Filters'),
+          ),
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SubHeadingRed(
+                    title: 'department',
+                  ),
+                  blockDivider,
+                  Wrap(
+                    spacing: 10,
+                    children: [
+                      buildFilterChip(FilterData.bl, widget.subjectFilters),
+                      buildFilterChip(FilterData.bt, widget.subjectFilters),
+                      buildFilterChip(FilterData.zl, widget.subjectFilters),
+                      buildFilterChip(FilterData.gl, widget.subjectFilters),
+                      buildFilterChip(FilterData.ch, widget.subjectFilters),
+                      buildFilterChip(FilterData.cs, widget.subjectFilters),
+                      buildFilterChip(FilterData.mb, widget.subjectFilters),
+                      buildFilterChip(FilterData.st, widget.subjectFilters),
+                      buildFilterChip(FilterData.en, widget.subjectFilters),
+                      buildFilterChip(FilterData.mt, widget.subjectFilters),
+                      buildFilterChip(FilterData.ec, widget.subjectFilters),
+                      buildFilterChip(FilterData.mgt, widget.subjectFilters),
+                    ],
+                  ),
+                  blockDivider,
+                  SubHeadingRed(title: 'level of study'),
+                  blockDivider,
+                  Wrap(
+                    spacing: 10,
+                    children: [
+                      buildFilterChip(FilterData.level100, widget.levelFilters),
+                      buildFilterChip(FilterData.level200, widget.levelFilters),
+                      buildFilterChip(FilterData.level300, widget.levelFilters),
+                      buildFilterChip(FilterData.level400, widget.levelFilters),
+                    ],
+                  ),
+                  blockDivider,
+                  SubHeadingRed(
+                    title: 'credits',
+                  ),
+                  blockDivider,
+                  Wrap(
+                    spacing: 10,
+                    children: [
+                      buildFilterChip(FilterData.credit1, widget.creditFilters),
+                      buildFilterChip(FilterData.credit2, widget.creditFilters),
+                      buildFilterChip(FilterData.credit3, widget.creditFilters),
+                    ],
+                  ),
+                  blockDivider,
+                ],
+              ),
             ),
           ),
         ),
