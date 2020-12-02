@@ -4,9 +4,9 @@ import 'package:ace_of_spades/ui_components/subheading_red.dart';
 import 'package:flutter/material.dart';
 
 class CourseFilterPage extends StatefulWidget {
-  List<String> subjectFilters;
-  List<String> levelFilters;
-  List<String> creditFilters;
+  final List<String> subjectFilters;
+  final List<String> levelFilters;
+  final List<String> creditFilters;
 
   CourseFilterPage(this.subjectFilters, this.levelFilters, this.creditFilters);
 
