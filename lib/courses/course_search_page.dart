@@ -56,7 +56,9 @@ class _CourseSearchPageState extends State<CourseSearchPage> {
         body: Container(
           child: Center(
             child: Text(
-              subjectFilters.toString(),
+              subjectFilters.toString() +
+                  creditFilters.toString() +
+                  levelFilters.toString(),
             ),
           ),
         ),
