@@ -10,7 +10,7 @@ class CourseDetailsPage extends StatelessWidget {
 
   CourseDetailsPage(this.course);
 
-  String listToNumberedList(List<String> list) {
+  String listToNumberedList(List list) {
     int i = 1;
     String result;
 
