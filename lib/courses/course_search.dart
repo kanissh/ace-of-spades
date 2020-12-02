@@ -1,3 +1,5 @@
+import 'package:ace_of_spades/courses/course.dart';
+import 'package:ace_of_spades/courses/course_Tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +39,55 @@ class CourseSearch extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    return Container();
+    return FutureBuilder<QuerySnapshot>(
+      future: courseList,
+      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (!snapshot.hasData) {
+          return Center(
+            child: Text('No Data!'),
+          );
+        }
+
+        List<QueryDocumentSnapshot> results = snapshot.data.docs;
+
+        if (subjectFilters.isNotEmpty) {
+          results = results.where((c) {
+            print(c['code'].toString().split(' ')[1][0]);
+            return subjectFilters.contains(c['subject'].toString());
+          }).toList();
+        }
+
+        if (creditFilters.isNotEmpty) {
+          results = results.where((c) {
+            return creditFilters.contains(
+                c['credits'][DateTime.now().year.toString()].toString());
+          }).toList();
+        }
+
+        if (levelFilters.isNotEmpty) {
+          results = results.where((c) {
+            return levelFilters.contains(c['code'].toString().split(' ')[1][0]);
+          }).toList();
+        }
+
+        results = results.where((c) {
+          return c['name']
+                  .toString()
+                  .toLowerCase()
+                  .contains(query.toLowerCase()) ||
+              c['code'].toString().toLowerCase().contains(query.toLowerCase());
+        }).toList();
+
+        return ListView(
+          children: results.map(
+            (DocumentSnapshot documentSnapshot) {
+              return CourseTile(
+                  Course.convertCourseDocToObject(documentSnapshot));
+            },
+          ).toList(),
+        );
+      },
+    );
   }
 
   @override
@@ -55,23 +105,32 @@ class CourseSearch extends SearchDelegate {
         List<QueryDocumentSnapshot> results = snapshot.data.docs;
 
         if (subjectFilters.isNotEmpty) {
-          results = results
-              .where((c) => subjectFilters.contains(c['subject'].toString()))
-              .toList();
-        }
-
-        if (levelFilters.isNotEmpty) {
-          results = results
-              .where((c) => levelFilters.contains(c['name'].split('')[1][0]))
-              .toList();
+          results = results.where((c) {
+            print(c['code'].toString().split(' ')[1][0]);
+            return subjectFilters.contains(c['subject'].toString());
+          }).toList();
         }
 
         if (creditFilters.isNotEmpty) {
-          results = results
-              .where((c) =>
-                  subjectFilters.contains(c['credits']['2019'].toString()))
-              .toList();
+          results = results.where((c) {
+            return creditFilters.contains(
+                c['credits'][DateTime.now().year.toString()].toString());
+          }).toList();
         }
+
+        if (levelFilters.isNotEmpty) {
+          results = results.where((c) {
+            return levelFilters.contains(c['code'].toString().split(' ')[1][0]);
+          }).toList();
+        }
+
+        results = results.where((c) {
+          return c['name']
+                  .toString()
+                  .toLowerCase()
+                  .contains(query.toLowerCase()) ||
+              c['code'].toString().toLowerCase().contains(query.toLowerCase());
+        }).toList();
 
         return ListView(
           children: results.map(
