@@ -1,5 +1,5 @@
 import 'package:ace_of_spades/constants.dart';
-import 'package:ace_of_spades/courses/credit_label.dart';
+import 'file:///F:/FOS/SEM%201/CS304-Project-in-Computing-1/ace-of-spades/lib/ui_components/credit_label.dart';
 import 'package:ace_of_spades/ui_components/subheading_red.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

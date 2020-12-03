@@ -1,4 +1,3 @@
-import 'package:ace_of_spades/grades/grades_page.dart';
 import 'package:ace_of_spades/splashscreen/splashscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +34,7 @@ class _MyAppState extends State<MyApp> {
         child: SplashScreen(),
       ),
       routes: {
-        GradesPage.id: (context) => GradesPage(),
+        //GradesPage.id: (context) => GradesPage(),
       },
     );
   }

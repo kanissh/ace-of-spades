@@ -2,7 +2,7 @@ import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/courses/course_details_page.dart';
 import 'package:flutter/material.dart';
 import 'course.dart';
-import 'credit_label.dart';
+import '../ui_components/credit_label.dart';
 
 class CourseTile extends StatelessWidget {
   final Course course;

@@ -1,10 +1,8 @@
 import 'file:///F:/FOS/SEM%201/CS304-Project-in-Computing-1/ace-of-spades/lib/ui_components/menu_button.dart';
 import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/grades/grades_page.dart';
-
 import 'package:ace_of_spades/signin/signin_service.dart';
 import 'package:ace_of_spades/splashscreen/splashscreen.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -76,7 +74,13 @@ class ProfilePage extends StatelessWidget {
                   buttonIcon: FontAwesomeIcons.font,
                   buttonText: 'Grades',
                   onTap: () {
-                    Navigator.pushNamed(context, GradesPage.id);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => GradesPage(),
+                      ),
+                    );
+                    //Navigator.pushNamed(context, GradesPage.id);
                   }),
               MenuButton(
                   buttonIcon: FontAwesomeIcons.clock,

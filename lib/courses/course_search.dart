@@ -1,5 +1,5 @@
+import 'course_Tile.dart';
 import 'package:ace_of_spades/courses/course.dart';
-import 'package:ace_of_spades/courses/course_Tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
