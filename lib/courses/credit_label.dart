@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'course.dart';
 
 class CreditLabel extends StatelessWidget {
-  final Course course;
+  final String credits;
 
-  CreditLabel({this.course});
+  CreditLabel({this.credits});
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +18,12 @@ class CreditLabel extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
         child: Text(
-          course.credits[DateTime.now().year.toString()].toString() +
-              ' Credits',
+          credits + ' Credits',
           style: creditsLabelText,
         ),
       ),
     );
   }
 }
+
+/*course.credits[DateTime.now().year.toString()].toString()*/

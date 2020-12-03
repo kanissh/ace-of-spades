@@ -40,7 +40,9 @@ class CourseTile extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  CreditLabel(course: course)
+                  CreditLabel(
+                      credits: course.credits[DateTime.now().year.toString()]
+                          .toString()),
                 ],
               ),
               Text(

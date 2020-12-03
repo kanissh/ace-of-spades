@@ -50,7 +50,8 @@ class CourseDetailsPage extends StatelessWidget {
                 ),
                 blockDivider,
                 CreditLabel(
-                  course: course,
+                  credits:
+                      course.credits[DateTime.now().year.toString()].toString(),
                 ),
                 blockDivider,
                 Text(
