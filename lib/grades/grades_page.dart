@@ -14,6 +14,7 @@ class GradesPage extends StatefulWidget {
 
 class _GradesPageState extends State<GradesPage> {
   String currentGpa = '4.00';
+  List _completedCourseList;
   final String _userEmail = FirebaseAuth.instance.currentUser.email;
 
   getDocumentPath(String email) {
@@ -76,6 +77,11 @@ class _GradesPageState extends State<GradesPage> {
                   List courseListCompleted = courseList.where((e) {
                     return !e['grade'].toString().contains('pending');
                   }).toList();
+
+                  //store completed courses list in a class variable
+                  setState(() {
+                    this._completedCourseList = courseListCompleted;
+                  });
 
                   //create new widget list to display
                   List<Widget> _courseTileList = List();
