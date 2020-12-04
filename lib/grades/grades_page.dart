@@ -14,7 +14,7 @@ class GradesPage extends StatefulWidget {
 
 class _GradesPageState extends State<GradesPage> {
   String currentGpa = '4.00';
-  List _completedCourseList;
+  Future<List> _completedCourseList;
   final String _userEmail = FirebaseAuth.instance.currentUser.email;
 
   getDocumentPath(String email) {
@@ -30,13 +30,18 @@ class _GradesPageState extends State<GradesPage> {
 
   void addToWidgetList(List dataList, List<Widget> widgetList) {
     for (var item in dataList) {
-      widgetList.add(StudentCourseTile(studentCourse: StudentCourse.convertToObject(item)));
+      widgetList.add(
+        StudentCourseTile(
+          studentCourse: StudentCourse.convertToObject(item),
+        ),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     List<String> documentInfo = getDocumentPath(_userEmail);
+
     Future<DocumentSnapshot> students =
         FirebaseFirestore.instance.collection(documentInfo[1]).doc(documentInfo[0]).get();
 
@@ -49,7 +54,8 @@ class _GradesPageState extends State<GradesPage> {
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Text(
-                currentGpa,
+                'GG',
+                //CalculateGpa.calculateGpa(courseList: _completedCourseList).toString(),
                 style: TextStyle(fontSize: 53),
                 textAlign: TextAlign.right,
               ),
@@ -79,9 +85,7 @@ class _GradesPageState extends State<GradesPage> {
                   }).toList();
 
                   //store completed courses list in a class variable
-                  setState(() {
-                    this._completedCourseList = courseListCompleted;
-                  });
+                  this._completedCourseList = courseListCompleted as Future<List>;
 
                   //create new widget list to display
                   List<Widget> _courseTileList = List();
