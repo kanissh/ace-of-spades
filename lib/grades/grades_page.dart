@@ -33,18 +33,6 @@ class _GradesPageState extends State<GradesPage> {
     }
   }
 
-  /*StudentCourse _studentCourse = StudentCourse(
-      code: 'CS 313',
-      name: 'Digital Image Processing',
-      credits: '3',
-      grade: 'A');
-
-  StudentCourse _studentCourse2 = StudentCourse(
-      code: 'CS 313',
-      name: 'Digital Image Processing',
-      credits: '3',
-      grade: 'A+');*/
-
   @override
   Widget build(BuildContext context) {
     List<String> documentInfo = getDocumentPath(_userEmail);
@@ -79,15 +67,20 @@ class _GradesPageState extends State<GradesPage> {
                   Map<String, dynamic> data = snapshot.data.data();
                   List courseList = data['courses'];
 
+                  // get courses where result is pending
                   List courseListPending = courseList.where((e) {
                     return e['grade'].toString().contains('pending');
                   }).toList();
 
+                  // get completed courses
                   List courseListCompleted = courseList.where((e) {
                     return !e['grade'].toString().contains('pending');
                   }).toList();
 
+                  //create new widget list to display
                   List<Widget> _courseTileList = List();
+
+                  //add initial heading
                   _courseTileList.addAll([
                     blockDivider,
                     Padding(
@@ -98,7 +91,11 @@ class _GradesPageState extends State<GradesPage> {
                       height: 5,
                     )
                   ]);
+
+                  //add pending courses
                   addToWidgetList(courseListPending, _courseTileList);
+
+                  //add completed heading
                   _courseTileList.addAll([
                     SizedBox(
                       height: 5,
@@ -111,18 +108,13 @@ class _GradesPageState extends State<GradesPage> {
                       height: 5,
                     )
                   ]);
+
+                  //add completed list
                   addToWidgetList(courseListCompleted, _courseTileList);
 
                   return ListView(
                     children: _courseTileList,
                   );
-
-                  // return ListView.builder(
-                  //   itemCount: courseListPending.length,
-                  //   itemBuilder: (context, index) {
-                  //     return StudentCourseTile(studentCourse: StudentCourse.convertToObject(courseListPending[index]));
-                  //   },
-                  // );
                 }
 
                 return Text("loading");

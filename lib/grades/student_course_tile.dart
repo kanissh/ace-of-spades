@@ -1,5 +1,6 @@
 import 'package:ace_of_spades/grades/student_course.dart';
 import 'package:ace_of_spades/ui_components/credit_label.dart';
+import 'package:ace_of_spades/ui_components/semester_label.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -43,8 +44,22 @@ class StudentCourseTile extends StatelessWidget {
                       CreditLabel(
                         credits: _studentCourse.credits.toString(),
                       ),
+                      SizedBox(
+                        width: 10,
+                      ),
                     ],
                   ),
+                  SemesterLabel(
+                    semester: _studentCourse.semester,
+                    semesterYear: _studentCourse.year,
+                  ),
+                  /* Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                    child: Text(
+                      _studentCourse.year.toString() + ' ' + _studentCourse.semester.toString(),
+                      style: subtitle16red,
+                    ),
+                  ), */
                   Text(
                     _studentCourse.name,
                     style: subtitle18i,

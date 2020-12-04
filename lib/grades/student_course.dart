@@ -7,13 +7,7 @@ class StudentCourse {
   final String year;
   //final String courseDocRef;
 
-  StudentCourse(
-      {this.code,
-      this.name,
-      this.credits,
-      this.grade,
-      this.semester,
-      this.year /*, this.courseDocRef*/});
+  StudentCourse({this.code, this.name, this.credits, this.grade, this.semester, this.year /*, this.courseDocRef*/});
 
   static StudentCourse convertToObject(Map<String, dynamic> courseMap) {
     return StudentCourse(
@@ -21,7 +15,7 @@ class StudentCourse {
         name: courseMap['name'],
         credits: courseMap['credits'],
         grade: courseMap['grade'],
-        semester: courseMap['semester'],
+        semester: courseMap['sem'],
         year: courseMap['year']);
   }
 }
