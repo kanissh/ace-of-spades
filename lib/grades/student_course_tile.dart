@@ -67,14 +67,16 @@ class StudentCourseTile extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
-              child: Text(
-                _studentCourse.grade,
-                style: TextStyle(fontSize: 26, fontWeight: FontWeight.w600),
-                textAlign: TextAlign.center,
-              ),
-              flex: 1,
-            ),
+            _studentCourse.grade == null || _studentCourse.grade == 'pending' || _studentCourse.grade.trim() == ''
+                ? Container()
+                : Expanded(
+                    child: Text(
+                      _studentCourse.grade,
+                      style: TextStyle(fontSize: 26, fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.center,
+                    ),
+                    flex: 1,
+                  ),
           ],
         ),
       ),
