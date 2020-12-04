@@ -38,10 +38,12 @@ class _SemesterLabelState extends State<SemesterLabel> {
               ),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-                child: Text(
-                  widget._semester == '1' ? 'I' : 'II',
-                  style: subtitle16red,
-                ),
+                child: widget._semester == null || widget._semester.isEmpty
+                    ? Container()
+                    : Text(
+                        widget._semester == '1' ? 'I' : 'II',
+                        style: subtitle16red,
+                      ),
               ),
             )
           ],
