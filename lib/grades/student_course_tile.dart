@@ -41,7 +41,7 @@ class StudentCourseTile extends StatelessWidget {
                         width: 10,
                       ),
                       CreditLabel(
-                        credits: _studentCourse.credits,
+                        credits: _studentCourse.credits.toString(),
                       ),
                     ],
                   ),
