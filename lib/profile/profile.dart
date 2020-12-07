@@ -1,6 +1,7 @@
 import 'file:///F:/FOS/SEM%201/CS304-Project-in-Computing-1/ace-of-spades/lib/ui_components/menu_button.dart';
 import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/grades/grades_page.dart';
+import 'package:ace_of_spades/schedules/exam_schedule.dart';
 import 'package:ace_of_spades/signin/signin_service.dart';
 import 'package:ace_of_spades/splashscreen/splashscreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,6 +24,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -34,8 +36,7 @@ class ProfilePage extends StatelessWidget {
               ),
               CircleAvatar(
                 //Avatar circle profile image
-                backgroundImage: NetworkImage(
-                    _user.photoURL), // TODO: add route from google profile
+                backgroundImage: NetworkImage(_user.photoURL), // TODO: add route from google profile
                 backgroundColor: Colors.white,
                 radius: 64,
               ),
@@ -67,9 +68,7 @@ class ProfilePage extends StatelessWidget {
               ),
               Divider(),
 
-              MenuButton(
-                  buttonIcon: FontAwesomeIcons.graduationCap,
-                  buttonText: 'Manage Courses'),
+              MenuButton(buttonIcon: FontAwesomeIcons.graduationCap, buttonText: 'Manage Courses'),
               MenuButton(
                   buttonIcon: FontAwesomeIcons.font,
                   buttonText: 'Grades',
@@ -82,24 +81,27 @@ class ProfilePage extends StatelessWidget {
                     );
                     //Navigator.pushNamed(context, GradesPage.id);
                   }),
+              MenuButton(buttonIcon: FontAwesomeIcons.clock, buttonText: 'Class Schedule'),
               MenuButton(
-                  buttonIcon: FontAwesomeIcons.clock,
-                  buttonText: 'Class Schedule'),
-              MenuButton(
-                  buttonIcon: FontAwesomeIcons.clipboard,
-                  buttonText: 'Exam Schedule'),
-              MenuButton(
-                  buttonIcon: FontAwesomeIcons.star,
-                  buttonText: 'Course Evaluation'),
+                buttonIcon: FontAwesomeIcons.clipboard,
+                buttonText: 'Exam Schedule',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ExamSchedule(),
+                    ),
+                  );
+                },
+              ),
+              MenuButton(buttonIcon: FontAwesomeIcons.star, buttonText: 'Course Evaluation'),
               MenuButton(
                 buttonIcon: FontAwesomeIcons.signOutAlt,
                 buttonText: 'Sign out',
                 onTap: () async {
                   await signOutGoogle();
                   Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => SplashScreen()),
-                      (route) => false);
+                      context, MaterialPageRoute(builder: (context) => SplashScreen()), (route) => false);
                 }, //FIXME: logout not working fix it
               ), //TODO: add logout logic
             ],

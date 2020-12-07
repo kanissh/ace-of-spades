@@ -12,6 +12,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Column(
