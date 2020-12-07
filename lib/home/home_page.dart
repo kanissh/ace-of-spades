@@ -16,35 +16,24 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            MenuButton(
-                buttonIcon: FontAwesomeIcons.calendar,
-                buttonText: 'Academic Calender'),
-            MenuButton(
-                buttonIcon: FontAwesomeIcons.calendarDay, buttonText: 'Events'),
+            MenuButton(buttonIcon: FontAwesomeIcons.calendar, buttonText: 'Academic Calender'),
+            MenuButton(buttonIcon: FontAwesomeIcons.calendarDay, buttonText: 'Events'),
             MenuButton(
               buttonIcon: FontAwesomeIcons.book,
               buttonText: 'Course Search',
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CourseSearchPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CourseSearchPage()));
               },
             ),
             MenuButton(
                 buttonIcon: FontAwesomeIcons.users,
                 buttonText: 'Find People',
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PersonPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => PersonPage()));
                 }),
-            MenuButton(
-                buttonIcon: FontAwesomeIcons.bullhorn, buttonText: 'Notices'),
-            MenuButton(
-                buttonIcon: FontAwesomeIcons.cog, buttonText: 'Settings'),
-            MenuButton(
-                buttonIcon: FontAwesomeIcons.solidCommentAlt,
-                buttonText: 'Feedback')
+            MenuButton(buttonIcon: FontAwesomeIcons.bullhorn, buttonText: 'Notices'),
+            MenuButton(buttonIcon: FontAwesomeIcons.cog, buttonText: 'Settings'),
+            MenuButton(buttonIcon: FontAwesomeIcons.solidCommentAlt, buttonText: 'Feedback')
           ],
         ),
       ),

@@ -5,8 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // TODO: refactor styles to a constant seperately
 
 class MenuButton extends StatelessWidget {
-  MenuButton(
-      {@required this.buttonIcon, @required this.buttonText, this.onTap});
+  MenuButton({@required this.buttonIcon, @required this.buttonText, this.onTap});
 
   // TODO: make onTap required
 
@@ -24,20 +23,31 @@ class MenuButton extends StatelessWidget {
         },
         child: SizedBox(
           height: 35,
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                child: FaIcon(
-                  buttonIcon,
-                  color: menuIconColor,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Center(
+                    child: FaIcon(
+                      buttonIcon,
+                      color: menuIconColor,
+                    ),
+                  ),
                 ),
-              ),
-              Text(
-                buttonText,
-                style: bodyText18,
-              ),
-            ],
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  flex: 5,
+                  child: Text(
+                    buttonText,
+                    style: bodyText18,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
