@@ -1,3 +1,4 @@
+import 'package:ace_of_spades/grades/calculate_gpa.dart';
 import 'package:ace_of_spades/grades/student_course.dart';
 import 'package:ace_of_spades/grades/student_course_tile.dart';
 import 'package:ace_of_spades/ui_components/subheading_red.dart';
@@ -13,8 +14,6 @@ class GradesPage extends StatefulWidget {
 }
 
 class _GradesPageState extends State<GradesPage> {
-  String currentGpa = '4.00';
-  Future<List> _completedCourseList;
   final String _userEmail = FirebaseAuth.instance.currentUser.email;
 
   getDocumentPath(String email) {
@@ -42,7 +41,7 @@ class _GradesPageState extends State<GradesPage> {
   Widget build(BuildContext context) {
     List<String> documentInfo = getDocumentPath(_userEmail);
 
-    Future<DocumentSnapshot> students =
+    Future<DocumentSnapshot> studentDocument =
         FirebaseFirestore.instance.collection(documentInfo[1]).doc(documentInfo[0]).get();
 
     return SafeArea(
@@ -51,20 +50,41 @@ class _GradesPageState extends State<GradesPage> {
         children: [
           Expanded(
             flex: 1,
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Text(
-                'GG',
-                //CalculateGpa.calculateGpa(courseList: _completedCourseList).toString(),
-                style: TextStyle(fontSize: 53),
-                textAlign: TextAlign.right,
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CurrentGPA(),
+                FutureBuilder(
+                  future: studentDocument,
+                  builder: (context, AsyncSnapshot snapshot) {
+                    if (snapshot.hasError) {
+                      return Text('Connection not found');
+                    }
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      Map<String, dynamic> data = snapshot.data.data();
+                      List courseList = data['courses'];
+
+                      List courseListCompleted = courseList.where((e) {
+                        return !e['grade'].toString().contains('pending');
+                      }).toList();
+
+                      return Text(
+                        CalculateGpa.calculateGpa(courseList: courseListCompleted).toStringAsFixed(2),
+                        style: TextStyle(fontSize: 53),
+                        textAlign: TextAlign.right,
+                      );
+                    }
+
+                    return Text('loading');
+                  },
+                ),
+              ],
             ),
           ),
           Expanded(
             flex: 5,
             child: FutureBuilder<DocumentSnapshot>(
-              future: students,
+              future: studentDocument,
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.hasError) {
                   return Text("Something went wrong");
@@ -83,9 +103,6 @@ class _GradesPageState extends State<GradesPage> {
                   List courseListCompleted = courseList.where((e) {
                     return !e['grade'].toString().contains('pending');
                   }).toList();
-
-                  //store completed courses list in a class variable
-                  this._completedCourseList = courseListCompleted as Future<List>;
 
                   //create new widget list to display
                   List<Widget> _courseTileList = List();
@@ -136,3 +153,33 @@ class _GradesPageState extends State<GradesPage> {
     ));
   }
 }
+
+class CurrentGPA extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Text(
+            'Current',
+            style: TextStyle(fontSize: 18),
+          ),
+          Text(
+            'GPA',
+            style: TextStyle(fontSize: 26),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/* Padding(
+              padding: const EdgeInsets.all(20),
+              child: Text(
+                'GG',
+                // CalculateGpa.calculateGpa(courseList: _list).toString(),
+                style: TextStyle(fontSize: 53),
+                textAlign: TextAlign.right,
+              ),
+            ), */

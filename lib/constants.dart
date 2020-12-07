@@ -26,3 +26,18 @@ const TextStyle creditsLabelText = TextStyle(fontSize: 16, color: Colors.white, 
 const TextStyle subtitle18ired = TextStyle(fontSize: 18, fontStyle: FontStyle.italic, color: Color(0xFF9D170E));
 
 const TextStyle subtitle16red = TextStyle(fontSize: 16, fontStyle: FontStyle.normal, color: Color(0xFF9D170E));
+
+const Map<String, num> GRADEPOINTS = {
+  'A+': 4,
+  'A': 4,
+  'A-': 3.7,
+  'B+': 3.3,
+  'B': 3,
+  'B-': 2.7,
+  'C+': 2.3,
+  'C': 2,
+  'C-': 1.7,
+  'D+': 1.3,
+  'D': 1,
+  'E': 0
+};
