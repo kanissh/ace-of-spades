@@ -41,3 +41,9 @@ const Map<String, num> GRADEPOINTS = {
   'D': 1,
   'E': 0
 };
+
+const TextStyle gpaDisplayStyle = TextStyle(
+  fontSize: 53,
+  color: redColor,
+  fontWeight: FontWeight.w600,
+);

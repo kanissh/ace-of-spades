@@ -120,11 +120,7 @@ class _GradesPageState extends State<GradesPage> {
                         CurrentGPA(),
                         Text(
                           CalculateGpa.calculateGpa(courseList: courseListCompleted).toStringAsFixed(2),
-                          style: TextStyle(
-                            fontSize: 53,
-                            color: redColor,
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style: gpaDisplayStyle,
                         ),
                       ],
                     ),
