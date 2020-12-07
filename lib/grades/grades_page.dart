@@ -45,6 +45,116 @@ class _GradesPageState extends State<GradesPage> {
         FirebaseFirestore.instance.collection(documentInfo[1]).doc(documentInfo[0]).get();
 
     return SafeArea(
+      child: Scaffold(
+        body: FutureBuilder(
+          future: studentDocument,
+          builder: (context, AsyncSnapshot snapshot) {
+            if (snapshot.hasError) {
+              return Center(
+                child: Text('Cannot load connection'),
+              );
+            }
+
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: Text('Loading'),
+              );
+            }
+
+            if (snapshot.connectionState == ConnectionState.done) {
+              Map<String, dynamic> data = snapshot.data.data();
+              List courseList = data['courses'];
+
+              // get courses where result is pending
+              List courseListPending = courseList.where((e) {
+                return e['grade'].toString().contains('pending');
+              }).toList();
+
+              // get completed courses
+              List courseListCompleted = courseList.where((e) {
+                return !e['grade'].toString().contains('pending');
+              }).toList();
+
+              //create new widget list to display
+              List<Widget> _courseTileList = List();
+
+              //add initial heading
+              _courseTileList.addAll([
+                blockDivider,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  child: SubHeadingRed(title: 'on going courses'),
+                ),
+                SizedBox(
+                  height: 5,
+                )
+              ]);
+
+              //add pending courses
+              addToWidgetList(courseListPending, _courseTileList);
+
+              //add completed heading
+              _courseTileList.addAll([
+                SizedBox(
+                  height: 5,
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  child: SubHeadingRed(title: 'completed courses'),
+                ),
+                SizedBox(
+                  height: 5,
+                )
+              ]);
+
+              //add completed list
+              addToWidgetList(courseListCompleted, _courseTileList);
+
+              return Column(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CurrentGPA(),
+                        Text(
+                          CalculateGpa.calculateGpa(courseList: courseListCompleted).toStringAsFixed(2),
+                          style: TextStyle(
+                            fontSize: 53,
+                            color: redColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: ListView(
+                      children: _courseTileList,
+                    ),
+                  ),
+                ],
+              );
+            }
+
+            return Center(
+              child: Text('Could not load data'),
+            );
+          },
+        ),
+      ),
+    );
+  }
+  /* @override
+  Widget build(BuildContext context) {
+    List<String> documentInfo = getDocumentPath(_userEmail);
+
+    Future<DocumentSnapshot> studentDocument =
+        FirebaseFirestore.instance.collection(documentInfo[1]).doc(documentInfo[0]).get();
+
+    return SafeArea(
         child: Scaffold(
       body: Column(
         children: [
@@ -151,7 +261,7 @@ class _GradesPageState extends State<GradesPage> {
         ],
       ),
     ));
-  }
+  } */
 }
 
 class CurrentGPA extends StatelessWidget {
@@ -159,27 +269,18 @@ class CurrentGPA extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             'Current',
-            style: TextStyle(fontSize: 18),
+            style: TextStyle(fontSize: 18, fontFamily: 'Montserrat'),
           ),
           Text(
             'GPA',
-            style: TextStyle(fontSize: 26),
+            style: TextStyle(fontSize: 32, fontFamily: 'Montserrat', fontWeight: FontWeight.w600),
           ),
         ],
       ),
     );
   }
 }
-
-/* Padding(
-              padding: const EdgeInsets.all(20),
-              child: Text(
-                'GG',
-                // CalculateGpa.calculateGpa(courseList: _list).toString(),
-                style: TextStyle(fontSize: 53),
-                textAlign: TextAlign.right,
-              ),
-            ), */
