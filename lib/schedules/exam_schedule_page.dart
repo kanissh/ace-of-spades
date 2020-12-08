@@ -3,7 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'exam_schedule_tile.dart';
 
-class ExamSchedule extends StatelessWidget {
+class ExamSchedulePage extends StatefulWidget {
+  @override
+  _ExamScheduleState createState() => _ExamScheduleState();
+}
+
+class _ExamScheduleState extends State<ExamSchedulePage> {
   CollectionReference examSchedule = FirebaseFirestore.instance.collection('exam_schedule');
 
   ExamScheduleObject examSchObject = ExamScheduleObject(
