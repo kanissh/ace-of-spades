@@ -12,10 +12,7 @@ class _ExamScheduleState extends State<ExamSchedulePage> {
   CollectionReference examSchedule = FirebaseFirestore.instance.collection('exam_schedule');
 
   ExamScheduleObject examSchObject = ExamScheduleObject(
-      courseCode: 'CS 999',
-      startTime: DateTime(2020, 9, 27, 8, 30),
-      endTime: DateTime(2020, 9, 7, 10, 30),
-      desc: 'End Semester Examination');
+      courseCode: 'CS 999', startTime: DateTime(2020, 9, 27, 8, 30), endTime: DateTime(2020, 9, 7, 10, 30));
 
   @override
   Widget build(BuildContext context) {

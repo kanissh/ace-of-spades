@@ -64,17 +64,18 @@ class ExamScheduleTile extends StatelessWidget {
                         SizedBox(
                           width: 5,
                         ),
-                        TimeLabel(
-                          time: DateFormat.Hm().format(_examScheduleObject.startTime) +
-                              ' - ' +
-                              DateFormat.Hm().format(_examScheduleObject.endTime),
+                        Visibility(
+                          visible: _examScheduleObject.desc != null,
+                          child: buildTimeLabel(),
                         ),
                       ],
                     ),
-                    Text(
-                      _examScheduleObject.desc,
-                      style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
-                    ),
+                    _examScheduleObject.desc != null
+                        ? Text(
+                            _examScheduleObject.desc,
+                            style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+                          )
+                        : buildTimeLabel(),
                   ],
                 ),
                 flex: 4,
@@ -83,6 +84,14 @@ class ExamScheduleTile extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  TimeLabel buildTimeLabel() {
+    return TimeLabel(
+      time: DateFormat.Hm().format(_examScheduleObject.startTime) +
+          ' - ' +
+          DateFormat.Hm().format(_examScheduleObject.endTime),
     );
   }
 }
