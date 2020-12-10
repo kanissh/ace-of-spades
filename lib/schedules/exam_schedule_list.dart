@@ -35,12 +35,16 @@ class ExamScheduleList extends StatelessWidget {
               }
 
               if (snapshot.connectionState == ConnectionState.active) {
+                List<Widget> scheduleList = List();
+
+                snapshot.data.documents.map<Widget>((DocumentSnapshot documentSnapshot) {
+                  scheduleList.add(ExamScheduleTile(
+                    examScheduleObject: ExamScheduleObject.convertToObject(documentSnapshot: documentSnapshot),
+                  ));
+                }).toList();
+
                 return ListView(
-                  children: snapshot.data.documents.map<Widget>((DocumentSnapshot documentSnapshot) {
-                    return ExamScheduleTile(
-                      examScheduleObject: ExamScheduleObject.convertToObject(documentSnapshot: documentSnapshot),
-                    );
-                  }).toList(),
+                  children: scheduleList,
                 );
               }
 

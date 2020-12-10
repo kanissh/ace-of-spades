@@ -1,5 +1,4 @@
 import 'package:ace_of_spades/schedules/exam_schedule_list.dart';
-import 'package:ace_of_spades/schedules/exam_schedule_object.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
