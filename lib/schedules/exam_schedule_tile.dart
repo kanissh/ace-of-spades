@@ -7,7 +7,7 @@ import 'exam_schedule_object.dart';
 class ExamScheduleTile extends StatelessWidget {
   final ExamScheduleObject _examScheduleObject;
 
-  ExamScheduleTile({examScheduleObject}) : this._examScheduleObject = examScheduleObject;
+  ExamScheduleTile({ExamScheduleObject examScheduleObject}) : this._examScheduleObject = examScheduleObject;
 
   @override
   Widget build(BuildContext context) {

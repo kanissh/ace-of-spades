@@ -36,7 +36,7 @@ class ProfilePage extends StatelessWidget {
               ),
               CircleAvatar(
                 //Avatar circle profile image
-                backgroundImage: NetworkImage(_user.photoURL), // TODO: add route from google profile
+                backgroundImage: NetworkImage(_user.photoURL),
                 backgroundColor: Colors.white,
                 radius: 64,
               ),

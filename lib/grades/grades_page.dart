@@ -60,7 +60,6 @@ class _GradesPageState extends State<GradesPage> {
                 child: Text('Loading'),
               );
             }
-
             if (snapshot.connectionState == ConnectionState.done) {
               Map<String, dynamic> data = snapshot.data.data();
               List courseList = data['courses'];

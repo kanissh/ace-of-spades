@@ -1,7 +1,7 @@
+import 'package:ace_of_spades/schedules/exam_schedule_list.dart';
 import 'package:ace_of_spades/schedules/exam_schedule_object.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'exam_schedule_tile.dart';
 
 class ExamSchedulePage extends StatefulWidget {
   @override
@@ -9,10 +9,13 @@ class ExamSchedulePage extends StatefulWidget {
 }
 
 class _ExamScheduleState extends State<ExamSchedulePage> {
-  CollectionReference examSchedule = FirebaseFirestore.instance.collection('exam_schedule');
+  CollectionReference examScheduleRef = FirebaseFirestore.instance.collection('exam_schedule');
+  /* var doc = FirebaseFirestore.instance
+      .collection('students/s16/s16stu')
+      .doc(FirebaseAuth.instance.currentUser.email.substring(0, 3));
+ */
 
-  ExamScheduleObject examSchObject = ExamScheduleObject(
-      courseCode: 'CS 999', startTime: DateTime(2020, 9, 27, 8, 30), endTime: DateTime(2020, 9, 7, 10, 30));
+  var studentDocument = FirebaseFirestore.instance.collection('students/s16/s16stu').doc('002');
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,33 @@ class _ExamScheduleState extends State<ExamSchedulePage> {
             'Exam Schedule',
           ),
         ),
-        body: ExamScheduleTile(examScheduleObject: examSchObject),
+        body: FutureBuilder(
+          future: studentDocument.get(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('Data error occurred'); //TODO: handle
+            }
+
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Text('waiting'); //TODO: add waiting indicator
+            }
+
+            if (snapshot.connectionState == ConnectionState.done) {
+              Map<String, dynamic> data = snapshot.data.data();
+              List courseList = data['courses'];
+
+              // get courses where result is pending
+              List courseListPending = courseList.where((e) {
+                return e['grade'].toString().contains('pending');
+              }).toList();
+
+              return ExamScheduleList(
+                pendingCourseList: List(), //courseListPending,
+              );
+            }
+            return Text('Could not load data');
+          },
+        ),
       ),
     );
   }
