@@ -48,7 +48,7 @@ class _ExamScheduleState extends State<ExamSchedulePage> {
               }).toList();
 
               return ExamScheduleList(
-                pendingCourseList: List(), //courseListPending,
+                pendingCourseList: courseListPending, //courseListPending,
               );
             }
             return Text('Could not load data');
