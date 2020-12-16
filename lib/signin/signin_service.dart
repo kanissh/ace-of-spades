@@ -11,15 +11,12 @@ Future<User> signInWithGoogle() async {
   await Firebase.initializeApp();
 
   final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
-  final GoogleSignInAuthentication googleSignInAuthentication =
-      await googleSignInAccount.authentication;
+  final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
 
   final AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleSignInAuthentication.accessToken,
-      idToken: googleSignInAuthentication.idToken);
+      accessToken: googleSignInAuthentication.accessToken, idToken: googleSignInAuthentication.idToken);
 
-  final UserCredential authResult =
-      await _auth.signInWithCredential(credential);
+  final UserCredential authResult = await _auth.signInWithCredential(credential);
   final User user = authResult.user;
 
   if (user != null) {

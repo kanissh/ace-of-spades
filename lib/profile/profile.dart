@@ -1,6 +1,7 @@
 import 'file:///F:/FOS/SEM%201/CS304-Project-in-Computing-1/ace-of-spades/lib/ui_components/menu_button.dart';
 import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/grades/grades_page.dart';
+import 'package:ace_of_spades/manage_courses/manage_courses_page.dart';
 import 'package:ace_of_spades/schedules/exam_schedule_page.dart';
 import 'package:ace_of_spades/signin/signin_service.dart';
 import 'package:ace_of_spades/splashscreen/splashscreen.dart';
@@ -68,7 +69,18 @@ class ProfilePage extends StatelessWidget {
               ),
               Divider(),
 
-              MenuButton(buttonIcon: FontAwesomeIcons.graduationCap, buttonText: 'Manage Courses'),
+              MenuButton(
+                buttonIcon: FontAwesomeIcons.graduationCap,
+                buttonText: 'Manage Courses',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ManageCoursesPage(),
+                    ),
+                  );
+                },
+              ),
               MenuButton(
                   buttonIcon: FontAwesomeIcons.font,
                   buttonText: 'Grades',

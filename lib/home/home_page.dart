@@ -1,5 +1,6 @@
 import 'file:///F:/FOS/SEM%201/CS304-Project-in-Computing-1/ace-of-spades/lib/ui_components/menu_button.dart';
 import 'package:ace_of_spades/courses/course_search_page.dart';
+import 'package:ace_of_spades/notices/notice_page.dart';
 import 'package:ace_of_spades/person/person_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -32,7 +33,12 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => PersonPage()));
                 }),
-            MenuButton(buttonIcon: FontAwesomeIcons.bullhorn, buttonText: 'Notices'),
+            MenuButton(
+                buttonIcon: FontAwesomeIcons.bullhorn,
+                buttonText: 'Notices',
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => NoticePage()));
+                }),
             MenuButton(buttonIcon: FontAwesomeIcons.cog, buttonText: 'Settings'),
             MenuButton(buttonIcon: FontAwesomeIcons.solidCommentAlt, buttonText: 'Feedback')
           ],

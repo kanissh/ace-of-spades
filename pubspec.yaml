@@ -17,6 +17,9 @@ dependencies:
   rxdart: ^0.24.1
   font_awesome_flutter: ^8.10.0
   intl: ^0.16.1
+  googleapis_auth: ^0.2.12
+  googleapis: ^0.56.1
+  url_launcher: ^5.7.10
 
   cupertino_icons: ^0.1.3
 
