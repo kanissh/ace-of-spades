@@ -2,7 +2,6 @@ import 'package:ace_of_spades/notices/notice_card.dart';
 import 'package:ace_of_spades/notices/notice_object.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class NoticePage extends StatefulWidget {
   @override
@@ -17,7 +16,10 @@ class _NoticePageState extends State<NoticePage> {
         body: Padding(
           padding: const EdgeInsets.all(10.0),
           child: StreamBuilder(
-            stream: FirebaseFirestore.instance.collection('notices').snapshots(),
+            stream: FirebaseFirestore.instance
+                .collection('notices')
+                .orderBy('published_date', descending: true)
+                .snapshots(),
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
                 return Center(
@@ -32,10 +34,6 @@ class _NoticePageState extends State<NoticePage> {
               }
 
               if (snapshot.connectionState == ConnectionState.active) {
-                List<Widget> list = List();
-                List fileList = snapshot.data.docs.first['files'];
-                // List<Map> fileList = data['files'];
-
                 return ListView.builder(
                   itemCount: snapshot.data.docs.length,
                   itemBuilder: (context, index) {
