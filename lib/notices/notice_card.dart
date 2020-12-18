@@ -1,7 +1,7 @@
 import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/notices/notice_details.dart';
+import 'package:ace_of_spades/ui_components/published_date_label.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import 'notice_object.dart';
 
@@ -36,16 +36,7 @@ class NoticeCard extends StatelessWidget {
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),
-              Container(
-                decoration: BoxDecoration(color: Colors.yellow, borderRadius: BorderRadius.circular(5)),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-                  child: Text(
-                    DateFormat('dd MMM yyyy').format(_noticeObject.publishedDate),
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                  ),
-                ),
-              ),
+              PublishedDateLabel(noticeObject: _noticeObject),
             ],
           ),
         ),

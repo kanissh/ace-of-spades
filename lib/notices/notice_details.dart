@@ -1,6 +1,7 @@
 import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/notices/notice_object.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NoticeDetails extends StatelessWidget {
@@ -65,6 +66,16 @@ class NoticeDetails extends StatelessWidget {
                 Text(
                   _noticeObject.title,
                   style: title22b,
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  'Published on ' +
+                      DateFormat('dd MMM yyy').format(_noticeObject.publishedDate) +
+                      ' at ' +
+                      DateFormat(DateFormat.HOUR24_MINUTE).format(_noticeObject.publishedDate),
+                  style: subtitle16i,
                 ),
                 SizedBox(height: 20),
                 Text(

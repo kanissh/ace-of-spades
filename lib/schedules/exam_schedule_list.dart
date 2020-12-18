@@ -37,7 +37,7 @@ class ExamScheduleList extends StatelessWidget {
               if (snapshot.connectionState == ConnectionState.active) {
                 List<Widget> scheduleList = List();
 
-                snapshot.data.documents.map<Widget>((DocumentSnapshot documentSnapshot) {
+                snapshot.data.docs.map<Widget>((DocumentSnapshot documentSnapshot) {
                   scheduleList.add(ExamScheduleTile(
                     examScheduleObject: ExamScheduleObject.convertToObject(documentSnapshot: documentSnapshot),
                   ));

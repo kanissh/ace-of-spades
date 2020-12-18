@@ -13,8 +13,6 @@ const Color creditsLabelColor = Color(0xFF2E7D32);
 
 const TextStyle bodyText18 = TextStyle(fontSize: 18, color: Colors.black);
 
-const TextStyle bodyText18i = TextStyle(fontSize: 18, fontStyle: FontStyle.italic);
-
 const TextStyle bodyText18b = TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
 
 const TextStyle subtitle18i = TextStyle(fontSize: 18, fontStyle: FontStyle.italic);
@@ -30,6 +28,11 @@ const TextStyle subtitle16red = TextStyle(fontSize: 16, fontStyle: FontStyle.nor
 const TextStyle subtitle16 = TextStyle(
   fontSize: 16,
   fontStyle: FontStyle.normal,
+);
+
+const TextStyle subtitle16i = TextStyle(
+  fontSize: 16,
+  fontStyle: FontStyle.italic,
 );
 
 const TextStyle title22b = TextStyle(

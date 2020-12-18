@@ -50,18 +50,13 @@ class CourseDetailsPage extends StatelessWidget {
                 ),
                 blockDivider,
                 CreditLabel(
-                  credits:
-                      course.credits[DateTime.now().year.toString()].toString(),
+                  credits: course.credits[DateTime.now().year.toString()].toString(),
                 ),
                 blockDivider,
                 Text(
                   'Prerequisites - ' +
-                      (course.prereq.isNotEmpty
-                          ? course.prereq
-                              .toString()
-                              .replaceAll(RegExp(r'[\[\]]'), "")
-                          : 'None'),
-                  style: bodyText18i,
+                      (course.prereq.isNotEmpty ? course.prereq.toString().replaceAll(RegExp(r'[\[\]]'), "") : 'None'),
+                  style: subtitle18i,
                 ),
                 blockDivider,
                 SubHeadingRed(title: 'description'),
