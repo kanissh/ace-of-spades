@@ -43,13 +43,6 @@ class _NoticePageState extends State<NoticePage> {
                     return NoticeCard(
                       noticeObject: NoticeObject.convertDocToObject(documentSnapshot),
                     );
-
-                    /* onPressed: () {
-                           _launchUrl(fileList[index]['url']).catchError((Object error) {
-                            final snackbar = SnackBar(content: Text(error.toString()));
-                            Scaffold.of(context).showSnackBar(snackbar);
-                          }); 
-                        } */
                   },
                 );
               }

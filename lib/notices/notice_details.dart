@@ -4,26 +4,38 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NoticeDetails extends StatelessWidget {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final NoticeObject _noticeObject;
 
   NoticeDetails({@required NoticeObject noticeObject}) : this._noticeObject = noticeObject;
 
-  _launchUrl(String _url) async {
+  _displaySnackBar(BuildContext context, String message) {
+    if (message == null || message.isEmpty) {
+      message = 'Unexpected error occurred';
+    } else {
+      message = 'Cannot open $message\nPlease check if the link is valid';
+    }
+
+    final snackBar = SnackBar(content: Text(message));
+    _scaffoldKey.currentState.showSnackBar(snackBar);
+  }
+
+  _launchUrl(String _url, BuildContext context) async {
     final url = _url;
     if (await canLaunch(url)) {
       await launch(url);
     } else {
-      throw 'Could not launch $url';
+      _displaySnackBar(context, url);
     }
   }
 
-  List<Widget> buildLinksList(List<dynamic> list) {
+  List<Widget> buildLinksList(List<dynamic> list, BuildContext context) {
     List<Widget> widgetList = List();
     for (var item in list) {
       widgetList.add(
         InkWell(
           onTap: () {
-            _launchUrl(item['url']);
+            _launchUrl(item['url'], context);
           },
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
@@ -43,6 +55,7 @@ class NoticeDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldKey,
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
@@ -61,7 +74,7 @@ class NoticeDetails extends StatelessWidget {
                 SizedBox(height: 20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: buildLinksList(_noticeObject.fileList),
+                  children: buildLinksList(_noticeObject.fileList, context),
                 )
               ],
             ),
