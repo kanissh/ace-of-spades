@@ -27,6 +27,21 @@ const TextStyle subtitle18ired = TextStyle(fontSize: 18, fontStyle: FontStyle.it
 
 const TextStyle subtitle16red = TextStyle(fontSize: 16, fontStyle: FontStyle.normal, color: Color(0xFF9D170E));
 
+const TextStyle subtitle16 = TextStyle(
+  fontSize: 16,
+  fontStyle: FontStyle.normal,
+);
+
+const TextStyle title22b = TextStyle(
+  fontSize: 22,
+  fontWeight: FontWeight.bold,
+);
+const TextStyle linkText18b = TextStyle(
+  fontSize: 18,
+  color: Color(0xFF0D47A1),
+  decoration: TextDecoration.underline,
+);
+
 const Map<String, num> GRADEPOINTS = {
   'A+': 4,
   'A': 4,
