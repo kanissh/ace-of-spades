@@ -24,7 +24,10 @@ class ExamScheduleList extends StatelessWidget {
     return pendingCourseList == null || pendingCourseList.isEmpty
         ? Text('No examination soon')
         : StreamBuilder(
-            stream: examScheduleRef.where('course_code', whereIn: getCourseCode(pendingCourseList)).snapshots(),
+            stream: examScheduleRef
+                .where('course_code', whereIn: getCourseCode(pendingCourseList))
+                .orderBy('start_time')
+                .snapshots(),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return Text('Data error occurred'); //TODO: handle
@@ -42,8 +45,6 @@ class ExamScheduleList extends StatelessWidget {
                     examScheduleObject: ExamScheduleObject.convertToObject(documentSnapshot: documentSnapshot),
                   ));
                 }).toList();
-
-                //TODO: sort exam schedule
 
                 return ListView(
                   children: scheduleList,
