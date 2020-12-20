@@ -1,7 +1,6 @@
 import 'package:ace_of_spades/course_evaluation/evaluation_list.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CourseEvaluationPage extends StatefulWidget {

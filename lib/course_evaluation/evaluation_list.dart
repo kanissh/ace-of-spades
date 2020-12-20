@@ -3,10 +3,15 @@ import 'package:ace_of_spades/course_evaluation/fill_evaluation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class EvaluationList extends StatelessWidget {
+class EvaluationList extends StatefulWidget {
   final List pendingCourseList;
   EvaluationList({this.pendingCourseList});
 
+  @override
+  _EvaluationListState createState() => _EvaluationListState();
+}
+
+class _EvaluationListState extends State<EvaluationList> {
   CollectionReference evalRef = FirebaseFirestore.instance.collection('course_evaluations');
 
   List<String> getCourseCode(List list) {
@@ -22,7 +27,7 @@ class EvaluationList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: evalRef.where('course_code', whereIn: getCourseCode(pendingCourseList)).snapshots(),
+        stream: evalRef.where('course_code', whereIn: getCourseCode(widget.pendingCourseList)).snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return Center(
