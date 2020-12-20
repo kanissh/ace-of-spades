@@ -28,7 +28,7 @@ class _ExamScheduleState extends State<ExamSchedulePage> {
         ),
         body: FutureBuilder(
           future: studentDocument.get(),
-          builder: (context, snapshot) {
+          builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
             if (snapshot.hasError) {
               return Text('Data error occurred'); //TODO: handle
             }

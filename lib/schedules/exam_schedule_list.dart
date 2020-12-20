@@ -45,6 +45,7 @@ class ExamScheduleList extends StatelessWidget {
                     examScheduleObject: ExamScheduleObject.convertToObject(documentSnapshot: documentSnapshot),
                   ));
                 }).toList();
+                //FIXME: set method return to schedule list
 
                 return ListView(
                   children: scheduleList,
