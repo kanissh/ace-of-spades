@@ -72,12 +72,3 @@ class _CourseEvaluationPageState extends State<CourseEvaluationPage> {
     );
   }
 }
-
-/* SingleChildScrollView(
-          child: Expanded(
-            child: Html(
-              data:
-                  '<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfEayGDAdIRgmFhFumHxkq8MBl3Qk8_yWK1kmELOHnTjYm6Bg/viewform?embedded=true" width=${MediaQuery.of(context).size.width} height=${MediaQuery.of(context).size.height} frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>',
-            ),
-          ),
-        ), */

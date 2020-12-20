@@ -1,3 +1,5 @@
+import 'package:ace_of_spades/constants.dart';
+import 'package:ace_of_spades/course_evaluation/fill_evaluation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -39,13 +41,37 @@ class EvaluationList extends StatelessWidget {
             );
           }
           if (snapshot.connectionState == ConnectionState.active) {
-            List<Widget> wid = List();
+            /*  List<Widget> _evalList = List();
+            _evalList.add(blockDivider);
 
-            wid = snapshot.data.docs.map<Widget>((DocumentSnapshot documentSnapshot) {
-              return Text(documentSnapshot.data()['course_code'].toString());
+            _evalList = snapshot.data.docs.map<Widget>((DocumentSnapshot documentSnapshot) {
+              return ListTile(
+                title: Text(documentSnapshot.data()['course_code'].toString()),
+              );
             }).toList();
-
-            return ListView(children: wid);
+ */
+            return ListView.separated(
+              separatorBuilder: (context, index) => blockDivider,
+              itemCount: snapshot.data.docs.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(
+                    snapshot.data.docs[index].data()['course_code'].toString(),
+                    style: bodyText18,
+                  ),
+                  subtitle: Text(snapshot.data.docs[index].data()['name'].toString(), style: subtitle18i),
+                  isThreeLine: false,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FillEvaluation(evalDocument: snapshot.data.docs[index].data()),
+                      ),
+                    );
+                  },
+                );
+              },
+            );
           }
 
           return Center(
