@@ -25,11 +25,23 @@ class _MapPageState extends State<MapPage> {
                 ),
                 onMapCreated: (MapboxMapController mapController) async {
                   final _location = await getCurrentLocation();
-                  mapController.animateCamera(
+                  final animateCameraResult = await mapController.animateCamera(
                     CameraUpdate.newCameraPosition(
                       CameraPosition(target: _location, zoom: 15),
                     ),
                   );
+
+                  print(animateCameraResult);
+
+                  if (animateCameraResult) {
+                    mapController.addCircle(
+                      CircleOptions(
+                        circleRadius: 10,
+                        circleColor: '#333333',
+                        geometry: _location,
+                      ),
+                    );
+                  }
                 },
               );
             } else {
