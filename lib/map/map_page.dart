@@ -18,6 +18,7 @@ class _MapPageState extends State<MapPage> {
           builder: (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
             if (snapshot.hasData) {
               return MapboxMap(
+                styleString: snapshot.data['mapbox_style_string'].toString(),
                 // cameraTargetBounds: CameraTargetBounds(),
                 accessToken: snapshot.data['mapbox_api_token'],
                 initialCameraPosition: CameraPosition(
