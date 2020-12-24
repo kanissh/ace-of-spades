@@ -2,6 +2,7 @@ import 'package:ace_of_spades/api/repositories/api.repository.dart';
 import 'package:ace_of_spades/utils/config.helper.dart';
 import 'package:ace_of_spades/utils/location.helper.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 
 class MapPage extends StatefulWidget {
@@ -15,6 +16,11 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child: FaIcon(FontAwesomeIcons.search),
+          onPressed: () {},
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
         body: FutureBuilder(
           future: loadConfigFile(),
           builder: (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
