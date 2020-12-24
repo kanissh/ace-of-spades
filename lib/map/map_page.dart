@@ -1,3 +1,4 @@
+import 'package:ace_of_spades/api/repositories/api.repository.dart';
 import 'package:ace_of_spades/utils/config.helper.dart';
 import 'package:ace_of_spades/utils/location.helper.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
+  final repository = ApiRepository.instance;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,11 +40,17 @@ class _MapPageState extends State<MapPage> {
                     mapController.addCircle(
                       CircleOptions(
                         circleRadius: 10,
-                        circleColor: '#333333',
+                        circleColor: '#000000',
                         geometry: _location,
                       ),
                     );
                   }
+                },
+                onMapClick: (point, coordinates) async {
+                  final result = await repository.performGeocoding(coordinates.latitude, coordinates.longitude);
+                  Scaffold.of(context).showBottomSheet((context) {
+                    return Wrap(children: [Text(result.toString())]);
+                  });
                 },
               );
             } else {
