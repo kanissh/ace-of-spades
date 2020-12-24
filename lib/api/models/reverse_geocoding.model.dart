@@ -1,15 +1,15 @@
-class GeocodingModel {
+class ReverseGeocodingModel {
   double latitude;
   double longitude;
   String placeName;
 
-  GeocodingModel({
+  ReverseGeocodingModel({
     this.latitude = 0.0,
     this.longitude = 0.0,
     this.placeName = '',
   });
 
-  GeocodingModel.fromJson(Map<String, dynamic> json) {
+  ReverseGeocodingModel.fromJson(Map<String, dynamic> json) {
     List<dynamic> coordinates = json['query'];
     this.latitude = coordinates.first;
     this.longitude = coordinates.last;

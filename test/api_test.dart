@@ -11,7 +11,7 @@ void main() {
   group('mapbox api', () {
     test('geocoding response', () async {
       final repository = ApiRepository.instance;
-      final result = await repository.performGeocoding(45.45, 45.45);
+      final result = await repository.performForwardGeocoding('university of peradeniya');
 
       print(result.toString());
       expect(result.placeName.isNotEmpty, true);

@@ -53,7 +53,7 @@ class _MapPageState extends State<MapPage> {
                   }
                 },
                 onMapClick: (point, coordinates) async {
-                  final result = await repository.performGeocoding(coordinates.latitude, coordinates.longitude);
+                  final result = await repository.performReverseGeocoding(coordinates.latitude, coordinates.longitude);
                   Scaffold.of(context).showBottomSheet((context) {
                     return Wrap(children: [Text(result.toString())]);
                   });
