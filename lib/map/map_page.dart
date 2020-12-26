@@ -18,30 +18,43 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: FaIcon(FontAwesomeIcons.search),
-          onPressed: () {
-            showDialog(
-              context: context,
-              child: Dialog(
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      TextField(),
-                      RaisedButton(
-                        onPressed: () {},
-                        child: Text('Search'),
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              mini: true,
+              child: Icon(Icons.search),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  child: Dialog(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          TextField(),
+                          RaisedButton(
+                            onPressed: () {},
+                            child: Text('Search'),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            );
-          },
+                );
+              },
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            FloatingActionButton(
+              mini: true,
+              child: Icon(Icons.my_location),
+              onPressed: () {},
+            ),
+          ],
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
         body: FutureBuilder(
           future: loadConfigFile(),
           builder: (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
@@ -68,37 +81,42 @@ class _MapPageState extends State<MapPage> {
                     ),
                   );
 
-                  // final _location = await getCurrentLocation();
-                  // final animateCameraResult = await mapController.animateCamera(
-                  //   CameraUpdate.newCameraPosition(
-                  //     CameraPosition(target: _location, zoom: 15),
-                  //   ),
-                  // );
+                  final _location = await getCurrentLocation();
+                  final LatLng _defaultLocation = LatLng(7.254212510590577, 80.5967939152037);
+                  bool animateCameraResult;
 
-                  // print(animateCameraResult);
-
-                  // if (animateCameraResult) {
-                  //   mapController.addCircle(
-                  //     CircleOptions(
-                  //       circleRadius: 10,
-                  //       circleColor: '#000000',
-                  //       geometry: _location,
-                  //     ),
-                  //   );
-                  // }
-
-                  /* final animateCameraResult = await mapController.animateCamera(
-                    CameraUpdate.newLatLngBounds(
-                      LatLngBounds(
-                        southwest: LatLng(80.57513609064677, 7.23794270873293),
-                        northeast: LatLng(80.61080833461193, 7.279563382697944),
+                  if (_location == null) {
+                    animateCameraResult = await mapController.animateCamera(
+                      CameraUpdate.newCameraPosition(
+                        CameraPosition(target: _defaultLocation, zoom: 13),
                       ),
-                    ),
-                  );
+                    );
 
-                  final animateCameraResult2 = await mapController.animateCamera(
-                    CameraUpdate.zoomTo(15),
-                  ); */
+                    if (animateCameraResult) {
+                      mapController.addCircle(
+                        CircleOptions(
+                          circleRadius: 10,
+                          circleColor: '#000000',
+                          geometry: _defaultLocation,
+                        ),
+                      );
+                    }
+                  } else {
+                    animateCameraResult = await mapController.animateCamera(
+                      CameraUpdate.newCameraPosition(
+                        CameraPosition(target: _location, zoom: 12),
+                      ),
+                    );
+                    if (animateCameraResult) {
+                      mapController.addCircle(
+                        CircleOptions(
+                          circleRadius: 10,
+                          circleColor: '#000000',
+                          geometry: _location,
+                        ),
+                      );
+                    }
+                  }
                 },
                 onMapClick: (point, coordinates) async {
                   final result = await repository.performReverseGeocoding(coordinates.latitude, coordinates.longitude);
