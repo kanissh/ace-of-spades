@@ -2,7 +2,9 @@ import 'package:ace_of_spades/api/repositories/api.repository.dart';
 import 'package:ace_of_spades/utils/config.helper.dart';
 import 'package:ace_of_spades/utils/location.helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:googleapis/doubleclickbidmanager/v1_1.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 
 class MapPage extends StatefulWidget {
@@ -12,13 +14,33 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   final repository = ApiRepository.instance;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           child: FaIcon(FontAwesomeIcons.search),
-          onPressed: () {},
+          onPressed: () {
+            showDialog(
+              context: context,
+              child: Dialog(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextField(),
+                      RaisedButton(
+                        onPressed: () {},
+                        child: Text('Search'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
         body: FutureBuilder(
