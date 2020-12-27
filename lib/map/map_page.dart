@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:ace_of_spades/api/repositories/api.repository.dart';
 import 'package:ace_of_spades/utils/config.helper.dart';
 import 'package:ace_of_spades/utils/location.helper.dart';
@@ -5,6 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:googleapis/doubleclickbidmanager/v1_1.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
+import 'package:mapbox_search_flutter/mapbox_search_flutter.dart';
+
+import '../constants.dart';
 
 class MapPage extends StatefulWidget {
   @override
@@ -21,7 +26,8 @@ class _MapPageState extends State<MapPage> {
       child: Scaffold(
         body: FutureBuilder(
           future: loadConfigFile(),
-          builder: (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
+          builder: (BuildContext context,
+              AsyncSnapshot<Map<String, dynamic>> snapshot) {
             if (snapshot.hasData) {
               return Stack(
                 alignment: Alignment.bottomRight,
@@ -33,7 +39,8 @@ class _MapPageState extends State<MapPage> {
                         northeast: LatLng(7.279977791172868, 80.61140926621937),
                       ),
                     ),
-                    styleString: snapshot.data['mapbox_style_string'].toString(),
+                    styleString:
+                        snapshot.data['mapbox_style_string'].toString(),
                     accessToken: snapshot.data['mapbox_api_token'],
                     initialCameraPosition: CameraPosition(
                       target: LatLng(45.45, 45.45),
@@ -42,14 +49,21 @@ class _MapPageState extends State<MapPage> {
                       await mapController.animateCamera(
                         CameraUpdate.newLatLngBounds(
                           LatLngBounds(
-                            southwest: LatLng(7.239157512248738, 80.58135242077032),
-                            northeast: LatLng(7.279977791172868, 80.61140926621937),
+                            southwest:
+                                LatLng(7.239157512248738, 80.58135242077032),
+                            northeast:
+                                LatLng(7.279977791172868, 80.61140926621937),
                           ),
                         ),
                       );
 
-                      final _location = await getCurrentLocation();
-                      final LatLng _defaultLocation = LatLng(7.254212510590577, 80.5967939152037);
+                      final _location =
+                          LatLng(7.254212510590577, 80.5967939152037);
+                      //FIXME: Remove comment, commented to temporarily disabled get location
+                      //await getCurrentLocation();
+
+                      final LatLng _defaultLocation =
+                          LatLng(7.254212510590577, 80.5967939152037);
                       bool animateCameraResult;
 
                       if (_location == null) {
@@ -86,8 +100,8 @@ class _MapPageState extends State<MapPage> {
                       }
                     },
                     onMapClick: (point, coordinates) async {
-                      final result =
-                          await repository.performReverseGeocoding(coordinates.latitude, coordinates.longitude);
+                      final result = await repository.performReverseGeocoding(
+                          coordinates.latitude, coordinates.longitude);
                       print(result.toString());
                       Scaffold.of(context).showBottomSheet((context) {
                         return Wrap(children: [Text(result.toString())]);
@@ -101,6 +115,7 @@ class _MapPageState extends State<MapPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         FloatingActionButton(
+                          backgroundColor: redColor,
                           mini: true,
                           child: Icon(Icons.search),
                           onPressed: () {
@@ -128,6 +143,7 @@ class _MapPageState extends State<MapPage> {
                           height: 10,
                         ),
                         FloatingActionButton(
+                          backgroundColor: redColor,
                           mini: true,
                           child: Icon(Icons.my_location),
                           onPressed: () {},
@@ -135,6 +151,11 @@ class _MapPageState extends State<MapPage> {
                       ],
                     ),
                   ),
+                  MapBoxPlaceSearchWidget(
+                      onSelected: (place) {},
+                      popOnSelect: true,
+                      context: context,
+                      apiKey: snapshot.data['mapbox_api_token'].toString()),
                 ],
               );
             } else {
