@@ -3,6 +3,7 @@ import 'package:ace_of_spades/utils/config.helper.dart';
 import 'package:flutter/material.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:mapbox_search/mapbox_search.dart';
+import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 import '../constants.dart';
 
@@ -15,8 +16,29 @@ class _MapPageState extends State<MapPage> {
   final repository = ApiRepository.instance;
   MapboxMapController mapController;
 
+  final FloatingSearchBarController _floatingSearchBarController =
+      FloatingSearchBarController();
+
+  List<MapBoxPlace> queryPlaces = List();
+
+  getPlacesList(List<MapBoxPlace> places) {
+    List<Widget> results = List();
+    for (var place in places) {
+      results.add(
+        ListTile(
+          title: Text(place.placeName),
+        ),
+      );
+    }
+
+    return results;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
+
     return SafeArea(
       child: Scaffold(
         body: FutureBuilder(
@@ -25,6 +47,7 @@ class _MapPageState extends State<MapPage> {
               AsyncSnapshot<Map<String, dynamic>> snapshot) {
             if (snapshot.hasData) {
               return Stack(
+                fit: StackFit.expand,
                 alignment: Alignment.bottomRight,
                 children: [
                   MapboxMap(
@@ -127,6 +150,86 @@ class _MapPageState extends State<MapPage> {
                       ],
                     ),
                   ),
+                  FloatingSearchBar(
+                    automaticallyImplyBackButton: false,
+                    hint: 'Search...',
+                    scrollPadding: const EdgeInsets.only(top: 16, bottom: 56),
+                    transitionDuration: const Duration(milliseconds: 800),
+                    transitionCurve: Curves.easeInOut,
+                    physics: const BouncingScrollPhysics(),
+                    axisAlignment: isPortrait ? 0.0 : -1.0,
+                    openAxisAlignment: 0.0,
+                    maxWidth: isPortrait ? 600 : 500,
+                    debounceDelay: const Duration(milliseconds: 500),
+                    controller: _floatingSearchBarController,
+                    /*onQueryChanged: (query) async {
+                      if (query != null || query.isNotEmpty) {
+                        var placesSearch = PlacesSearch(
+                          apiKey: snapshot.data['mapbox_api_token'],
+                          limit: 5,
+                        );
+
+                        try {
+                          queryPlaces = await placesSearch.getPlaces(query);
+
+                          print(queryPlaces.toString());
+                        } on Exception catch (e) {
+                          print(e.toString());
+                        }
+                      }
+                    },*/
+
+                    onSubmitted: (query) async {
+                      if (query != null || query.isNotEmpty) {
+                        var placesSearch = PlacesSearch(
+                          apiKey: snapshot.data['mapbox_api_token'],
+                          limit: 5,
+                        );
+
+                        try {
+                          queryPlaces = await placesSearch.getPlaces(query);
+
+                          print(queryPlaces.toString());
+                        } on Exception catch (e) {
+                          print(e.toString());
+                        }
+                      }
+                    },
+                    transition: ExpandingFloatingSearchBarTransition(),
+                    leadingActions: [
+                      FloatingSearchBarAction.back(),
+                    ],
+                    actions: [
+                      FloatingSearchBarAction(
+                        child: CircularButton(
+                          icon: Icon(Icons.search),
+                          onPressed: () {
+                            _floatingSearchBarController.open();
+                          },
+                        ),
+                      ),
+                      FloatingSearchBarAction.icon(
+                          showIfClosed: false,
+                          showIfOpened: true,
+                          icon: Icons.close,
+                          onTap: () {
+                            _floatingSearchBarController.query = '';
+                          })
+                    ],
+                    builder: (context, transition) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Material(
+                          color: Colors.white,
+                          elevation: 4.0,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: getPlacesList(queryPlaces),
+                          ),
+                        ),
+                      );
+                    },
+                  )
                 ],
               );
             } else {
@@ -140,3 +243,16 @@ class _MapPageState extends State<MapPage> {
     );
   }
 }
+/*return ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Material(
+          color: Colors.white,
+          elevation: 4.0,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: Colors.accents.map((color) {
+              return Container(height: 112, color: color);
+            }).toList(),
+          ),
+        ),
+      );*/
