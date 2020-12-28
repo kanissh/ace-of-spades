@@ -1,13 +1,8 @@
-import 'dart:collection';
-
 import 'package:ace_of_spades/api/repositories/api.repository.dart';
 import 'package:ace_of_spades/utils/config.helper.dart';
-import 'package:ace_of_spades/utils/location.helper.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:googleapis/doubleclickbidmanager/v1_1.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
-import 'package:mapbox_search_flutter/mapbox_search_flutter.dart';
+import 'package:mapbox_search/mapbox_search.dart';
 
 import '../constants.dart';
 
@@ -118,26 +113,7 @@ class _MapPageState extends State<MapPage> {
                           backgroundColor: redColor,
                           mini: true,
                           child: Icon(Icons.search),
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              child: Dialog(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      TextField(),
-                                      RaisedButton(
-                                        onPressed: () {},
-                                        child: Text('Search'),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
+                          onPressed: () {},
                         ),
                         SizedBox(
                           height: 10,
@@ -151,11 +127,6 @@ class _MapPageState extends State<MapPage> {
                       ],
                     ),
                   ),
-                  MapBoxPlaceSearchWidget(
-                      onSelected: (place) {},
-                      popOnSelect: true,
-                      context: context,
-                      apiKey: snapshot.data['mapbox_api_token'].toString()),
                 ],
               );
             } else {
