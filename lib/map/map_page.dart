@@ -16,8 +16,7 @@ class _MapPageState extends State<MapPage> {
   final repository = ApiRepository.instance;
   MapboxMapController mapController;
 
-  final FloatingSearchBarController _floatingSearchBarController =
-      FloatingSearchBarController();
+  final FloatingSearchBarController _floatingSearchBarController = FloatingSearchBarController();
 
   List<MapBoxPlace> queryPlaces = List();
 
@@ -27,6 +26,19 @@ class _MapPageState extends State<MapPage> {
       results.add(
         ListTile(
           title: Text(place.placeName),
+          onTap: () {
+            mapController.animateCamera(
+              CameraUpdate.newCameraPosition(
+                CameraPosition(
+                  target: LatLng(
+                    place.geometry.coordinates.first,
+                    place.geometry.coordinates.last,
+                  ),
+                  zoom: 13,
+                ),
+              ),
+            );
+          },
         ),
       );
     }
@@ -36,15 +48,13 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
-    final isPortrait =
-        MediaQuery.of(context).orientation == Orientation.portrait;
+    final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
 
     return SafeArea(
       child: Scaffold(
         body: FutureBuilder(
           future: loadConfigFile(),
-          builder: (BuildContext context,
-              AsyncSnapshot<Map<String, dynamic>> snapshot) {
+          builder: (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
             if (snapshot.hasData) {
               return Stack(
                 fit: StackFit.expand,
@@ -57,8 +67,7 @@ class _MapPageState extends State<MapPage> {
                         northeast: LatLng(7.279977791172868, 80.61140926621937),
                       ),
                     ),
-                    styleString:
-                        snapshot.data['mapbox_style_string'].toString(),
+                    styleString: snapshot.data['mapbox_style_string'].toString(),
                     accessToken: snapshot.data['mapbox_api_token'],
                     initialCameraPosition: CameraPosition(
                       target: LatLng(45.45, 45.45),
@@ -67,21 +76,17 @@ class _MapPageState extends State<MapPage> {
                       await mapController.animateCamera(
                         CameraUpdate.newLatLngBounds(
                           LatLngBounds(
-                            southwest:
-                                LatLng(7.239157512248738, 80.58135242077032),
-                            northeast:
-                                LatLng(7.279977791172868, 80.61140926621937),
+                            southwest: LatLng(7.239157512248738, 80.58135242077032),
+                            northeast: LatLng(7.279977791172868, 80.61140926621937),
                           ),
                         ),
                       );
 
-                      final _location =
-                          LatLng(7.254212510590577, 80.5967939152037);
+                      final _location = LatLng(7.254212510590577, 80.5967939152037);
                       //FIXME: Remove comment, commented to temporarily disabled get location
                       //await getCurrentLocation();
 
-                      final LatLng _defaultLocation =
-                          LatLng(7.254212510590577, 80.5967939152037);
+                      final LatLng _defaultLocation = LatLng(7.254212510590577, 80.5967939152037);
                       bool animateCameraResult;
 
                       if (_location == null) {
@@ -118,8 +123,8 @@ class _MapPageState extends State<MapPage> {
                       }
                     },
                     onMapClick: (point, coordinates) async {
-                      final result = await repository.performReverseGeocoding(
-                          coordinates.latitude, coordinates.longitude);
+                      final result =
+                          await repository.performReverseGeocoding(coordinates.latitude, coordinates.longitude);
                       print(result.toString());
                       Scaffold.of(context).showBottomSheet((context) {
                         return Wrap(children: [Text(result.toString())]);
