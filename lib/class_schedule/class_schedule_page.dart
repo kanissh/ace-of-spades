@@ -78,8 +78,11 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
               return StreamBuilder(
                 stream: classScheduleRef.where('course_code', whereIn: getCourseCode(courseListPending)).snapshots(),
                 builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return Text('Data error occurred'); //TODO: handle
+                  }
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    print('waiting');
+                    return Text('waiting');
                   }
                   if (snapshot.connectionState == ConnectionState.active) {
                     List list = List();
@@ -91,7 +94,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
                     print(list);
                     print(list.length);
                   }
-                  return Container();
+                  Text('Could not load data');
                 },
               );
             }
