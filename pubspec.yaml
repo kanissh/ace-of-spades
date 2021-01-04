@@ -27,6 +27,7 @@ dependencies:
   flutter_bloc: ^6.1.1
   mapbox_search: ^2.0.1+1
   material_floating_search_bar: ^0.2.6
+  syncfusion_flutter_calendar: ^18.4.32
 
 dev_dependencies:
   flutter_test:
