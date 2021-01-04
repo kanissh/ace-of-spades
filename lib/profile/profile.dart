@@ -1,4 +1,5 @@
 import 'file:///F:/FOS/SEM%201/CS304-Project-in-Computing-1/ace-of-spades/lib/ui_components/menu_button.dart';
+import 'package:ace_of_spades/class_schedule/class_schedule_page.dart';
 import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/course_evaluation/course_evaluation_page.dart';
 import 'package:ace_of_spades/grades/grades_page.dart';
@@ -94,7 +95,18 @@ class ProfilePage extends StatelessWidget {
                     );
                     //Navigator.pushNamed(context, GradesPage.id);
                   }),
-              MenuButton(buttonIcon: FontAwesomeIcons.clock, buttonText: 'Class Schedule'),
+              MenuButton(
+                buttonIcon: FontAwesomeIcons.clock,
+                buttonText: 'Class Schedule',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ClassSchedulePage(),
+                    ),
+                  );
+                },
+              ),
               MenuButton(
                 buttonIcon: FontAwesomeIcons.clipboard,
                 buttonText: 'Exam Schedule',
