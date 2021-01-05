@@ -41,7 +41,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
             to: schDoc['end_time'].toDate(),
             isAllDay: false,
             background: Colors.blue[400],
-            recurrenceRule: 'FREQ=DAILY;INTERVAL=1;UNTIL=20210108'));
+            recurrenceRule: 'FREQ=DAILY;INTERVAL=1;UNTIL=20210108T183000Z'));
       }
     }
 
