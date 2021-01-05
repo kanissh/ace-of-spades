@@ -18,6 +18,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
       .collection('students/s16/s16stu')
       .doc(FirebaseAuth.instance.currentUser.email.substring(0, 3));
  */
+  //TODO: set this
 
   var studentDocument = FirebaseFirestore.instance.collection('students/s16/s16stu').doc('002');
 
@@ -35,15 +36,12 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
       List<Map<String, dynamic>> scheduleDocMap, List<CourseSchedule> courseSchList) {
     if (scheduleDocMap != null || scheduleDocMap.isNotEmpty) {
       for (var schDoc in scheduleDocMap) {
-        courseSchList.add(CourseSchedule(
-            courseCode: schDoc['course_code'],
-            from: schDoc['start_time'].toDate(),
-            to: schDoc['end_time'].toDate(),
-            isAllDay: false,
-            background: Colors.blue[400],
-            recurrenceRule: schDoc['recur']
-                ? 'FREQ=WEEKLY;INTERVAL=1;BYDAY=${schDoc['weekday']};UNTIL=${schDoc['recur_until']}'
-                : null));
+        courseSchList.add(
+          CourseSchedule.createCourseSchedule(
+            scheduleDocument: schDoc,
+            backgroundColor: Colors.greenAccent[400],
+          ),
+        );
       }
     }
 
