@@ -32,4 +32,8 @@ class ScheduleDataSource extends CalendarDataSource {
   Color getColor(int index) {
     return appointments[index].background;
   }
+
+  String getRecurrenceRule(int index) {
+    return appointments[index].recurrenceRule;
+  }
 }

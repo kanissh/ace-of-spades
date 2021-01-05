@@ -31,22 +31,19 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
     return results;
   }
 
-  ScheduleDataSource _getCalendarDataSource() {
-    courseScheduleList.add(CourseSchedule(
-      from: DateTime.now().subtract(Duration(hours: 5)),
-      to: DateTime.now().add(Duration(hours: 1)),
-      isAllDay: false,
-      courseCode: 'Meeting',
-      background: Colors.red,
-    ));
-
-    courseScheduleList.add(CourseSchedule(
-      from: DateTime.now().subtract(Duration(hours: 5)),
-      to: DateTime.now().add(Duration(hours: 1)),
-      isAllDay: false,
-      courseCode: 'Meeting',
-      background: Colors.red,
-    ));
+  ScheduleDataSource _getCalendarDataSource(
+      List<Map<String, dynamic>> scheduleDocMap, List<CourseSchedule> courseSchList) {
+    if (scheduleDocMap != null || scheduleDocMap.isNotEmpty) {
+      for (var schDoc in scheduleDocMap) {
+        courseSchList.add(CourseSchedule(
+            courseCode: schDoc['course_code'],
+            from: schDoc['start_time'].toDate(),
+            to: schDoc['end_time'].toDate(),
+            isAllDay: false,
+            background: Colors.blue[400],
+            recurrenceRule: 'FREQ=DAILY;INTERVAL=1;UNTIL=20210108'));
+      }
+    }
 
     return ScheduleDataSource(courseScheduleList);
   }
@@ -85,7 +82,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
                     return Text('waiting');
                   }
                   if (snapshot.connectionState == ConnectionState.active) {
-                    List list = List();
+                    List<Map<String, dynamic>> list = List();
                     print('active');
                     snapshot.data.docs.map((e) {
                       list.add(e.data());
@@ -93,8 +90,14 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
 
                     print(list);
                     print(list.length);
+                    return SfCalendar(
+                      view: CalendarView.day,
+                      firstDayOfWeek: 1,
+                      timeSlotViewSettings: TimeSlotViewSettings(startHour: 6, endHour: 19),
+                      dataSource: _getCalendarDataSource(list, courseScheduleList),
+                    );
                   }
-                  Text('Could not load data');
+                  return Text('Could not load data');
                 },
               );
             }
