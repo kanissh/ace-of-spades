@@ -22,6 +22,13 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
 
   var studentDocument = FirebaseFirestore.instance.collection('students/s16/s16stu').doc('002');
 
+  @override
+  void initState() {
+    _calendarController = CalendarController();
+    _calendarController.view = CalendarView.day;
+    super.initState();
+  }
+
   List<String> getCourseCode(List list) {
     List<String> results = List();
 
@@ -52,6 +59,16 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.ac_unit),
+          onPressed: () {
+            if (_calendarController.view == CalendarView.day) {
+              _calendarController.view = CalendarView.week;
+            } else {
+              _calendarController.view = CalendarView.day;
+            }
+          },
+        ),
         body: FutureBuilder(
           future: studentDocument.get(),
           builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
@@ -88,13 +105,12 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
                       list.add(e.data());
                     }).toList();
 
-                    print(list);
-                    print(list.length);
                     return SfCalendar(
-                      view: CalendarView.day,
+                      controller: _calendarController,
                       firstDayOfWeek: 1,
                       timeSlotViewSettings: TimeSlotViewSettings(startHour: 6, endHour: 19),
                       dataSource: _getCalendarDataSource(list, courseScheduleList),
+                      onTap: (CalendarTapDetails details) {},
                     );
                   }
                   return Text('Could not load data');
