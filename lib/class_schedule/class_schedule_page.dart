@@ -1,6 +1,8 @@
 import 'package:ace_of_spades/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'course_schedule.dart';
 import 'schedule_data_source.dart';
@@ -58,15 +60,21 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
 
   void calendarTapped(CalendarTapDetails details) {
     if (details.targetElement == CalendarElement.calendarCell) {
-      _calendarController.view = CalendarView.day;
+      if (_calendarController.view == CalendarView.week) {
+        _calendarController.view = CalendarView.day;
+      } else if (_calendarController.view == CalendarView.month) {
+        _calendarController.view = CalendarView.week;
+      }
     } else if (details.targetElement == CalendarElement.appointment) {
       if (_calendarController.view == CalendarView.week) {
         _calendarController.view = CalendarView.day;
       }
-      //TODO: complete or remove action
     } else if (details.targetElement == CalendarElement.viewHeader) {
-      //TODO: complete or remove action
-      showInfoDialog(title: 'title', content: 'con');
+      if (_calendarController.view == CalendarView.week) {
+        _calendarController.view = CalendarView.month;
+      } else if (_calendarController.view == CalendarView.day) {
+        _calendarController.view = CalendarView.week;
+      }
     }
   }
 
@@ -92,20 +100,62 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
         });
   }
 
+  SpeedDialChild buildSpeedDialChild({IconData icon, String label, Function onTap}) {
+    return SpeedDialChild(
+      child: Icon(icon),
+      backgroundColor: Colors.white,
+      foregroundColor: redColor,
+      label: label,
+      labelStyle: TextStyle(fontSize: 18.0),
+      onTap: onTap,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.ac_unit),
-          onPressed: () {
-            if (_calendarController.view == CalendarView.day) {
-              _calendarController.view = CalendarView.week;
-            } else {
-              _calendarController.view = CalendarView.day;
-            }
-          },
+        floatingActionButton: SpeedDial(
+          animatedIcon: AnimatedIcons.menu_close,
+          animatedIconTheme: IconThemeData(size: 22.0),
+          visible: true,
+          closeManually: false,
+          curve: Curves.bounceIn,
+          overlayColor: Colors.black,
+          overlayOpacity: 0.5,
+          onOpen: () => print('OPENING DIAL'),
+          onClose: () => print('DIAL CLOSED'),
+          tooltip: 'Speed Dial',
+          heroTag: 'speed-dial-hero-tag',
+          backgroundColor: redColor,
+          foregroundColor: Colors.white,
+          elevation: 8.0,
+          shape: CircleBorder(),
+          children: [
+            buildSpeedDialChild(
+              icon: Icons.calendar_view_day,
+              label: 'Daily View',
+              onTap: () => _calendarController.view = CalendarView.day,
+            ),
+            buildSpeedDialChild(
+              icon: Icons.view_week,
+              label: 'Weekly View',
+              onTap: () => _calendarController.view = CalendarView.week,
+            ),
+            buildSpeedDialChild(
+              icon: Icons.calendar_today,
+              label: 'Monthly View',
+              onTap: () => _calendarController.view = CalendarView.month,
+            ),
+            buildSpeedDialChild(
+              icon: Icons.today,
+              label: 'Today',
+              onTap: () {
+                _calendarController.displayDate = DateTime.now();
+                _calendarController.selectedDate = DateTime.now();
+              },
+            ),
+          ],
         ),
         body: FutureBuilder(
           future: studentDocument.get(),
@@ -144,6 +194,11 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
                     }).toList();
 
                     return SfCalendar(
+                      headerStyle: CalendarHeaderStyle(
+                        textAlign: TextAlign.center,
+                        backgroundColor: redColor,
+                        textStyle: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
                       todayHighlightColor: redColor,
                       todayTextStyle: TextStyle(fontWeight: FontWeight.bold),
                       controller: _calendarController,

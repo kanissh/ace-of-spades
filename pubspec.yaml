@@ -28,6 +28,7 @@ dependencies:
   mapbox_search: ^2.0.1+1
   material_floating_search_bar: ^0.2.6
   syncfusion_flutter_calendar: ^18.4.32
+  flutter_speed_dial: ^1.2.5
 
 dev_dependencies:
   flutter_test:
