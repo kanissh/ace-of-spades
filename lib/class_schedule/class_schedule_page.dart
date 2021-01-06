@@ -55,6 +55,38 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
     return ScheduleDataSource(courseScheduleList);
   }
 
+  void calendarTapped(CalendarTapDetails details) {
+    if (details.targetElement == CalendarElement.calendarCell) {
+      _calendarController.view = CalendarView.day;
+    } else if (details.targetElement == CalendarElement.appointment) {
+      if (_calendarController.view == CalendarView.week) {
+        _calendarController.view = CalendarView.day;
+      }
+      //TODO: complete or remove action
+    } else if (details.targetElement == CalendarElement.viewHeader) {
+      //TODO: complete or remove action
+    }
+  }
+
+  void showInfoDialog({String title, String content}) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(title),
+            content: Text(content),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Close'),
+              ),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -110,7 +142,9 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
                       firstDayOfWeek: 1,
                       timeSlotViewSettings: TimeSlotViewSettings(startHour: 6, endHour: 19),
                       dataSource: _getCalendarDataSource(list, courseScheduleList),
-                      onTap: (CalendarTapDetails details) {},
+                      onTap: (CalendarTapDetails details) {
+                        calendarTapped(details);
+                      },
                     );
                   }
                   return Text('Could not load data');
