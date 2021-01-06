@@ -1,3 +1,4 @@
+import 'package:ace_of_spades/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
@@ -65,6 +66,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
       //TODO: complete or remove action
     } else if (details.targetElement == CalendarElement.viewHeader) {
       //TODO: complete or remove action
+      showInfoDialog(title: 'title', content: 'con');
     }
   }
 
@@ -80,7 +82,10 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('Close'),
+                child: Text(
+                  'Close',
+                  style: TextStyle(color: redColor),
+                ),
               ),
             ],
           );
@@ -91,6 +96,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.ac_unit),
           onPressed: () {
@@ -138,6 +144,8 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
                     }).toList();
 
                     return SfCalendar(
+                      todayHighlightColor: redColor,
+                      todayTextStyle: TextStyle(fontWeight: FontWeight.bold),
                       controller: _calendarController,
                       firstDayOfWeek: 1,
                       timeSlotViewSettings: TimeSlotViewSettings(startHour: 6, endHour: 19),
