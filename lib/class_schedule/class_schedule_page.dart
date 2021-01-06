@@ -66,6 +66,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
         _calendarController.view = CalendarView.week;
       }
     } else if (details.targetElement == CalendarElement.appointment) {
+      //FIXME: touch on appointmnet goes to first day of week
       if (_calendarController.view == CalendarView.week) {
         _calendarController.view = CalendarView.day;
       }
@@ -78,7 +79,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
     }
   }
 
-  void showInfoDialog({String title, String content}) {
+  /* void showInfoDialog({String title, String content}) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -98,7 +99,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
             ],
           );
         });
-  }
+  } */
 
   SpeedDialChild buildSpeedDialChild({IconData icon, String label, Function onTap}) {
     return SpeedDialChild(
