@@ -35,6 +35,7 @@ class ExamScheduleList extends StatelessWidget {
 
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Text('waiting'); //TODO: add waiting indicator
+
               }
 
               if (snapshot.connectionState == ConnectionState.active) {

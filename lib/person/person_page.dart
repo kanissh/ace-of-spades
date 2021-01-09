@@ -22,17 +22,15 @@ class _PersonPageState extends State<PersonPage> {
             IconButton(
               icon: Icon(Icons.search),
               onPressed: () {
-                showSearch(
-                    context: context, delegate: PeopleSearch(people.get()));
+                showSearch(context: context, delegate: PeopleSearch(people.get()));
               },
             )
           ],
           centerTitle: true,
         ),
-        body: FutureBuilder<QuerySnapshot>(
+        body: FutureBuilder(
           future: people.get(),
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
               print('Error detected');
               //TODO: Fix above error handling
@@ -42,21 +40,20 @@ class _PersonPageState extends State<PersonPage> {
               print('Waiting');
             }
 
-            if (snapshot == null) {
-              print('null snapshot');
+            if (snapshot.connectionState == ConnectionState.done) {
+              return ListView(
+                children: snapshot.data.docs.map((DocumentSnapshot documentSnapshot) {
+                  return PersonCard(
+                    name: documentSnapshot.data()['name'],
+                    position: documentSnapshot.data()['position'],
+                    department: documentSnapshot.data()['department'],
+                    personDocument: documentSnapshot.data(),
+                  );
+                }).toList(),
+              );
             }
 
-            return ListView(
-              children:
-                  snapshot.data.docs.map((DocumentSnapshot documentSnapshot) {
-                return PersonCard(
-                  name: documentSnapshot.data()['name'],
-                  position: documentSnapshot.data()['position'],
-                  department: documentSnapshot.data()['department'],
-                  personDocument: documentSnapshot.data(),
-                );
-              }).toList(),
-            );
+            return Text('Something went wrong');
           },
         ),
       ),
