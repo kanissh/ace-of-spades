@@ -136,10 +136,11 @@ class ProfilePage extends StatelessWidget {
                 buttonText: 'Sign out',
                 onTap: () async {
                   await signOutGoogle();
+
                   Navigator.pushAndRemoveUntil(
                       context, MaterialPageRoute(builder: (context) => SplashScreen()), (route) => false);
-                }, //FIXME: logout not working fix it
-              ), //TODO: add logout logic
+                },
+              ),
             ],
           ),
         ),

@@ -1,4 +1,3 @@
-import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/person/people_search.dart';
 import 'package:ace_of_spades/person/person_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -60,6 +59,3 @@ class _PersonPageState extends State<PersonPage> {
     );
   }
 }
-//FIXME: an error shows up initially fix that
-//FIXME: give an null snapshot error shows in terminal fix it
-//TODO: add scaffold title
