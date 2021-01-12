@@ -1,9 +1,0 @@
-{
-    "classScheduleColllection": "class_schedule",
-    "courseEvaluationCollection": "course_evaluation",
-    "courseCollection": "courses",
-    "examScheduleCollection" : "exam_schedule",
-    "noticeCollection": "notices",
-    "peopleCollection":"people",
-    "ug16Collection": "students16"
-}
