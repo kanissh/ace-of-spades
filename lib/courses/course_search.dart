@@ -3,17 +3,15 @@ import 'package:ace_of_spades/courses/course.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import 'course_details_page.dart';
+
 class CourseSearch extends SearchDelegate {
   final Future<QuerySnapshot> courseList;
   final List<String> subjectFilters;
   final List<String> levelFilters;
   final List<String> creditFilters;
 
-  CourseSearch(
-      {this.courseList,
-      this.subjectFilters,
-      this.levelFilters,
-      this.creditFilters});
+  CourseSearch({this.courseList, this.subjectFilters, this.levelFilters, this.creditFilters});
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -59,31 +57,25 @@ class CourseSearch extends SearchDelegate {
 
         if (creditFilters.isNotEmpty) {
           results = results.where((c) {
-            return creditFilters.contains(
-                c['credits'][DateTime.now().year.toString()].toString());
+            return creditFilters.contains(c['credits'][DateTime.now().year.toString()].toString());
           }).toList();
         }
 
         if (levelFilters.isNotEmpty) {
           results = results.where((c) {
-            return levelFilters
-                .contains(c['code'].toString().split(' ')[1][0] + '00');
+            return levelFilters.contains(c['code'].toString().split(' ')[1][0] + '00');
           }).toList();
         }
 
         results = results.where((c) {
-          return c['name']
-                  .toString()
-                  .toLowerCase()
-                  .contains(query.toLowerCase()) ||
+          return c['name'].toString().toLowerCase().contains(query.toLowerCase()) ||
               c['code'].toString().toLowerCase().contains(query.toLowerCase());
         }).toList();
 
         return ListView(
           children: results.map(
             (DocumentSnapshot documentSnapshot) {
-              return CourseTile(
-                  Course.convertCourseDocToObject(documentSnapshot));
+              return CourseTile(Course.convertCourseDocToObject(documentSnapshot));
             },
           ).toList(),
         );
@@ -114,23 +106,18 @@ class CourseSearch extends SearchDelegate {
 
         if (creditFilters.isNotEmpty) {
           results = results.where((c) {
-            return creditFilters.contains(
-                c['credits'][DateTime.now().year.toString()].toString());
+            return creditFilters.contains(c['credits'][DateTime.now().year.toString()].toString());
           }).toList();
         }
 
         if (levelFilters.isNotEmpty) {
           results = results.where((c) {
-            return levelFilters.contains(c['code'].toString().split(' ')[1][0] +
-                '00'); //to make 3 => 300
+            return levelFilters.contains(c['code'].toString().split(' ')[1][0] + '00'); //to make 3 => 300
           }).toList();
         }
 
         results = results.where((c) {
-          return c['name']
-                  .toString()
-                  .toLowerCase()
-                  .contains(query.toLowerCase()) ||
+          return c['name'].toString().toLowerCase().contains(query.toLowerCase()) ||
               c['code'].toString().toLowerCase().contains(query.toLowerCase());
         }).toList();
 
@@ -139,7 +126,14 @@ class CourseSearch extends SearchDelegate {
             (DocumentSnapshot documentSnapshot) {
               return ListTile(
                 title: Text(documentSnapshot.data()['name']),
-                onTap: () => query = documentSnapshot.data()['name'],
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CourseDetailsPage(Course.convertCourseDocToObject(documentSnapshot)),
+                    ),
+                  );
+                },
               );
             },
           ).toList(),
