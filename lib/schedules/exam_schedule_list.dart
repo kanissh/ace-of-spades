@@ -1,3 +1,4 @@
+import 'package:ace_of_spades/config/db.config.dart';
 import 'package:ace_of_spades/schedules/exam_schedule_object.dart';
 import 'package:ace_of_spades/schedules/exam_schedule_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,7 +8,7 @@ class ExamScheduleList extends StatelessWidget {
   final List pendingCourseList;
   ExamScheduleList({this.pendingCourseList});
 
-  CollectionReference examScheduleRef = FirebaseFirestore.instance.collection('exam_schedule');
+  CollectionReference examScheduleRef = FirebaseFirestore.instance.collection(DbConfig.EXAM_SCHEDULE);
 
   List<String> getCourseCode(List list) {
     List<String> results = List();

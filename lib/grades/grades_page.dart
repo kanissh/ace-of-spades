@@ -16,16 +16,11 @@ class GradesPage extends StatefulWidget {
 class _GradesPageState extends State<GradesPage> {
   final String _userEmail = FirebaseAuth.instance.currentUser.email;
 
-  getDocumentPath(String email) {
-    String level = email.substring(0, 3);
-    // String regNo = email.substring(3, 6);
-    //String path = 'students/${level}/${level}stu';
-
-    // FIXME: set the above to normal for using with uni email
-    String path = 'students/s16/s16stu';
-    String regNo = '002';
-    return [regNo, path];
-  }
+  /* var studentDocument = FirebaseFirestore.instance
+      .collection('${DbConfig.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
+      .doc(FirebaseAuth.instance.currentUser.email.substring(3, 6).toString());
+ */
+  var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
 
   void addToWidgetList(List dataList, List<Widget> widgetList) {
     for (var item in dataList) {
@@ -39,15 +34,10 @@ class _GradesPageState extends State<GradesPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> documentInfo = getDocumentPath(_userEmail);
-
-    Future<DocumentSnapshot> studentDocument =
-        FirebaseFirestore.instance.collection(documentInfo[1]).doc(documentInfo[0]).get();
-
     return SafeArea(
       child: Scaffold(
         body: FutureBuilder(
-          future: studentDocument,
+          future: studentDocument.get(),
           builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.hasError) {
               return Center(

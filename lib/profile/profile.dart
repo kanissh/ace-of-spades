@@ -52,10 +52,10 @@ class ProfilePage extends StatelessWidget {
                   fontSize: 18,
                   color: Color(0xFF9D170E),
                 ),
-              ), // TODO: pass argumwnt from login network name
+              ),
               Text(_user.email, style: bodyText18),
               Text(
-                _user.email.split('@')[0].toUpperCase(),
+                _user.email.split('@')[0].toUpperCase(), //registration number
                 style: bodyText18,
               ),
               Text(
@@ -65,12 +65,10 @@ class ProfilePage extends StatelessWidget {
                   fontStyle: FontStyle.italic,
                 ),
               ),
-
               SizedBox(
                 height: 10,
               ),
               Divider(),
-
               MenuButton(
                 buttonIcon: FontAwesomeIcons.graduationCap,
                 buttonText: 'Manage Courses',

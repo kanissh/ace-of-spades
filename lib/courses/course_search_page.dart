@@ -1,3 +1,4 @@
+import 'package:ace_of_spades/config/db.config.dart';
 import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/courses/course_search.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -12,8 +13,7 @@ class CourseSearchPage extends StatefulWidget {
 }
 
 class _CourseSearchPageState extends State<CourseSearchPage> {
-  CollectionReference courses =
-      FirebaseFirestore.instance.collection('courses');
+  CollectionReference courses = FirebaseFirestore.instance.collection(DbConfig.COURSE);
 
   List<String> subjectFilters = <String>[];
   List<String> levelFilters = <String>[];
@@ -23,8 +23,7 @@ class _CourseSearchPageState extends State<CourseSearchPage> {
     final result = await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) =>
-            CourseFilterPage(subjectFilters, levelFilters, creditFilters),
+        builder: (context) => CourseFilterPage(subjectFilters, levelFilters, creditFilters),
       ),
     );
     setState(() {

@@ -1,3 +1,4 @@
+import 'package:ace_of_spades/config/db.config.dart';
 import 'package:ace_of_spades/notices/notice_card.dart';
 import 'package:ace_of_spades/notices/notice_object.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,6 +10,8 @@ class NoticePage extends StatefulWidget {
 }
 
 class _NoticePageState extends State<NoticePage> {
+  var notices = FirebaseFirestore.instance.collection(DbConfig.NOTICE).orderBy('published_date', descending: true);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -16,10 +19,7 @@ class _NoticePageState extends State<NoticePage> {
         body: Padding(
           padding: const EdgeInsets.all(10.0),
           child: StreamBuilder(
-            stream: FirebaseFirestore.instance
-                .collection('notices')
-                .orderBy('published_date', descending: true)
-                .snapshots(),
+            stream: notices.snapshots(),
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
                 return Center(
