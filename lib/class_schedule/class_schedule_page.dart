@@ -1,8 +1,9 @@
+import 'package:ace_of_spades/config/db.config.dart';
 import 'package:ace_of_spades/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'course_schedule.dart';
 import 'schedule_data_source.dart';
@@ -16,14 +17,12 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
   CalendarController _calendarController;
   List<CourseSchedule> courseScheduleList = <CourseSchedule>[];
 
-  CollectionReference classScheduleRef = FirebaseFirestore.instance.collection('class_schedule');
-  /* var doc = FirebaseFirestore.instance
-      .collection('students/s16/s16stu')
-      .doc(FirebaseAuth.instance.currentUser.email.substring(0, 3));
+  CollectionReference classScheduleRef = FirebaseFirestore.instance.collection(DbConfig.CLASS_SCHEDULE);
+  /* var studentDocument = FirebaseFirestore.instance
+      .collection('${DbConfig.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
+      .doc(FirebaseAuth.instance.currentUser.email.substring(3, 6).toString());
  */
-  //TODO: set this
-
-  var studentDocument = FirebaseFirestore.instance.collection('students/s16/s16stu').doc('002');
+  var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
 
   @override
   void initState() {
@@ -114,6 +113,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
 
   @override
   Widget build(BuildContext context) {
+    print(studentDocument.toString());
     return SafeArea(
       child: Scaffold(
         floatingActionButton: SpeedDial(
