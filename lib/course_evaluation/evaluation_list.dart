@@ -13,7 +13,7 @@ class EvaluationList extends StatefulWidget {
 }
 
 class _EvaluationListState extends State<EvaluationList> {
-  CollectionReference evalRef = FirebaseFirestore.instance.collection(DbConfig.EXAM_SCHEDULE);
+  CollectionReference evalRef = FirebaseFirestore.instance.collection(DbConfig.COURSE_EVALUATION);
 
   List<String> getCourseCode(List list) {
     List<String> results = List();
@@ -21,6 +21,7 @@ class _EvaluationListState extends State<EvaluationList> {
     for (var item in list) {
       results.add(item['course_code'].toString().toUpperCase());
     }
+    print(results);
 
     return results;
   }
@@ -86,3 +87,4 @@ class _EvaluationListState extends State<EvaluationList> {
         });
   }
 }
+//TODO: handle if form url empty

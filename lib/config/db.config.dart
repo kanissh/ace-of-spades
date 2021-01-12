@@ -1,6 +1,6 @@
 class DbConfig {
   static const String CLASS_SCHEDULE = 'class_schedule';
-  static const String COURSE_EVALUATION = 'course_evaluation';
+  static const String COURSE_EVALUATION = 'course_evaluations';
   static const String COURSE = 'courses';
   static const String EXAM_SCHEDULE = 'exam_schedule';
   static const String NOTICE = 'notices';

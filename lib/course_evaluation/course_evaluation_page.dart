@@ -1,3 +1,4 @@
+import 'package:ace_of_spades/config/db.config.dart';
 import 'package:ace_of_spades/course_evaluation/evaluation_list.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class _CourseEvaluationPageState extends State<CourseEvaluationPage> {
       .doc(FirebaseAuth.instance.currentUser.email.substring(3, 6).toString());
  */
 
-  var studentDocument = FirebaseFirestore.instance.collection('students').doc('072');
+  var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
 
   _launchUrl(String _url) async {
     final url = _url;
