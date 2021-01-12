@@ -9,12 +9,12 @@ class CourseEvaluationPage extends StatefulWidget {
 }
 
 class _CourseEvaluationPageState extends State<CourseEvaluationPage> {
-  /* var doc = FirebaseFirestore.instance
-      .collection('students/s16/s16stu')
-      .doc(FirebaseAuth.instance.currentUser.email.substring(0, 3));
+  /* var studentDocument = FirebaseFirestore.instance
+      .collection('${DbConfig.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
+      .doc(FirebaseAuth.instance.currentUser.email.substring(3, 6).toString());
  */
 
-  var studentDocument = FirebaseFirestore.instance.collection('students/s16/s16stu').doc('002');
+  var studentDocument = FirebaseFirestore.instance.collection('students').doc('072');
 
   _launchUrl(String _url) async {
     final url = _url;

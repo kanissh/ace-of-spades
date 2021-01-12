@@ -1,3 +1,4 @@
+import 'package:ace_of_spades/config/db.config.dart';
 import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/course_evaluation/fill_evaluation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -12,7 +13,7 @@ class EvaluationList extends StatefulWidget {
 }
 
 class _EvaluationListState extends State<EvaluationList> {
-  CollectionReference evalRef = FirebaseFirestore.instance.collection('course_evaluations');
+  CollectionReference evalRef = FirebaseFirestore.instance.collection(DbConfig.EXAM_SCHEDULE);
 
   List<String> getCourseCode(List list) {
     List<String> results = List();

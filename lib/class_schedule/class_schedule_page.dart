@@ -22,6 +22,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
       .collection('${DbConfig.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
       .doc(FirebaseAuth.instance.currentUser.email.substring(3, 6).toString());
  */
+  //TODO: Test above
   var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
 
   @override
