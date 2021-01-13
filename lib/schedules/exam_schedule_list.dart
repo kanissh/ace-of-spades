@@ -8,7 +8,7 @@ class ExamScheduleList extends StatelessWidget {
   final List pendingCourseList;
   ExamScheduleList({this.pendingCourseList});
 
-  CollectionReference examScheduleRef = FirebaseFirestore.instance.collection(DbConfig.EXAM_SCHEDULE);
+  CollectionReference examScheduleRef = FirebaseFirestore.instance.collection(DbConfigPath.EXAM_SCHEDULE);
 
   List<String> getCourseCode(List list) {
     List<String> results = List();

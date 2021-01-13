@@ -16,7 +16,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
   CalendarController _calendarController;
   List<CourseSchedule> courseScheduleList = <CourseSchedule>[];
 
-  CollectionReference classScheduleRef = FirebaseFirestore.instance.collection(DbConfig.CLASS_SCHEDULE);
+  CollectionReference classScheduleRef = FirebaseFirestore.instance.collection(DbConfigPath.CLASS_SCHEDULE);
   /* var studentDocument = FirebaseFirestore.instance
       .collection('${DbConfig.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
       .doc(FirebaseAuth.instance.currentUser.email.substring(3, 6).toString());

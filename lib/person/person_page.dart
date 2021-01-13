@@ -10,7 +10,7 @@ class PersonPage extends StatefulWidget {
 }
 
 class _PersonPageState extends State<PersonPage> {
-  CollectionReference people = FirebaseFirestore.instance.collection(DbConfig.PEOPLE);
+  CollectionReference people = FirebaseFirestore.instance.collection(DbConfigPath.PEOPLE);
 
   @override
   Widget build(BuildContext context) {

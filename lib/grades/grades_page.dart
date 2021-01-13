@@ -64,6 +64,8 @@ class _GradesPageState extends State<GradesPage> {
                 return !e['grade'].toString().contains('pending');
               }).toList();
 
+              //TODO: use the status tag and rewrite
+
               //create new widget list to display
               List<Widget> _courseTileList = List();
 

@@ -13,7 +13,7 @@ class EvaluationList extends StatefulWidget {
 }
 
 class _EvaluationListState extends State<EvaluationList> {
-  CollectionReference evalRef = FirebaseFirestore.instance.collection(DbConfig.COURSE_EVALUATION);
+  CollectionReference evalRef = FirebaseFirestore.instance.collection(DbConfigPath.COURSE_EVALUATION);
 
   List<String> getCourseCode(List list) {
     List<String> results = List();

@@ -10,7 +10,7 @@ class NoticePage extends StatefulWidget {
 }
 
 class _NoticePageState extends State<NoticePage> {
-  var notices = FirebaseFirestore.instance.collection(DbConfig.NOTICE).orderBy('published_date', descending: true);
+  var notices = FirebaseFirestore.instance.collection(DbConfigPath.NOTICE).orderBy('published_date', descending: true);
 
   @override
   Widget build(BuildContext context) {

@@ -13,7 +13,7 @@ class CourseSearchPage extends StatefulWidget {
 }
 
 class _CourseSearchPageState extends State<CourseSearchPage> {
-  CollectionReference courses = FirebaseFirestore.instance.collection(DbConfig.COURSE);
+  CollectionReference courses = FirebaseFirestore.instance.collection(DbConfigPath.COURSE);
 
   List<String> subjectFilters = <String>[];
   List<String> levelFilters = <String>[];
