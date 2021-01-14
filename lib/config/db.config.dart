@@ -7,6 +7,8 @@ class DbConfigPath {
   static const String PEOPLE = 'people';
   static const String STUDENTS_16 = 'students16';
   static const String MANAGE_COURSE_PARAMS = 'params/manage_course';
+  static const String CLASSROOM_LINK = 'classroom_links';
+
   static const String STUDENTS_15 = '';
   static const String STUDENTS_17 = '';
   static const String STUDENTS_18 = '';

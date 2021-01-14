@@ -36,6 +36,10 @@ class Course {
 
   static Course convertCourseDocToObject(DocumentSnapshot documentSnapshot) {
     Map<String, dynamic> courseMap = documentSnapshot.data();
+    return convertCourseMapToObject(courseMap);
+  }
+
+  static Course convertCourseMapToObject(Map<String, dynamic> courseMap) {
     return Course(
         subject: courseMap['subject'],
         code: courseMap['code'],
