@@ -84,16 +84,18 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
           child: FloatingActionButton(
             backgroundColor: redColor,
             child: Icon(Icons.add),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AddCoursePage(
-                    isRegistrationOpen: isRegistrationOpen,
-                  ),
-                ),
-              );
-            },
+            onPressed: isRegistrationOpen
+                ? () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddCoursePage(
+                          isRegistrationOpen: isRegistrationOpen,
+                        ),
+                      ),
+                    );
+                  }
+                : null,
           ),
         ),
         appBar: AppBar(
