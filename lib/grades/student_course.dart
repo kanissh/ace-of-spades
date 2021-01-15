@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class StudentCourse {
   final String code;
   final String name;
@@ -5,9 +7,9 @@ class StudentCourse {
   final String grade;
   final String semester;
   final String year;
-  //final String courseDocRef;
+  final DocumentReference courseDocRef;
 
-  StudentCourse({this.code, this.name, this.credits, this.grade, this.semester, this.year /*, this.courseDocRef*/});
+  StudentCourse({this.code, this.name, this.credits, this.grade, this.semester, this.year, this.courseDocRef});
 
   static StudentCourse convertToObject(Map<String, dynamic> courseMap) {
     return StudentCourse(
@@ -16,6 +18,7 @@ class StudentCourse {
         credits: courseMap['credits'],
         grade: courseMap['grade'],
         semester: courseMap['sem'],
-        year: courseMap['year']);
+        year: courseMap['year'],
+        courseDocRef: courseMap['course_doc']);
   }
 }
