@@ -1,6 +1,4 @@
-import 'package:ace_of_spades/config/db.config.dart';
 import 'package:ace_of_spades/constants/course_status.dart';
-import 'package:ace_of_spades/courses/course.dart';
 import 'package:ace_of_spades/grades/student_course.dart';
 import 'package:ace_of_spades/manage_courses/add_courses_page.dart';
 import 'package:ace_of_spades/manage_courses/manage_course_tile.dart';
@@ -21,6 +19,8 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
  */
   //TODO: Test above
   var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
+
+  bool isRegistrationOpen = true; //FIXME: get value from db
 
   getEnrolledCourses() {
     return StreamBuilder(
@@ -61,12 +61,38 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: redColor,
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => AddCoursePage()));
-          },
-          child: Icon(Icons.add),
+        bottomSheet: Visibility(
+          visible: !isRegistrationOpen,
+          child: BottomSheet(
+            elevation: 5,
+            builder: (context) => Container(
+              color: Colors.black87,
+              width: MediaQuery.of(context).size.width,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(
+                  'Course Registrations are currently not open',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+            onClosing: () {},
+          ),
+        ),
+        floatingActionButton: Visibility(
+          visible: isRegistrationOpen,
+          child: FloatingActionButton(
+            backgroundColor: redColor,
+            child: Icon(Icons.add),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddCoursePage(),
+                ),
+              );
+            },
+          ),
         ),
         appBar: AppBar(
           centerTitle: true,
