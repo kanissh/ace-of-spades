@@ -88,7 +88,9 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AddCoursePage(),
+                  builder: (context) => AddCoursePage(
+                    isRegistrationOpen: isRegistrationOpen,
+                  ),
                 ),
               );
             },

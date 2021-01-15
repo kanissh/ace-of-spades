@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 import 'manage_course_tile.dart';
 
 class AddCoursePage extends StatefulWidget {
+  final bool isRegistrationOpen;
+
+  AddCoursePage({@required this.isRegistrationOpen});
+
   @override
   _AddCoursePageState createState() => _AddCoursePageState();
 }
