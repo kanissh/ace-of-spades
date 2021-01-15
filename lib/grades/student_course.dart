@@ -13,6 +13,19 @@ class StudentCourse {
   StudentCourse(
       {this.code, this.name, this.credits, this.grade, this.semester, this.year, this.courseDocRef, this.status});
 
+  Map<String, dynamic> getMap() {
+    return {
+      'course_code': this.code,
+      'course_doc': this.courseDocRef,
+      'credits': this.credits,
+      'grade': this.grade,
+      'sem': this.semester,
+      'name': this.name,
+      'status': this.status,
+      'year': this.year
+    };
+  }
+
   static StudentCourse convertToObject(Map<String, dynamic> courseMap) {
     return StudentCourse(
         code: courseMap['course_code'],
