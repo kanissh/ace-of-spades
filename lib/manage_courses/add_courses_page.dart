@@ -36,7 +36,7 @@ class _AddCoursePageState extends State<AddCoursePage> {
               snapshot.data.docs.map<ManageCourseTileAdd>((DocumentSnapshot documentSnapshot) {
             return ManageCourseTileAdd(
               course: Course.convertCourseDocToObject(documentSnapshot),
-              isRegistrationOpen: widget.isRegistrationOpenAdd,
+              isRegistrationOpenAdd: widget.isRegistrationOpenAdd,
             );
           }).toList();
 

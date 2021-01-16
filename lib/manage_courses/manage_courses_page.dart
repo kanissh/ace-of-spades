@@ -47,7 +47,7 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
               widgetList.add(
                 ManageCourseTileRemove(
                   studentCourse: StudentCourse.convertToObject(courseMap),
-                  isRegistrationOpen: isRegistrationOpenRemove,
+                  isRegistrationOpenRemove: isRegistrationOpenRemove,
                 ),
               );
             });

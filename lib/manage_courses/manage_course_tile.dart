@@ -7,9 +7,9 @@ import '../constants.dart';
 
 class ManageCourseTileAdd extends StatelessWidget {
   final Course course;
-  final bool isRegistrationOpen;
+  final bool isRegistrationOpenAdd;
 
-  ManageCourseTileAdd({this.course, this.isRegistrationOpen});
+  ManageCourseTileAdd({this.course, this.isRegistrationOpenAdd});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class ManageCourseTileAdd extends StatelessWidget {
       subtitle: Text(course.name),
       trailing: IconButton(
         icon: Icon(Icons.add_circle),
-        onPressed: isRegistrationOpen ? EnrolmentService.addCourse(course.code) : null,
+        onPressed: isRegistrationOpenAdd ? EnrolmentService.addCourse(course.code) : null,
       ),
     );
   }
@@ -26,9 +26,9 @@ class ManageCourseTileAdd extends StatelessWidget {
 
 class ManageCourseTileRemove extends StatelessWidget {
   final StudentCourse studentCourse;
-  final bool isRegistrationOpen;
+  final bool isRegistrationOpenRemove;
 
-  ManageCourseTileRemove({this.studentCourse, this.isRegistrationOpen});
+  ManageCourseTileRemove({this.studentCourse, this.isRegistrationOpenRemove});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class ManageCourseTileRemove extends StatelessWidget {
       trailing: IconButton(
         color: redColor,
         icon: Icon(Icons.remove_circle),
-        onPressed: isRegistrationOpen
+        onPressed: isRegistrationOpenRemove
             ? () async {
                 bool delete = await _showDialogBox(context, studentCourse);
                 print(delete);
