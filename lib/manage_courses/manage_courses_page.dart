@@ -52,7 +52,14 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
               );
             });
 
-            return ListView(children: widgetList);
+            return widgetList.isEmpty
+                ? Center(
+                    child: Text(
+                      'You have no enrolled courses to review!',
+                      style: bodyText18,
+                    ),
+                  )
+                : ListView(children: widgetList);
           }
 
           return Text('Could not load data');
