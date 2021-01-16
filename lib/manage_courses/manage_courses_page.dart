@@ -20,7 +20,8 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
   //TODO: Test above
   var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
 
-  bool isRegistrationOpen = true; //FIXME: get value from db
+  bool isRegistrationOpenRemove = true; //FIXME: get value from db
+  bool isRegistrationOpenAdd = true; //FIXME: get value from db
 
   getEnrolledCourses() {
     return StreamBuilder(
@@ -46,7 +47,7 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
               widgetList.add(
                 ManageCourseTileRemove(
                   studentCourse: StudentCourse.convertToObject(courseMap),
-                  isRegistrationOpen: isRegistrationOpen,
+                  isRegistrationOpen: isRegistrationOpenRemove,
                 ),
               );
             });
@@ -63,7 +64,8 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
     return SafeArea(
       child: Scaffold(
         bottomSheet: Visibility(
-          visible: !isRegistrationOpen,
+          visible: (isRegistrationOpenAdd && !isRegistrationOpenRemove) ||
+              (!isRegistrationOpenAdd && !isRegistrationOpenRemove),
           child: BottomSheet(
             elevation: 5,
             builder: (context) => Container(
@@ -71,27 +73,28 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
               width: MediaQuery.of(context).size.width,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Text(
-                  'Course Registrations are currently not open',
-                  style: TextStyle(color: Colors.white),
-                ),
+                child: (isRegistrationOpenAdd && !isRegistrationOpenRemove)
+                    ? Text(
+                        'Oops! you cannot remove courses but course enrollment is open...', //TODO: clip below floation action button
+                        style: TextStyle(color: Colors.white))
+                    : Text('Course Registration is CLOSED!', style: TextStyle(color: Colors.white)),
               ),
             ),
             onClosing: () {},
           ),
         ),
         floatingActionButton: Visibility(
-          visible: isRegistrationOpen,
+          visible: isRegistrationOpenAdd,
           child: FloatingActionButton(
-            backgroundColor: redColor,
+            backgroundColor: Colors.green,
             child: Icon(Icons.add),
-            onPressed: isRegistrationOpen
+            onPressed: isRegistrationOpenAdd
                 ? () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => AddCoursePage(
-                          isRegistrationOpen: isRegistrationOpen,
+                          isRegistrationOpenAdd: isRegistrationOpenAdd,
                         ),
                       ),
                     );

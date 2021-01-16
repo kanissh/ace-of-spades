@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'manage_course_tile.dart';
 
 class AddCoursePage extends StatefulWidget {
-  final bool isRegistrationOpen;
+  final bool isRegistrationOpenAdd;
 
-  AddCoursePage({@required this.isRegistrationOpen});
+  AddCoursePage({@required this.isRegistrationOpenAdd});
 
   @override
   _AddCoursePageState createState() => _AddCoursePageState();
@@ -36,7 +36,7 @@ class _AddCoursePageState extends State<AddCoursePage> {
               snapshot.data.docs.map<ManageCourseTileAdd>((DocumentSnapshot documentSnapshot) {
             return ManageCourseTileAdd(
               course: Course.convertCourseDocToObject(documentSnapshot),
-              isRegistrationOpen: widget.isRegistrationOpen,
+              isRegistrationOpen: widget.isRegistrationOpenAdd,
             );
           }).toList();
 
