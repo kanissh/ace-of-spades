@@ -18,7 +18,11 @@ class ManageCourseTileAdd extends StatelessWidget {
       subtitle: Text(course.name),
       trailing: IconButton(
         icon: Icon(Icons.add_circle),
-        onPressed: isRegistrationOpenAdd ? EnrolmentService.addCourse(course) : null,
+        onPressed: isRegistrationOpenAdd
+            ? () {
+                EnrolmentService.addCourse(course);
+              }
+            : null,
       ),
     );
   }
