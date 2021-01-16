@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +9,7 @@ class Course {
   String subject;
   String desc;
   bool avail = false;
-  Map credits;
+  SplayTreeMap<String, dynamic> credits;
   bool generalComp = false; //general_comp
   bool specialComp = false; //special_comp
   bool typeTheory; //type_theory
@@ -46,7 +48,7 @@ class Course {
         name: courseMap['name'],
         desc: courseMap['desc'],
         avail: courseMap['avail'],
-        credits: courseMap['credits'],
+        credits: SplayTreeMap.from(courseMap['credits'], (a, b) => b.compareTo(a)),
         generalComp: courseMap['general_comp'],
         specialComp: courseMap['special_comp'],
         typeTheory: courseMap['type_theory'],
