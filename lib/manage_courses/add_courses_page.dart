@@ -15,7 +15,6 @@ class AddCoursePage extends StatefulWidget {
 }
 
 class _AddCoursePageState extends State<AddCoursePage> {
-  CollectionReference _linkCollectionReference = FirebaseFirestore.instance.collection(DbConfigPath.CLASSROOM_LINK);
   CollectionReference _coursesCollectionReference = FirebaseFirestore.instance.collection(DbConfigPath.COURSE);
 
   getAvailableCourses() {
@@ -35,7 +34,10 @@ class _AddCoursePageState extends State<AddCoursePage> {
           // print(snapshot.data.toString());
           List<ManageCourseTileAdd> list =
               snapshot.data.docs.map<ManageCourseTileAdd>((DocumentSnapshot documentSnapshot) {
-            return ManageCourseTileAdd(course: Course.convertCourseDocToObject(documentSnapshot));
+            return ManageCourseTileAdd(
+              course: Course.convertCourseDocToObject(documentSnapshot),
+              isRegistrationOpen: widget.isRegistrationOpen,
+            );
           }).toList();
 
           return ListView(
