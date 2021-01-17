@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:ace_of_spades/config/db.config.dart';
 import 'package:ace_of_spades/constants/course_status.dart';
 import 'package:ace_of_spades/courses/course.dart';
@@ -22,7 +20,7 @@ class EnrolmentService {
         name: course.name,
         credits: course.credits[course.credits.firstKey()],
         grade: 'pending',
-        semester: '',
+        semester: '', //TODO: semester and year needed variable from db
         year: '',
         courseDocRef: FirebaseFirestore.instance.collection(DbConfigPath.COURSE).doc(course.code.replaceAll(' ', '')),
         status: CourseStatus.ENROLLED);
@@ -30,19 +28,6 @@ class EnrolmentService {
       'courses': FieldValue.arrayUnion([studentCourse.getMap()])
     });
   }
-
-  /* subject: courseMap['subject'],
-        code: courseMap['code'],
-        name: courseMap['name'],
-        desc: courseMap['desc'],
-        avail: courseMap['avail'],
-        credits: courseMap['credits'],
-        generalComp: courseMap['general_comp'],
-        specialComp: courseMap['special_comp'],
-        typeTheory: courseMap['type_theory'],
-        prereq: courseMap['prereq'] as List,
-        refBooks: courseMap['ref_books'],
-        tags: courseMap['tags']); */
 
   static removeCourse(StudentCourse studentCourse) {
 /* var studentDocument = FirebaseFirestore.instance
