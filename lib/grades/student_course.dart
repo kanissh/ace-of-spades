@@ -9,9 +9,18 @@ class StudentCourse {
   final String year;
   final DocumentReference courseDocRef;
   final String status;
+  final String remarks;
 
   StudentCourse(
-      {this.code, this.name, this.credits, this.grade, this.semester, this.year, this.courseDocRef, this.status});
+      {this.code,
+      this.name,
+      this.credits,
+      this.grade,
+      this.semester,
+      this.year,
+      this.courseDocRef,
+      this.status,
+      this.remarks});
 
   Map<String, dynamic> getMap() {
     return {
@@ -22,7 +31,8 @@ class StudentCourse {
       'sem': this.semester,
       'name': this.name,
       'status': this.status,
-      'year': this.year
+      'year': this.year,
+      'remarks': this.remarks
     };
   }
 
@@ -35,6 +45,7 @@ class StudentCourse {
         semester: courseMap['sem'],
         year: courseMap['year'],
         courseDocRef: courseMap['course_doc'],
-        status: courseMap['status']);
+        status: courseMap['status'],
+        remarks: courseMap['remarks']);
   }
 }
