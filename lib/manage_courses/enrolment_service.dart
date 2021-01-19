@@ -35,11 +35,13 @@ class EnrolmentService {
 
     if (remarks == CourseRemarks.PROPER) {
       if (courseList.any((element) => element['course_code'].toString().toUpperCase() == course.code.toUpperCase())) {
-        print('ERROR PROPER');
+        throw Exception('You have enrolled in this course previously as a $remarks candidate.');
       } else {
         studentDocument.update({
           'courses': FieldValue.arrayUnion([studentCourse.getMap()])
         });
+
+        throw 'Successfully enrolled to ${course.code}';
       }
     } else if (remarks == CourseRemarks.MEDICAL_PROPER || remarks == CourseRemarks.SPECIAL) {
       if (courseList.any((element) {
@@ -49,8 +51,10 @@ class EnrolmentService {
         studentDocument.update({
           'courses': FieldValue.arrayUnion([studentCourse.getMap()])
         });
+
+        throw 'Successfully enrolled to ${course.code} as a $remarks candidate';
       } else {
-        print('ERROR MP SP');
+        throw Exception('Not enrolled in this course previously. Cannot enrol in this course as a $remarks candidate.');
       }
     } else {
       if (courseList.any((element) {
@@ -63,8 +67,11 @@ class EnrolmentService {
         studentDocument.update({
           'courses': FieldValue.arrayUnion([studentCourse.getMap()])
         });
+
+        throw 'Successfully enrolled to ${course.code} as a $remarks candidate';
       } else {
-        print('ERROR R');
+        throw Exception(
+            'Criteria fulfilled to pass the course or not enrolled in this course previously.\n\nCannot enrol as a repeat student.');
       }
     }
   }
