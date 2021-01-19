@@ -157,9 +157,16 @@ class _ManageCourseTileAddState extends State<ManageCourseTileAdd> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(widget.course.code),
-      subtitle: Text(widget.course.name),
+      title: Text(
+        widget.course.code,
+        style: bodyText18,
+      ),
+      subtitle: Text(
+        widget.course.name,
+        style: subtitle16,
+      ),
       trailing: IconButton(
+        color: redColor,
         icon: Icon(Icons.add_circle),
         onPressed: widget.isRegistrationOpenAdd
             ? () async {
@@ -193,8 +200,12 @@ class ManageCourseTileRemove extends StatelessWidget {
     return ListTile(
       title: Text(
         studentCourse.code,
+        style: bodyText18,
       ),
-      subtitle: Text(studentCourse.name),
+      subtitle: Text(
+        studentCourse.name,
+        style: subtitle16,
+      ),
       trailing: IconButton(
         color: redColor,
         icon: Icon(Icons.remove_circle),
