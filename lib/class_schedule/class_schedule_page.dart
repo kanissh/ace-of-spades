@@ -32,7 +32,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
   }
 
   List<String> getCourseCode(List list) {
-    List<String> results = List();
+    List<String> results = [];
 
     for (var item in list) {
       results.add(item['course_code'].toString().toUpperCase());
