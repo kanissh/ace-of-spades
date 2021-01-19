@@ -92,7 +92,6 @@ class _ManageCourseTileAddState extends State<ManageCourseTileAdd> {
             RaisedButton(
               child: Text('Cancel'),
               onPressed: () {
-                print(courseRemarks);
                 Navigator.of(context).pop([false, courseRemarks]);
               },
             ),
@@ -103,10 +102,52 @@ class _ManageCourseTileAddState extends State<ManageCourseTileAdd> {
               color: Colors.green,
               child: Text('Enrol'),
               onPressed: () {
-                print(courseRemarks);
                 Navigator.of(context).pop([true, courseRemarks]);
               },
             ),
+          ],
+        );
+      },
+    );
+  }
+
+  _showEnrolSuccessAlert(Object object) {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.greenAccent,
+        elevation: 10,
+        content: Text(
+          object.toString(),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _showEnrolFailAlert(exceptionObject) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Oops!!',
+            style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(exceptionObject.toString().replaceFirst('Exception: ', '')),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            RaisedButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.pop(context);
+                }),
           ],
         );
       },
@@ -125,7 +166,14 @@ class _ManageCourseTileAddState extends State<ManageCourseTileAdd> {
                 List addParam = await _showDialogBox(context, widget.course);
                 print(addParam);
                 if (addParam[0]) {
-                  EnrolmentService.addCourse(widget.course, addParam[1]);
+                  try {
+                    await EnrolmentService.addCourse(widget.course, addParam[1]);
+                  } on Exception catch (exception) {
+                    await _showEnrolFailAlert(exception);
+                    // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  } on Object catch (object) {
+                    _showEnrolSuccessAlert(object);
+                  }
                 }
               }
             : null,
