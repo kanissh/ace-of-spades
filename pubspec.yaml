@@ -29,6 +29,7 @@ dependencies:
   material_floating_search_bar: ^0.2.6
   syncfusion_flutter_calendar: ^18.4.32
   flutter_speed_dial: ^1.2.5
+  mailer: ^3.2.1
 
 dev_dependencies:
   flutter_test:
@@ -39,6 +40,7 @@ flutter:
     - images/crest.png
     - images/google_logo.png
     - assets/config.json
+    - assets/mail.json
   
   uses-material-design: true
   fonts:

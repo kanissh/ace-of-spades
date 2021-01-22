@@ -44,3 +44,4 @@ app.*.map.json
 
 # config file
 assets/config.json
+assets/mail.json
