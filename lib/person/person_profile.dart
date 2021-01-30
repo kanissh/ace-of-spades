@@ -24,6 +24,7 @@ class PersonProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(),
         body: Column(
           children: [
             Padding(
@@ -65,24 +66,15 @@ class PersonProfile extends StatelessWidget {
             ),
             PersonDetailsTile(
               icon: FontAwesomeIcons.solidEnvelope,
-              content: checkNull(person['email']
-                  .toString()
-                  .replaceAll(',', '\n')
-                  .replaceAll(RegExp(r'[\[\] ]'), '')),
+              content: checkNull(person['email'].toString().replaceAll(',', '\n').replaceAll(RegExp(r'[\[\] ]'), '')),
             ),
             PersonDetailsTile(
               icon: FontAwesomeIcons.phoneAlt,
-              content: checkNull(person['phone']
-                  .toString()
-                  .replaceAll(',', '\n')
-                  .replaceAll(RegExp(r'[\[\]]'), '')),
+              content: checkNull(person['phone'].toString().replaceAll(',', '\n').replaceAll(RegExp(r'[\[\]]'), '')),
             ),
             PersonDetailsTile(
               icon: FontAwesomeIcons.mobileAlt,
-              content: checkNull(person['mobile']
-                  .toString()
-                  .replaceAll(',', '\n')
-                  .replaceAll(RegExp(r'[\[\]]'), '')),
+              content: checkNull(person['mobile'].toString().replaceAll(',', '\n').replaceAll(RegExp(r'[\[\]]'), '')),
             ),
           ],
         ),
