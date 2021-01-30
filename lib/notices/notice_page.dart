@@ -16,6 +16,10 @@ class _NoticePageState extends State<NoticePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text('Notices'),
+          centerTitle: true,
+        ),
         body: Padding(
           padding: const EdgeInsets.all(10.0),
           child: StreamBuilder(

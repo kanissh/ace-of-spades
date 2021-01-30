@@ -56,6 +56,7 @@ class NoticeDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(),
         key: _scaffoldKey,
         body: SingleChildScrollView(
           child: Padding(
