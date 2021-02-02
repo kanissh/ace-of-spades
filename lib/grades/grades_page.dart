@@ -1,3 +1,4 @@
+import 'package:ace_of_spades/constants/grades.dart';
 import 'package:ace_of_spades/grades/calculate_gpa.dart';
 import 'package:ace_of_spades/grades/student_course.dart';
 import 'package:ace_of_spades/grades/student_course_tile.dart';
@@ -56,12 +57,12 @@ class _GradesPageState extends State<GradesPage> {
 
               // get courses where result is pending
               List courseListPending = courseList.where((e) {
-                return e['grade'].toString().contains('pending');
+                return e['grade'].toString().contains(Grades.O);
               }).toList();
 
               // get completed courses
               List courseListCompleted = courseList.where((e) {
-                return !e['grade'].toString().contains('pending');
+                return !e['grade'].toString().contains(Grades.O);
               }).toList();
 
               //TODO: use the status tag and rewrite

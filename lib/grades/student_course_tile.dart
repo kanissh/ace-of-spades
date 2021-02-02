@@ -1,3 +1,4 @@
+import 'package:ace_of_spades/constants/grades.dart';
 import 'package:ace_of_spades/grades/student_course.dart';
 import 'package:ace_of_spades/ui_components/credit_label.dart';
 import 'package:ace_of_spades/ui_components/semester_label.dart';
@@ -67,7 +68,7 @@ class StudentCourseTile extends StatelessWidget {
                 ],
               ),
             ),
-            _studentCourse.grade == null || _studentCourse.grade == 'pending' || _studentCourse.grade.trim() == ''
+            _studentCourse.grade == null || _studentCourse.grade == Grades.O || _studentCourse.grade.trim() == ''
                 ? Container()
                 : Expanded(
                     child: Text(

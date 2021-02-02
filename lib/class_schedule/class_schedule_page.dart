@@ -1,5 +1,6 @@
 import 'package:ace_of_spades/config/db.config.dart';
 import 'package:ace_of_spades/constants.dart';
+import 'package:ace_of_spades/constants/grades.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -175,7 +176,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
 
               // get courses where result is pending
               List courseListPending = courseList.where((e) {
-                return e['grade'].toString().contains('pending');
+                return e['grade'].toString().contains(Grades.O);
               }).toList();
 
               return StreamBuilder(
@@ -188,7 +189,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
                     return Text('waiting');
                   }
                   if (snapshot.connectionState == ConnectionState.active) {
-                    List<Map<String, dynamic>> list = List();
+                    List<Map<String, dynamic>> list = [];
                     print('active');
                     snapshot.data.docs.map((e) {
                       list.add(e.data());
