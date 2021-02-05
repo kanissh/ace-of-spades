@@ -1,4 +1,5 @@
 import 'package:ace_of_spades/config/db.config.dart';
+import 'package:ace_of_spades/constants/grades.dart';
 import 'package:ace_of_spades/course_evaluation/evaluation_list.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +56,7 @@ class _CourseEvaluationPageState extends State<CourseEvaluationPage> {
 
               // get courses where result is pending
               List courseListPending = courseList.where((e) {
-                return e['grade'].toString().contains('pending');
+                return e['grade'].toString().contains(Grades.O);
               }).toList();
 
               return EvaluationList(
