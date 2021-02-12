@@ -1,8 +1,10 @@
 import 'package:ace_of_spades/constants.dart';
+import 'package:ace_of_spades/constants/illustration_names.dart';
 import 'package:ace_of_spades/profile/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'signin_service.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SignIn extends StatelessWidget {
   static String id = '/signIn';
@@ -28,15 +30,20 @@ class SignIn extends StatelessWidget {
                 'Welcome to FOS mobile',
                 style: bodyText18,
               ),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-                    if (states.contains(MaterialState.pressed)) {
-                      return Colors.grey.shade400;
-                    } else
-                      return Colors.white;
-                  }),
-                ),
+              SvgPicture.asset(
+                illustrationLoginDoor,
+                semanticsLabel: 'login illustration',
+                height: MediaQuery.of(context).size.height * 0.30,
+              ),
+              Text(
+                'Login with your university G-suite account to continue...',
+                style: bodyText18,
+                textAlign: TextAlign.center,
+              ),
+              RaisedButton(
+                elevation: 10,
+                color: Colors.grey.shade300,
+                splashColor: Colors.grey.shade400,
                 onPressed: () async {
                   User _user = await signInWithGoogle();
                   return ProfilePage(_user);
