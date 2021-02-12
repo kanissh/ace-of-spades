@@ -16,18 +16,21 @@ class SignIn extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Login',
+                'Hi,',
                 style: TextStyle(
                   fontFamily: 'OpenSans',
                   fontWeight: FontWeight.bold,
                   fontSize: 48,
-                  color: Colors.white,
+                  color: redColor,
                 ),
+              ),
+              Text(
+                'Welcome to FOS mobile',
+                style: bodyText18,
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                      (Set<MaterialState> states) {
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
                     if (states.contains(MaterialState.pressed)) {
                       return Colors.grey.shade400;
                     } else
@@ -58,7 +61,7 @@ class SignIn extends StatelessWidget {
             ],
           ),
         ),
-        backgroundColor: redColor,
+        backgroundColor: Colors.white,
       ),
     );
   }
