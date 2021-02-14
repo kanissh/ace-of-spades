@@ -22,7 +22,7 @@ class SignIn extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: 'OpenSans',
                   fontWeight: FontWeight.bold,
-                  fontSize: 48,
+                  fontSize: 72,
                   color: redColor,
                 ),
               ),
