@@ -1,3 +1,5 @@
+import 'package:ace_of_spades/onboarding/map_onb_page.dart';
+import 'package:ace_of_spades/onboarding/welcome_page.dart';
 import 'package:ace_of_spades/signin/signin.dart';
 import 'package:ace_of_spades/the_stage.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +27,8 @@ class _SplashScreenState extends State<SplashScreen> {
           if (snapshot.hasData) {
             return TheStage(snapshot.data);
           } else {
-            return SignIn();
+            // return SignIn();
+            return WelcomePage();
           }
         }
       },
