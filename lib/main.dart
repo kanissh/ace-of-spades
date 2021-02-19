@@ -1,12 +1,7 @@
-import 'package:ace_of_spades/person/person_page.dart';
 import 'package:ace_of_spades/splashscreen/splashscreen.dart';
-import 'package:ace_of_spades/ui_components/menu_button.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'courses/course_search_page.dart';
 
 Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
