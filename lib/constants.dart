@@ -13,6 +13,8 @@ const Color creditsLabelColor = Color(0xFF2E7D32);
 
 const TextStyle bodyText18 = TextStyle(fontSize: 18, color: Colors.black);
 
+const TextStyle bodyText28Monred = TextStyle(fontSize: 28, color: redColor, fontFamily: 'Montserrat');
+
 const TextStyle bodyText18b = TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
 
 const TextStyle subtitle18i = TextStyle(fontSize: 18, fontStyle: FontStyle.italic);
@@ -65,3 +67,5 @@ const TextStyle gpaDisplayStyle = TextStyle(
   color: redColor,
   fontWeight: FontWeight.w600,
 );
+
+const TextStyle buttonTextW = TextStyle(fontSize: 18, color: Colors.white);
