@@ -30,6 +30,7 @@ dependencies:
   syncfusion_flutter_calendar: ^18.4.32
   flutter_speed_dial: ^1.2.5
   mailer: ^3.2.1
+  flutter_svg: ^0.19.2+1
 
 dev_dependencies:
   flutter_test:
@@ -41,6 +42,7 @@ flutter:
     - images/google_logo.png
     - assets/config.json
     - assets/mail.json
+    - illustrations/
   
   uses-material-design: true
   fonts:
