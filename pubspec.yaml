@@ -42,8 +42,7 @@ flutter:
     - images/google_logo.png
     - assets/config.json
     - assets/mail.json
-    - illustrations/access-account.svg
-    - illustrations/login-door.svg
+    - illustrations/
   
   uses-material-design: true
   fonts:
