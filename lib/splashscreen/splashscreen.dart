@@ -1,4 +1,4 @@
-import 'package:ace_of_spades/signin/signin.dart';
+import 'package:ace_of_spades/onboarding/on_boarding.dart';
 import 'package:ace_of_spades/the_stage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
           if (snapshot.hasData) {
             return TheStage(snapshot.data);
           } else {
-            return SignIn();
+            return OnBoardingScreen();
           }
         }
       },
