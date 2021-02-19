@@ -13,24 +13,75 @@ class SignIn extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Hi,',
-                style: TextStyle(
-                  fontFamily: 'OpenSans',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 72,
-                  color: redColor,
+          padding: const EdgeInsets.all(20.0),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  illustrationLoginDoor,
+                  semanticsLabel: 'login illustration',
+                  height: MediaQuery.of(context).size.height * 0.30,
                 ),
-              ),
-              Text(
-                'Welcome to FOS mobile',
-                style: bodyText18,
-              ),
-              SvgPicture.asset(
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Login',
+                  style: bodyText28Monred,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Login with your university G-suite account to continue...',
+                  style: bodyText18,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                RaisedButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  elevation: 10,
+                  color: Colors.grey.shade300,
+                  splashColor: Colors.grey.shade400,
+                  onPressed: () async {
+                    User _user = await signInWithGoogle();
+                    return ProfilePage(_user);
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                        child: Image(
+                          image: AssetImage('images/google_logo.png'),
+                          width: 25,
+                        ),
+                      ),
+                      Text(
+                        'Sign in with Google',
+                        style: bodyText18,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+    ;
+  }
+}
+
+
+/* SvgPicture.asset(
                 illustrationLoginDoor,
                 semanticsLabel: 'login illustration',
                 height: MediaQuery.of(context).size.height * 0.30,
@@ -64,12 +115,4 @@ class SignIn extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
-            ],
-          ),
-        ),
-        backgroundColor: Colors.white,
-      ),
-    );
-  }
-}
+              ) */
