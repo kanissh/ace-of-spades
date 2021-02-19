@@ -41,11 +41,6 @@ class InfoOnBoardPage extends StatelessWidget {
                 SizedBox(
                   height: 15,
                 ),
-                OnBoardingNextButton(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => MapOnBoardPage()));
-                  },
-                ),
               ],
             ),
           ),

@@ -1,7 +1,5 @@
 import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/constants/illustration_names.dart';
-import 'package:ace_of_spades/onboarding/info_onb_page.dart';
-import 'package:ace_of_spades/ui_components/on_boarding_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -39,11 +37,6 @@ class ManageOnBoardPage extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 15,
-                ),
-                OnBoardingNextButton(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => InfoOnBoardPage()));
-                  },
                 ),
               ],
             ),

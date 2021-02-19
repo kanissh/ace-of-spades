@@ -1,6 +1,4 @@
 import 'package:ace_of_spades/constants/illustration_names.dart';
-import 'package:ace_of_spades/signin/signin.dart';
-import 'package:ace_of_spades/ui_components/on_boarding_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -40,11 +38,6 @@ class MapOnBoardPage extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 15,
-                ),
-                OnBoardingNextButton(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn()));
-                  },
                 ),
               ],
             ),

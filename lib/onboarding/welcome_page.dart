@@ -1,4 +1,3 @@
-import 'package:ace_of_spades/onboarding/manage_onb_page.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -24,25 +23,6 @@ class WelcomePage extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 15,
-                ),
-                RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  color: redColor,
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ManageOnBoardPage()));
-                  },
-                  child: SizedBox(
-                    width: 200,
-                    height: 40,
-                    child: Center(
-                      child: Text(
-                        'Get Started',
-                        style: buttonTextW,
-                      ),
-                    ),
-                  ),
                 ),
               ],
             ),
