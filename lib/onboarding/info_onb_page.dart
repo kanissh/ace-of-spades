@@ -1,6 +1,4 @@
 import 'package:ace_of_spades/constants/illustration_names.dart';
-import 'package:ace_of_spades/onboarding/map_onb_page.dart';
-import 'package:ace_of_spades/ui_components/on_boarding_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
