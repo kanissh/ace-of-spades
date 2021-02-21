@@ -2,7 +2,6 @@ import 'package:ace_of_spades/config/db.config.dart';
 import 'package:ace_of_spades/courses/course.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import 'manage_course_tile.dart';
 
 class AddCoursePage extends StatefulWidget {

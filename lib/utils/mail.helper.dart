@@ -11,7 +11,7 @@ Future<SmtpServer> getSmptServer() async {
   var mailDetails = jsonDecode(json) as Map<String, dynamic>;
 
   if (_smtpServer == null) {
-    return gmail(mailDetails['username'], mailDetails['password']);
+    return gmail(mailDetails['username'].toString(), mailDetails['password'].toString());
   } else {
     return _smtpServer;
   }

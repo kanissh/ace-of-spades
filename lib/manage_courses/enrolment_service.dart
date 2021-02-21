@@ -7,7 +7,7 @@ import 'package:ace_of_spades/grades/student_course.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EnrolmentService {
-  CollectionReference _linkCollectionReference = FirebaseFirestore.instance.collection(DbConfigPath.CLASSROOM_LINK);
+  //CollectionReference _linkCollectionReference = FirebaseFirestore.instance.collection(DbConfigPath.CLASSROOM_LINK);
 
   static addCourse(Course course, String remarks) async {
     /* var studentDocument = FirebaseFirestore.instance
