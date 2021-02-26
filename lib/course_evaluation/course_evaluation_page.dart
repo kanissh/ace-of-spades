@@ -1,4 +1,3 @@
-import 'package:ace_of_spades/config/db.config.dart';
 import 'package:ace_of_spades/constants/grades.dart';
 import 'package:ace_of_spades/course_evaluation/evaluation_list.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -35,7 +34,10 @@ class _CourseEvaluationPageState extends State<CourseEvaluationPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text('Evaluation'),
+          centerTitle: true,
+        ),
         body: FutureBuilder(
           future: studentDocument.get(),
           builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
