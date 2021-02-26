@@ -41,7 +41,6 @@ flutter:
     - images/crest.png
     - images/google_logo.png
     - assets/config.json
-    - assets/mail.json
     - illustrations/
   
   uses-material-design: true
