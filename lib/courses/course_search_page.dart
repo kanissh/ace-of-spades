@@ -40,25 +40,25 @@ class _CourseSearchPageState extends State<CourseSearchPage> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: redColor,
           onPressed: () {
-            _getFilterLists(context);
+            showSearch(
+              context: context,
+              delegate: CourseSearch(
+                courseList: courses.get(),
+                subjectFilters: subjectFilters,
+                levelFilters: levelFilters,
+                creditFilters: creditFilters,
+              ),
+            );
           },
-          child: Icon(Icons.filter_list_alt),
+          child: Icon(Icons.search),
         ),
         appBar: AppBar(
           title: Text('Course Search'),
           actions: [
             IconButton(
-              icon: Icon(Icons.search),
+              icon: Icon(Icons.filter_list_alt),
               onPressed: () {
-                showSearch(
-                  context: context,
-                  delegate: CourseSearch(
-                    courseList: courses.get(),
-                    subjectFilters: subjectFilters,
-                    levelFilters: levelFilters,
-                    creditFilters: creditFilters,
-                  ),
-                );
+                _getFilterLists(context);
               },
             ),
           ],
