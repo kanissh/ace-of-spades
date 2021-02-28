@@ -41,8 +41,8 @@ class CourseTile extends StatelessWidget {
                     width: 10,
                   ),
                   CreditLabel(
-                    credits: course.credits.firstKey().toString(),
-                    //credits: course.credits[DateTime.now().year.toString()].toString()==null?course.credits.firstKey().toString():course.credits[DateTime.now().year.toString()].toString()
+                    credits: course.credits.values.first.toString(),
+                    //credits: course.credits[DateTime.now().year.toString()].toString()==null?course.credits.values.first.toString():course.credits[DateTime.now().year.toString()].toString()
                   ),
                 ],
               ),

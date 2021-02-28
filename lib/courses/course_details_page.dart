@@ -49,10 +49,9 @@ class CourseDetailsPage extends StatelessWidget {
                   style: bodyText18,
                 ),
                 blockDivider,
-                CreditLabel(
-                  credits: course.credits.firstKey().toString(),
-                  //credits: course.credits[DateTime.now().year.toString()].toString()==null?course.credits.firstKey().toString():course.credits[DateTime.now().year.toString()].toString()
-                ),
+                CreditLabel(credits: course.credits.values.first.toString()
+                    //credits: course.credits[DateTime.now().year.toString()].toString()==null?course.credits.values.first.toString():course.credits[DateTime.now().year.toString()].toString()
+                    ),
                 blockDivider,
                 Text(
                   'Prerequisites - ' +
