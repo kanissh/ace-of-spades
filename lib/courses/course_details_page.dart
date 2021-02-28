@@ -50,8 +50,8 @@ class CourseDetailsPage extends StatelessWidget {
                 ),
                 blockDivider,
                 CreditLabel(
-                  credits: course.credits[DateTime.now().year.toString()].toString(),
-                  //FIXME: year becomes null when no entry in database
+                  credits: course.credits.firstKey().toString(),
+                  //credits: course.credits[DateTime.now().year.toString()].toString()==null?course.credits.firstKey().toString():course.credits[DateTime.now().year.toString()].toString()
                 ),
                 blockDivider,
                 Text(
