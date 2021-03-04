@@ -4,32 +4,33 @@ import 'package:ace_of_spades/person/person_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
+
 class PersonPage extends StatefulWidget {
   @override
   _PersonPageState createState() => _PersonPageState();
 }
 
 class _PersonPageState extends State<PersonPage> {
-  CollectionReference people = FirebaseFirestore.instance.collection(DbConfigPath.PEOPLE);
+  Future<QuerySnapshot> people = FirebaseFirestore.instance.collection(DbConfigPath.PEOPLE).get();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: redColor,
+          onPressed: () {
+            showSearch(context: context, delegate: PeopleSearch(people));
+          },
+          child: Icon(Icons.search),
+        ),
         appBar: AppBar(
           title: Text('Find People'),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {
-                showSearch(context: context, delegate: PeopleSearch(people.get()));
-              },
-            )
-          ],
           centerTitle: true,
         ),
         body: FutureBuilder(
-          future: people.get(),
+          future: people,
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
               print('Error detected');
