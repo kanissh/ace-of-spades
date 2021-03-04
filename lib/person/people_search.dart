@@ -1,4 +1,5 @@
 import 'package:ace_of_spades/person/person_card.dart';
+import 'package:ace_of_spades/person/person_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -43,8 +44,8 @@ class PeopleSearch extends SearchDelegate {
         }
         //TODO: handle this
 
-        final results = snapshot.data.docs.where((p) =>
-            p['name'].toString().toLowerCase().contains(query.toLowerCase()));
+        final results =
+            snapshot.data.docs.where((p) => p['name'].toString().toLowerCase().contains(query.toLowerCase()));
 
         return ListView(
           //display list during typing the query
@@ -77,8 +78,8 @@ class PeopleSearch extends SearchDelegate {
         }
         //TODO: handle this
 
-        final results = snapshot.data.docs.where((p) =>
-            p['name'].toString().toLowerCase().contains(query.toLowerCase()));
+        final results =
+            snapshot.data.docs.where((p) => p['name'].toString().toLowerCase().contains(query.toLowerCase()));
 
         return ListView(
           //display list during typing the query
@@ -87,8 +88,14 @@ class PeopleSearch extends SearchDelegate {
               return ListTile(
                 //FIXME: fix display text style
                 title: Text(documentSnapshot.data()['name']),
-                onTap: () => query = documentSnapshot
-                    .data()['name'], //on tap display the name in query
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PersonProfile(person: documentSnapshot.data()),
+                    ),
+                  );
+                },
               );
             },
           ).toList(),
