@@ -1,3 +1,4 @@
+import 'package:ace_of_spades/config/db.config.dart';
 import 'package:ace_of_spades/constants/course_status.dart';
 import 'package:ace_of_spades/grades/student_course.dart';
 import 'package:ace_of_spades/manage_courses/add_courses_page.dart';
@@ -19,15 +20,17 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
  */
   //TODO: Test above
   var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
+  DocumentReference configRegistrationDocument =
+      FirebaseFirestore.instance.collection(DbConfigPath.CONFIG).doc(DbConfigPath.COURSE_REGISTRATION_CONFIG_DOC);
 
-  bool isRegistrationOpenRemove = true; //FIXME: get value from db
-  bool isRegistrationOpenAdd = true; //FIXME: get value from db
+  bool isRegistrationOpenRemove; //FIXME: get value from db
+  bool isRegistrationOpenAdd; //FIXME: get value from db
 
   getEnrolledCourses() {
     return StreamBuilder(
         stream: studentDocument.snapshots(),
         builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-          List<ManageCourseTileRemove> widgetList = List();
+          List<ManageCourseTileRemove> widgetList = [];
           if (snapshot.hasError) {
             return Text('Data error occurred'); //TODO: handle
           }
@@ -66,8 +69,15 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
         });
   }
 
+  void setConfigParams() async {
+    isRegistrationOpenAdd = await configRegistrationDocument.get().then((value) => value.data()['registration_add']);
+    isRegistrationOpenRemove =
+        await configRegistrationDocument.get().then((value) => value.data()['registration_remove']);
+  }
+
   @override
   Widget build(BuildContext context) {
+    setConfigParams();
     return SafeArea(
       child: Scaffold(
         bottomSheet: Visibility(
