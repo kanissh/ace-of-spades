@@ -23,8 +23,13 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
   DocumentReference configRegistrationDocument =
       FirebaseFirestore.instance.collection(DbConfigPath.CONFIG).doc(DbConfigPath.COURSE_REGISTRATION_CONFIG_DOC);
 
-  bool isRegistrationOpenRemove; //FIXME: get value from db
-  bool isRegistrationOpenAdd; //FIXME: get value from db
+  bool isRegistrationOpenRemove = false;
+  bool isRegistrationOpenAdd = false; //FIXME: default value, and is set dynamically
+
+  void initState() {
+    super.initState();
+    setConfigParams();
+  }
 
   getEnrolledCourses() {
     return StreamBuilder(
@@ -70,14 +75,17 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
   }
 
   void setConfigParams() async {
-    isRegistrationOpenAdd = await configRegistrationDocument.get().then((value) => value.data()['registration_add']);
-    isRegistrationOpenRemove =
-        await configRegistrationDocument.get().then((value) => value.data()['registration_remove']);
+    bool add = await configRegistrationDocument.get().then((value) => value.data()['registration_add']);
+    bool remove = await configRegistrationDocument.get().then((value) => value.data()['registration_remove']);
+
+    setState(() {
+      isRegistrationOpenAdd = add;
+      isRegistrationOpenRemove = remove;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    setConfigParams();
     return SafeArea(
       child: Scaffold(
         bottomSheet: Visibility(
