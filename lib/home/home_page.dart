@@ -1,5 +1,6 @@
 import 'file:///F:/FOS/SEM%201/CS304-Project-in-Computing-1/ace-of-spades/lib/ui_components/menu_button.dart';
 import 'package:ace_of_spades/courses/course_search_page.dart';
+import 'package:ace_of_spades/feedback/feedback_page.dart';
 import 'package:ace_of_spades/notices/notice_page.dart';
 import 'package:ace_of_spades/person/person_page.dart';
 import 'package:ace_of_spades/utils/under_construction.dart';
@@ -63,7 +64,7 @@ class HomePage extends StatelessWidget {
               buttonIcon: FontAwesomeIcons.solidCommentAlt,
               buttonText: 'Feedback',
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => UnderConstruction()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackPage()));
               },
             )
           ],
