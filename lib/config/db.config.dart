@@ -9,6 +9,7 @@ class DbConfigPath {
   static const String CLASSROOM_LINK = 'classroom_links';
   static const String COURSE_REGISTRATION_CONFIG_DOC = 'course_registration';
   static const String CONFIG = 'config';
+  static const String FEEDBACK = 'feedback';
 
   static const String STUDENTS_15 = '';
   static const String STUDENTS_17 = '';
