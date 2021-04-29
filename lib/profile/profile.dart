@@ -58,13 +58,13 @@ class ProfilePage extends StatelessWidget {
                 _user.email.split('@')[0].toUpperCase(), //registration number
                 style: bodyText18,
               ),
-              Text(
-                'Bsc in physical science', //TODO: figureout a way to rectify this dynamically
-                style: TextStyle(
-                  fontSize: 16,
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
+              // Text(
+              //   'Bsc in physical science', //TODO: figureout a way to rectify this dynamically
+              //   style: TextStyle(
+              //     fontSize: 16,
+              //     fontStyle: FontStyle.italic,
+              //   ),
+              // ),
               SizedBox(
                 height: 10,
               ),
