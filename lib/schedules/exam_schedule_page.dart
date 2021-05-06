@@ -2,6 +2,7 @@ import 'package:ace_of_spades/config/db.config.dart';
 import 'package:ace_of_spades/constants/grades.dart';
 import 'package:ace_of_spades/schedules/exam_schedule_list.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ExamSchedulePage extends StatefulWidget {
@@ -11,12 +12,11 @@ class ExamSchedulePage extends StatefulWidget {
 
 class _ExamScheduleState extends State<ExamSchedulePage> {
   CollectionReference examScheduleRef = FirebaseFirestore.instance.collection(DbConfigPath.EXAM_SCHEDULE);
-  /* var studentDocument = FirebaseFirestore.instance
-      .collection('${DbConfig.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
+  var studentDocument = FirebaseFirestore.instance
+      .collection('${DbConfigPath.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
       .doc(FirebaseAuth.instance.currentUser.email.substring(3, 6).toString());
- */
-  //TODO: Test above
-  var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
+
+  //var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
 
   @override
   Widget build(BuildContext context) {
