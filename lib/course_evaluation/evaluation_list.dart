@@ -87,4 +87,3 @@ class _EvaluationListState extends State<EvaluationList> {
         });
   }
 }
-//TODO: handle if form url empty
