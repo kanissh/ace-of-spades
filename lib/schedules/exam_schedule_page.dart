@@ -1,5 +1,5 @@
 import 'package:ace_of_spades/config/db.config.dart';
-import 'package:ace_of_spades/constants/grades.dart';
+import 'package:ace_of_spades/constants/course_status.dart';
 import 'package:ace_of_spades/schedules/exam_schedule_list.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -45,7 +45,7 @@ class _ExamScheduleState extends State<ExamSchedulePage> {
 
               // get courses where result is pending
               List courseListPending = courseList.where((e) {
-                return e['grade'].toString().contains(Grades.O);
+                return e['status'].toString().contains(CourseStatus.ONGOING);
               }).toList();
 
               return ExamScheduleList(
