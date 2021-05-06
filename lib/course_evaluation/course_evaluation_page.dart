@@ -1,3 +1,5 @@
+import 'package:ace_of_spades/constants.dart';
+import 'package:ace_of_spades/constants/course_status.dart';
 import 'package:ace_of_spades/constants/grades.dart';
 import 'package:ace_of_spades/course_evaluation/evaluation_list.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -58,8 +60,17 @@ class _CourseEvaluationPageState extends State<CourseEvaluationPage> {
 
               // get courses where result is pending
               List courseListPending = courseList.where((e) {
-                return e['grade'].toString().contains(Grades.O);
+                return e['status'].toString().contains(CourseStatus.ONGOING);
               }).toList();
+
+              if (courseListPending.isEmpty) {
+                return Center(
+                  child: Text(
+                    'No evaluations to fill',
+                    style: bodyText18,
+                  ),
+                );
+              }
 
               return EvaluationList(
                 pendingCourseList: courseListPending,
