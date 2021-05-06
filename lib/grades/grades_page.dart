@@ -19,7 +19,7 @@ class _GradesPageState extends State<GradesPage> {
   final String _userEmail = FirebaseAuth.instance.currentUser.email;
 
   var studentDocument = FirebaseFirestore.instance
-      .collection('${DbConfigPath.STUDENTS_16}')
+      .collection('${DbConfigPath.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
       .doc(FirebaseAuth.instance.currentUser.email.substring(3, 6).toString());
 
   //var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
