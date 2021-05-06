@@ -4,6 +4,7 @@ import 'package:ace_of_spades/grades/student_course.dart';
 import 'package:ace_of_spades/manage_courses/add_courses_page.dart';
 import 'package:ace_of_spades/manage_courses/manage_course_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -14,12 +15,10 @@ class ManageCoursesPage extends StatefulWidget {
 }
 
 class _ManageCoursesPageState extends State<ManageCoursesPage> {
-  /* var studentDocument = FirebaseFirestore.instance
-      .collection('${DbConfig.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
+  var studentDocument = FirebaseFirestore.instance
+      .collection('${DbConfigPath.STUDENTS_16}')
       .doc(FirebaseAuth.instance.currentUser.email.substring(3, 6).toString());
- */
-  //TODO: Test above
-  var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
+
   DocumentReference configRegistrationDocument =
       FirebaseFirestore.instance.collection(DbConfigPath.CONFIG).doc(DbConfigPath.COURSE_REGISTRATION_CONFIG_DOC);
 
