@@ -16,7 +16,7 @@ class ManageCoursesPage extends StatefulWidget {
 
 class _ManageCoursesPageState extends State<ManageCoursesPage> {
   var studentDocument = FirebaseFirestore.instance
-      .collection('${DbConfigPath.STUDENTS_16}')
+      .collection('${DbConfigPath.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
       .doc(FirebaseAuth.instance.currentUser.email.substring(3, 6).toString());
 
   DocumentReference configRegistrationDocument =
