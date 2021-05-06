@@ -2,6 +2,7 @@ import 'package:ace_of_spades/config/db.config.dart';
 import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/constants/grades.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
@@ -18,12 +19,12 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
   List<CourseSchedule> courseScheduleList = <CourseSchedule>[];
 
   CollectionReference classScheduleRef = FirebaseFirestore.instance.collection(DbConfigPath.CLASS_SCHEDULE);
-  /* var studentDocument = FirebaseFirestore.instance
-      .collection('${DbConfig.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
+  var studentDocument = FirebaseFirestore.instance
+      .collection('${DbConfigPath.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
       .doc(FirebaseAuth.instance.currentUser.email.substring(3, 6).toString());
- */
+
   //TODO: Test above
-  var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
+  //var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
 
   @override
   void initState() {
