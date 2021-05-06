@@ -14,7 +14,7 @@ class Person {
       @required this.position,
       this.academicCred,
       // @required this.email,
-      this.email, //FIXME: fucked up testing
+      this.email,
       this.phone,
       this.mobile,
       @required this.department});

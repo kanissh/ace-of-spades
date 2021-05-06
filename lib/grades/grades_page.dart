@@ -1,3 +1,4 @@
+import 'package:ace_of_spades/config/db.config.dart';
 import 'package:ace_of_spades/constants/grades.dart';
 import 'package:ace_of_spades/grades/calculate_gpa.dart';
 import 'package:ace_of_spades/grades/student_course.dart';
@@ -17,11 +18,11 @@ class GradesPage extends StatefulWidget {
 class _GradesPageState extends State<GradesPage> {
   final String _userEmail = FirebaseAuth.instance.currentUser.email;
 
-  /* var studentDocument = FirebaseFirestore.instance
-      .collection('${DbConfig.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
+  var studentDocument = FirebaseFirestore.instance
+      .collection('${DbConfigPath.STUDENTS_16}')
       .doc(FirebaseAuth.instance.currentUser.email.substring(3, 6).toString());
- */
-  var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
+
+  //var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
 
   void addToWidgetList(List dataList, List<Widget> widgetList) {
     for (var item in dataList) {
