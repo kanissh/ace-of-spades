@@ -157,12 +157,13 @@ class _ManageCourseTileAddState extends State<ManageCourseTileAdd> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      isThreeLine: true,
       title: Text(
         widget.course.code,
         style: bodyText18,
       ),
       subtitle: Text(
-        widget.course.name,
+        '${widget.course.credits.values.first.toString()} Credit\n${widget.course.name}',
         style: subtitle16,
       ),
       trailing: IconButton(
@@ -198,12 +199,13 @@ class ManageCourseTileRemove extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      isThreeLine: true,
       title: Text(
         studentCourse.code,
         style: bodyText18,
       ),
       subtitle: Text(
-        studentCourse.name,
+        '${studentCourse.credits} Credit\n${studentCourse.name}',
         style: subtitle16,
       ),
       trailing: IconButton(
