@@ -29,6 +29,20 @@ class _CourseFilterPageState extends State<CourseFilterPage> {
           return false;
         },
         child: Scaffold(
+          floatingActionButton: FloatingActionButton(
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.green,
+            child: Icon(
+              Icons.check_sharp,
+            ),
+            onPressed: () {
+              Navigator.pop(context, [
+                widget.subjectFilters,
+                widget.levelFilters,
+                widget.creditFilters,
+              ]);
+            },
+          ),
           appBar: AppBar(
             centerTitle: true,
             title: Text('Add Filters'),
