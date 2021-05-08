@@ -5,18 +5,19 @@ import 'package:ace_of_spades/constants/grades.dart';
 import 'package:ace_of_spades/courses/course.dart';
 import 'package:ace_of_spades/grades/student_course.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class EnrolmentService {
   //CollectionReference _linkCollectionReference = FirebaseFirestore.instance.collection(DbConfigPath.CLASSROOM_LINK);
 
   static addCourse(Course course, String remarks) async {
-    /* var studentDocument = FirebaseFirestore.instance
-      .collection('${DbConfig.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
-      .doc(FirebaseAuth.instance.currentUser.email.substring(3, 6).toString());
-    */
+    var studentDocument = FirebaseFirestore.instance
+        .collection('${DbConfigPath.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
+        .doc(FirebaseAuth.instance.currentUser.email.substring(3, 6).toString());
+
     //TODO: Test above
 
-    var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
+    //var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
     var courseList =
         await studentDocument.get().then((DocumentSnapshot documentSnapshot) => documentSnapshot['courses']);
 
@@ -77,13 +78,13 @@ class EnrolmentService {
   }
 
   static removeCourse(StudentCourse studentCourse) {
-/* var studentDocument = FirebaseFirestore.instance
-      .collection('${DbConfig.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
-      .doc(FirebaseAuth.instance.currentUser.email.substring(3, 6).toString());
- */
+    var studentDocument = FirebaseFirestore.instance
+        .collection('${DbConfigPath.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
+        .doc(FirebaseAuth.instance.currentUser.email.substring(3, 6).toString());
+
     //TODO: Test above
 
-    var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
+    //var studentDocument = FirebaseFirestore.instance.collection('students16').doc('072');
     studentDocument.update({
       'courses': FieldValue.arrayRemove([studentCourse.getMap()])
     });
