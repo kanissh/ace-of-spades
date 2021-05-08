@@ -156,35 +156,38 @@ class _ManageCourseTileAddState extends State<ManageCourseTileAdd> {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      isThreeLine: true,
-      title: Text(
-        widget.course.code,
-        style: bodyText18,
-      ),
-      subtitle: Text(
-        '${widget.course.credits.values.first.toString()} Credit\n${widget.course.name}',
-        style: subtitle16,
-      ),
-      trailing: IconButton(
-        color: redColor,
-        icon: Icon(Icons.add_circle),
-        onPressed: widget.isRegistrationOpenAdd
-            ? () async {
-                List addParam = await _showDialogBox(context, widget.course);
-                print(addParam);
-                if (addParam[0]) {
-                  try {
-                    await EnrolmentService.addCourse(widget.course, addParam[1]);
-                  } on Exception catch (exception) {
-                    await _showEnrolFailAlert(exception);
-                    // ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  } on Object catch (object) {
-                    _showEnrolSuccessAlert(object);
+    return Container(
+      decoration: BoxDecoration(border: Border.all(color: borderColor, width: 0.5)),
+      child: ListTile(
+        isThreeLine: true,
+        title: Text(
+          widget.course.code,
+          style: bodyText18,
+        ),
+        subtitle: Text(
+          '${widget.course.credits.values.first.toString()} Credit\n${widget.course.name}',
+          style: subtitle16,
+        ),
+        trailing: IconButton(
+          color: redColor,
+          icon: Icon(Icons.add_circle),
+          onPressed: widget.isRegistrationOpenAdd
+              ? () async {
+                  List addParam = await _showDialogBox(context, widget.course);
+                  print(addParam);
+                  if (addParam[0]) {
+                    try {
+                      await EnrolmentService.addCourse(widget.course, addParam[1]);
+                    } on Exception catch (exception) {
+                      await _showEnrolFailAlert(exception);
+                      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    } on Object catch (object) {
+                      _showEnrolSuccessAlert(object);
+                    }
                   }
                 }
-              }
-            : null,
+              : null,
+        ),
       ),
     );
   }
@@ -198,28 +201,31 @@ class ManageCourseTileRemove extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      isThreeLine: true,
-      title: Text(
-        studentCourse.code,
-        style: bodyText18,
-      ),
-      subtitle: Text(
-        '${studentCourse.credits} Credit\n${studentCourse.name}',
-        style: subtitle16,
-      ),
-      trailing: IconButton(
-        color: redColor,
-        icon: Icon(Icons.remove_circle),
-        onPressed: isRegistrationOpenRemove
-            ? () async {
-                bool delete = await _showDialogBox(context, studentCourse);
-                print(delete);
-                if (delete) {
-                  EnrolmentService.removeCourse(studentCourse);
+    return Container(
+      decoration: BoxDecoration(border: Border.all(color: borderColor, width: 0.5)),
+      child: ListTile(
+        isThreeLine: true,
+        title: Text(
+          studentCourse.code,
+          style: bodyText18,
+        ),
+        subtitle: Text(
+          '${studentCourse.credits} Credit\n${studentCourse.name}',
+          style: subtitle16,
+        ),
+        trailing: IconButton(
+          color: redColor,
+          icon: Icon(Icons.remove_circle),
+          onPressed: isRegistrationOpenRemove
+              ? () async {
+                  bool delete = await _showDialogBox(context, studentCourse);
+                  print(delete);
+                  if (delete) {
+                    EnrolmentService.removeCourse(studentCourse);
+                  }
                 }
-              }
-            : null,
+              : null,
+        ),
       ),
     );
   }
