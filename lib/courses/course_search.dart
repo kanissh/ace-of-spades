@@ -55,6 +55,7 @@ class CourseSearch extends SearchDelegate {
           }).toList();
         }
 
+//FIXME: fix splaytree map retrieval
         if (creditFilters.isNotEmpty) {
           results = results.where((c) {
             return creditFilters.contains(c['credits'][DateTime.now().year.toString()].toString());
@@ -104,6 +105,7 @@ class CourseSearch extends SearchDelegate {
           }).toList();
         }
 
+//FIXME: fix splaytree map retrieval
         if (creditFilters.isNotEmpty) {
           results = results.where((c) {
             return creditFilters.contains(c['credits'][DateTime.now().year.toString()].toString());
