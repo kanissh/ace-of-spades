@@ -32,6 +32,7 @@ dependencies:
   mailer: ^3.2.1
   flutter_svg: ^0.19.2+1
 
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

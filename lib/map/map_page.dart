@@ -192,7 +192,11 @@ class _MapPageState extends State<MapPage> {
                         );
 
                         try {
-                          queryPlaces = await placesSearch.getPlaces(query);
+                          List<MapBoxPlace> queryPlacesTemp = await placesSearch.getPlaces(query);
+                          setState(() {
+                            queryPlaces = queryPlacesTemp;
+                          });
+                          //queryPlaces = await placesSearch.getPlaces(query);
 
                           print(queryPlaces.toString());
                         } on Exception catch (e) {
