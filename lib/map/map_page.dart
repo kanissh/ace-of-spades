@@ -1,5 +1,6 @@
 import 'package:ace_of_spades/api/repositories/api.repository.dart';
 import 'package:ace_of_spades/utils/config.helper.dart';
+import 'package:ace_of_spades/utils/location.helper.dart';
 import 'package:flutter/material.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:mapbox_search/mapbox_search.dart';
@@ -27,17 +28,32 @@ class _MapPageState extends State<MapPage> {
         ListTile(
           title: Text(place.placeName),
           onTap: () {
-            mapController.animateCamera(
-              CameraUpdate.newCameraPosition(
-                CameraPosition(
-                  target: LatLng(
+            setState(() {
+              mapController.animateCamera(
+                CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                    target: LatLng(
+                      place.geometry.coordinates.first,
+                      place.geometry.coordinates.last,
+                    ),
+                    zoom: 50,
+                  ),
+                ),
+              );
+            });
+
+            setState(() {
+              mapController.addCircle(
+                CircleOptions(
+                  circleRadius: 10,
+                  circleColor: '#000000',
+                  geometry: LatLng(
                     place.geometry.coordinates.first,
                     place.geometry.coordinates.last,
                   ),
-                  zoom: 13,
                 ),
-              ),
-            );
+              );
+            });
           },
         ),
       );
@@ -84,7 +100,7 @@ class _MapPageState extends State<MapPage> {
 
                       final _location = LatLng(7.254212510590577, 80.5967939152037);
                       //FIXME: Remove comment, commented to temporarily disabled get location
-                      //await getCurrentLocation();
+                      //final _location = await getCurrentLocation();
 
                       final LatLng _defaultLocation = LatLng(7.254212510590577, 80.5967939152037);
                       bool animateCameraResult;
@@ -137,7 +153,7 @@ class _MapPageState extends State<MapPage> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        FloatingActionButton(
+                        /* FloatingActionButton(
                           backgroundColor: redColor,
                           mini: true,
                           child: Icon(Icons.search),
@@ -145,7 +161,7 @@ class _MapPageState extends State<MapPage> {
                         ),
                         SizedBox(
                           height: 10,
-                        ),
+                        ), */
                         FloatingActionButton(
                           backgroundColor: redColor,
                           mini: true,
@@ -196,7 +212,7 @@ class _MapPageState extends State<MapPage> {
                           setState(() {
                             queryPlaces = queryPlacesTemp;
                           });
-                          //queryPlaces = await placesSearch.getPlaces(query);
+                          await placesSearch.getPlaces(query);
 
                           print(queryPlaces.toString());
                         } on Exception catch (e) {
