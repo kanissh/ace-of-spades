@@ -5,6 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'course.dart';
+import 'course_Tile.dart';
 import 'course_filter_page.dart';
 
 class CourseSearchPage extends StatefulWidget {
@@ -64,7 +66,55 @@ class _CourseSearchPageState extends State<CourseSearchPage> {
           ],
           centerTitle: true,
         ),
-        body: Container(),
+        body: FutureBuilder<QuerySnapshot>(
+          future: courses.get(),
+          builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) {
+              return Center(
+                child: Text('No Data!'),
+              );
+            }
+
+            List<QueryDocumentSnapshot> results = snapshot.data.docs;
+
+            if (subjectFilters.isNotEmpty) {
+              results = results.where((c) {
+                print(c['code'].toString().split(' ')[1][0]);
+                return subjectFilters.contains(c['subject'].toString());
+              }).toList();
+            }
+
+            if (creditFilters.isNotEmpty) {
+              results = results.where((c) {
+                return creditFilters.contains(c['credits'][DateTime.now().year.toString()].toString());
+              }).toList();
+            }
+
+            if (levelFilters.isNotEmpty) {
+              results = results.where((c) {
+                return levelFilters.contains(c['code'].toString().split(' ')[1][0] + '00');
+              }).toList();
+            }
+
+            if (results.isEmpty) {
+              return Center(
+                child: Text(
+                  'Oops!!! No matched courses\nTry different filters or search for courses',
+                  style: subtitle16,
+                  textAlign: TextAlign.center,
+                ),
+              );
+            }
+
+            return ListView(
+              children: results.map(
+                (DocumentSnapshot documentSnapshot) {
+                  return CourseTile(Course.convertCourseDocToObject(documentSnapshot));
+                },
+              ).toList(),
+            );
+          },
+        ),
       ),
     );
   }
