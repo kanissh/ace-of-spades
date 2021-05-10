@@ -169,7 +169,7 @@ class _ManageCourseTileAddState extends State<ManageCourseTileAdd> {
           style: subtitle16,
         ),
         trailing: IconButton(
-          color: redColor,
+          color: Colors.green,
           icon: Icon(Icons.add_circle),
           onPressed: widget.isRegistrationOpenAdd
               ? () async {
