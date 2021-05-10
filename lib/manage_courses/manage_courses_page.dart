@@ -1,5 +1,6 @@
 import 'package:ace_of_spades/config/db.config.dart';
 import 'package:ace_of_spades/constants/course_status.dart';
+import 'package:ace_of_spades/constants/credit_limit.dart';
 import 'package:ace_of_spades/grades/student_course.dart';
 import 'package:ace_of_spades/manage_courses/add_courses_page.dart';
 import 'package:ace_of_spades/manage_courses/manage_course_tile.dart';
@@ -28,6 +29,51 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
   void initState() {
     super.initState();
     setConfigParams();
+  }
+
+  Future<void> _showInfoDialog() async {
+    var studentDocumentSnapshot = await studentDocument.get();
+    num currentCredits = studentDocumentSnapshot.data()['current_credits'];
+
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Credit Information',
+            style: bodyText18b,
+            textAlign: TextAlign.center,
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Row(
+                  children: [
+                    Text(
+                      '${currentCredits} / ${CreditLimit.creditSemMax}',
+                      style: TextStyle(fontSize: 36),
+                    ),
+                    Spacer(),
+                    Text('credits enrolled'),
+                  ],
+                ),
+                Text(
+                    '\nTotal number of credits enrolled in a semester should not be less than ${CreditLimit.creditSemMin} and should not be more than ${CreditLimit.creditSemMax}'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   getEnrolledCourses() {
@@ -127,7 +173,13 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
           ),
         ),
         appBar: AppBar(
-          actions: [IconButton(icon: Icon(Icons.info_outline_rounded), onPressed: () {})],
+          actions: [
+            IconButton(
+                icon: Icon(Icons.info_outline_rounded),
+                onPressed: () {
+                  _showInfoDialog();
+                })
+          ],
           centerTitle: true,
           title: Text('Enrolled Courses'),
         ),
