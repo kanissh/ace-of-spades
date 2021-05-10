@@ -127,6 +127,7 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
           ),
         ),
         appBar: AppBar(
+          actions: [IconButton(icon: Icon(Icons.info_outline_rounded), onPressed: () {})],
           centerTitle: true,
           title: Text('Enrolled Courses'),
         ),
