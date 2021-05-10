@@ -1,4 +1,5 @@
 import 'package:ace_of_spades/config/db.config.dart';
+import 'package:ace_of_spades/constants.dart';
 import 'package:ace_of_spades/courses/course.dart';
 import 'package:ace_of_spades/manage_courses/add_course_search.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -54,18 +55,18 @@ class _AddCoursePageState extends State<AddCoursePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: redColor,
+          child: Icon(Icons.search),
+          onPressed: () {
+            showSearch(
+                context: context,
+                delegate: AddCourseSearch(
+                    addCourseList: _coursesCollectionReference.where('avail', isEqualTo: true).get(),
+                    isRegistrationOpenAdd: widget.isRegistrationOpenAdd));
+          },
+        ),
         appBar: AppBar(
-          actions: [
-            IconButton(
-                icon: Icon(Icons.search),
-                onPressed: () {
-                  showSearch(
-                      context: context,
-                      delegate: AddCourseSearch(
-                          addCourseList: _coursesCollectionReference.where('avail', isEqualTo: true).get(),
-                          isRegistrationOpenAdd: widget.isRegistrationOpenAdd));
-                })
-          ],
           title: Text('Add Courses'),
           centerTitle: true,
         ),
