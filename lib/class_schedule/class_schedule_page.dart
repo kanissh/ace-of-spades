@@ -29,7 +29,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
   @override
   void initState() {
     _calendarController = CalendarController();
-    _calendarController.view = CalendarView.day;
+    _calendarController.view = CalendarView.week;
     super.initState();
   }
 
