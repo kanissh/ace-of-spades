@@ -168,7 +168,7 @@ class _ManageCourseTileAddState extends State<ManageCourseTileAdd> {
           '${widget.course.credits.values.first.toString()} Credit\n${widget.course.name}',
           style: subtitle16,
         ),
-        trailing: IconButton(
+        leading: IconButton(
           color: Colors.green,
           icon: Icon(Icons.add_circle),
           onPressed: widget.isRegistrationOpenAdd
@@ -213,7 +213,7 @@ class ManageCourseTileRemove extends StatelessWidget {
           '${studentCourse.credits} Credit\n${studentCourse.name}',
           style: subtitle16,
         ),
-        trailing: IconButton(
+        leading: IconButton(
           color: redColor,
           icon: Icon(Icons.remove_circle),
           onPressed: isRegistrationOpenRemove
