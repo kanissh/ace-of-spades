@@ -8,8 +8,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class EnrolmentService {
-  //CollectionReference _linkCollectionReference = FirebaseFirestore.instance.collection(DbConfigPath.CLASSROOM_LINK);
-
   static addCourse(Course course, String remarks) async {
     var studentDocument = FirebaseFirestore.instance
         .collection('${DbConfigPath.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
@@ -41,6 +39,8 @@ class EnrolmentService {
         studentDocument.update({
           'courses': FieldValue.arrayUnion([studentCourse.getMap()])
         });
+
+        studentDocument.update({'current_credits': FieldValue.increment(studentCourse.credits)});
 
         throw 'Successfully enrolled to ${course.code}';
       }
