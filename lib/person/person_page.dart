@@ -33,7 +33,9 @@ class _PersonPageState extends State<PersonPage> {
           future: people,
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
-              print('Error detected');
+              return Center(
+                child: Text('Error detected'),
+              );
               //TODO: Fix above error handling
             } else if (snapshot.hasData) {
               return ListView(
@@ -53,10 +55,6 @@ class _PersonPageState extends State<PersonPage> {
                 ),
               );
             }
-
-            return Center(
-              child: Text('Something went wrong'),
-            );
           },
         ),
       ),
