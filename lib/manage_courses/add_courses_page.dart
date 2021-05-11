@@ -27,7 +27,11 @@ class _AddCoursePageState extends State<AddCoursePage> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text('waiting'); //TODO: add waiting indicator
+          return Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(redColor),
+            ),
+          ); //Text('waiting');
 
         }
 
