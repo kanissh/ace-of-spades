@@ -35,13 +35,7 @@ class _PersonPageState extends State<PersonPage> {
             if (snapshot.hasError) {
               print('Error detected');
               //TODO: Fix above error handling
-            }
-
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              print('Waiting');
-            }
-
-            if (snapshot.connectionState == ConnectionState.done) {
+            } else if (snapshot.hasData) {
               return ListView(
                 children: snapshot.data.docs.map((DocumentSnapshot documentSnapshot) {
                   return PersonCard(
@@ -52,9 +46,17 @@ class _PersonPageState extends State<PersonPage> {
                   );
                 }).toList(),
               );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(redColor),
+                ),
+              );
             }
 
-            return Text('Something went wrong');
+            return Center(
+              child: Text('Something went wrong'),
+            );
           },
         ),
       ),
