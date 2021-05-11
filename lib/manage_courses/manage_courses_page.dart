@@ -35,6 +35,7 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
   }
 
   Future<void> _showInfoDialog() async {
+    //Info dialog
     var studentDocumentSnapshot = await studentDocument.get();
     num currentCredits = studentDocumentSnapshot.data()['current_credits'];
 
@@ -123,6 +124,7 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
   }
 
   void setConfigParams() async {
+    //get params from database
     bool add = await configRegistrationDocument.get().then((value) => value.data()['registration_add']);
     bool remove = await configRegistrationDocument.get().then((value) => value.data()['registration_remove']);
 
@@ -191,13 +193,13 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             return Column(
               children: [
-                if (snapshot.data['current_credits'] > 33)
+                if (snapshot.data['current_credits'] > CreditLimit.creditSemMax) //red banner when credit > 33
                   MaterialBanner(
                       backgroundColor: Colors.red,
                       leading: FaIcon(
                         FontAwesomeIcons.exclamationCircle,
                         color: Colors.white,
-                      ), //Icon(Icons.warning_rounded, color: Colors.white),
+                      ),
                       content: Padding(
                         child: Text(
                           'Credit limit exceeded',
@@ -213,13 +215,14 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
                           child: Text('More Info'),
                         ),
                       ]),
-                if (snapshot.data['current_credits'] >= 27 && showMinBanner)
+                if (snapshot.data['current_credits'] >= CreditLimit.creditSemMin &&
+                    showMinBanner) //green banner to show when 27 reached
                   MaterialBanner(
                       backgroundColor: Colors.green,
                       leading: FaIcon(
                         FontAwesomeIcons.checkCircle,
                         color: Colors.white,
-                      ), //Icon(Icons.warning_rounded, color: Colors.white),
+                      ),
                       content: Padding(
                         child: Text(
                           'Reached minimum credit limit',
