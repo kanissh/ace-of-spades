@@ -7,6 +7,7 @@ import 'package:ace_of_spades/manage_courses/manage_course_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../constants.dart';
 
@@ -25,6 +26,8 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
 
   bool isRegistrationOpenRemove = false;
   bool isRegistrationOpenAdd = false; //FIXME: default value, and is set dynamically
+
+  bool showMinBanner = true;
 
   void initState() {
     super.initState();
@@ -183,8 +186,67 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
           centerTitle: true,
           title: Text('Enrolled Courses'),
         ),
-        body: getEnrolledCourses(),
+        body: StreamBuilder(
+          stream: studentDocument.snapshots(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            return Column(
+              children: [
+                if (snapshot.data['current_credits'] > 33)
+                  MaterialBanner(
+                      backgroundColor: Colors.red,
+                      leading: FaIcon(
+                        FontAwesomeIcons.exclamationCircle,
+                        color: Colors.white,
+                      ), //Icon(Icons.warning_rounded, color: Colors.white),
+                      content: Padding(
+                        child: Text(
+                          'Credit limit exceeded',
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
+                        padding: EdgeInsets.all(10),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            _showInfoDialog();
+                          },
+                          child: Text('More Info'),
+                        ),
+                      ]),
+                if (snapshot.data['current_credits'] >= 27 && showMinBanner)
+                  MaterialBanner(
+                      backgroundColor: Colors.green,
+                      leading: FaIcon(
+                        FontAwesomeIcons.checkCircle,
+                        color: Colors.white,
+                      ), //Icon(Icons.warning_rounded, color: Colors.white),
+                      content: Padding(
+                        child: Text(
+                          'Reached minimum credit limit',
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
+                        padding: EdgeInsets.all(10),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            _dismissMinBanner();
+                          },
+                          child: Text('Dismiss'),
+                        ),
+                      ]),
+                Expanded(child: getEnrolledCourses()),
+              ],
+            );
+          },
+        ),
       ),
     );
+  }
+
+  void _dismissMinBanner() {
+    setState(() {
+      showMinBanner = false;
+    });
   }
 }
