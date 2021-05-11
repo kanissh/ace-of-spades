@@ -88,5 +88,7 @@ class EnrolmentService {
     studentDocument.update({
       'courses': FieldValue.arrayRemove([studentCourse.getMap()])
     });
+
+    studentDocument.update({'current_credits': FieldValue.increment(-studentCourse.credits)});
   }
 }
