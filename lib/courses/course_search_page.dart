@@ -69,50 +69,56 @@ class _CourseSearchPageState extends State<CourseSearchPage> {
         body: FutureBuilder<QuerySnapshot>(
           future: courses.get(),
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (!snapshot.hasData) {
+            if (snapshot.hasError) {
               return Center(
-                child: Text('No Data!'),
+                child: Text('Error detected'),
+              ); //TODO: Handle error
+            } else if (snapshot.hasData) {
+              List<QueryDocumentSnapshot> results = snapshot.data.docs;
+
+              if (subjectFilters.isNotEmpty) {
+                results = results.where((c) {
+                  print(c['code'].toString().split(' ')[1][0]);
+                  return subjectFilters.contains(c['subject'].toString());
+                }).toList();
+              }
+
+              if (creditFilters.isNotEmpty) {
+                results = results.where((c) {
+                  return creditFilters.contains(c['credits'][DateTime.now().year.toString()].toString());
+                }).toList();
+              }
+
+              if (levelFilters.isNotEmpty) {
+                results = results.where((c) {
+                  return levelFilters.contains(c['code'].toString().split(' ')[1][0] + '00');
+                }).toList();
+              }
+
+              if (results.isEmpty) {
+                return Center(
+                  child: Text(
+                    'Oops!!! No matched courses\nTry different filters or search for courses',
+                    style: subtitle16,
+                    textAlign: TextAlign.center,
+                  ),
+                );
+              }
+
+              return ListView(
+                children: results.map(
+                  (DocumentSnapshot documentSnapshot) {
+                    return CourseTile(Course.convertCourseDocToObject(documentSnapshot));
+                  },
+                ).toList(),
               );
-            }
-
-            List<QueryDocumentSnapshot> results = snapshot.data.docs;
-
-            if (subjectFilters.isNotEmpty) {
-              results = results.where((c) {
-                print(c['code'].toString().split(' ')[1][0]);
-                return subjectFilters.contains(c['subject'].toString());
-              }).toList();
-            }
-
-            if (creditFilters.isNotEmpty) {
-              results = results.where((c) {
-                return creditFilters.contains(c['credits'][DateTime.now().year.toString()].toString());
-              }).toList();
-            }
-
-            if (levelFilters.isNotEmpty) {
-              results = results.where((c) {
-                return levelFilters.contains(c['code'].toString().split(' ')[1][0] + '00');
-              }).toList();
-            }
-
-            if (results.isEmpty) {
+            } else {
               return Center(
-                child: Text(
-                  'Oops!!! No matched courses\nTry different filters or search for courses',
-                  style: subtitle16,
-                  textAlign: TextAlign.center,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(redColor),
                 ),
               );
             }
-
-            return ListView(
-              children: results.map(
-                (DocumentSnapshot documentSnapshot) {
-                  return CourseTile(Course.convertCourseDocToObject(documentSnapshot));
-                },
-              ).toList(),
-            );
           },
         ),
       ),
