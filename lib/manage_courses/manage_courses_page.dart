@@ -238,7 +238,7 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
                           child: Text('Dismiss'),
                         ),
                       ]),
-                Expanded(child: getEnrolledCourses()),
+                Flexible(child: getEnrolledCourses()),
               ],
             );
           },
