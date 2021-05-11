@@ -90,7 +90,11 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text('waiting'); //TODO: add waiting indicator
+            return Center(
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(redColor),
+              ),
+            ); //Text('waiting');
 
           }
 
@@ -191,56 +195,70 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
         body: StreamBuilder(
           stream: studentDocument.snapshots(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
-            return Column(
-              children: [
-                if (snapshot.data['current_credits'] > CreditLimit.creditSemMax) //red banner when credit > 33
-                  MaterialBanner(
-                      backgroundColor: Colors.red,
-                      leading: FaIcon(
-                        FontAwesomeIcons.exclamationCircle,
-                        color: Colors.white,
-                      ),
-                      content: Padding(
-                        child: Text(
-                          'Credit limit exceeded',
-                          style: TextStyle(fontSize: 16, color: Colors.white),
+            if (snapshot.hasError) {}
+
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(redColor),
+                ),
+              );
+            }
+
+            if (snapshot.connectionState == ConnectionState.active) {
+              return Column(
+                children: [
+                  if (snapshot.data['current_credits'] > CreditLimit.creditSemMax) //red banner when credit > 33
+                    MaterialBanner(
+                        backgroundColor: Colors.red,
+                        leading: FaIcon(
+                          FontAwesomeIcons.exclamationCircle,
+                          color: Colors.white,
                         ),
-                        padding: EdgeInsets.all(10),
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            _showInfoDialog();
-                          },
-                          child: Text('More Info'),
+                        content: Padding(
+                          child: Text(
+                            'Credit limit exceeded',
+                            style: TextStyle(fontSize: 16, color: Colors.white),
+                          ),
+                          padding: EdgeInsets.all(10),
                         ),
-                      ]),
-                if (snapshot.data['current_credits'] >= CreditLimit.creditSemMin &&
-                    showMinBanner) //green banner to show when 27 reached
-                  MaterialBanner(
-                      backgroundColor: Colors.green,
-                      leading: FaIcon(
-                        FontAwesomeIcons.checkCircle,
-                        color: Colors.white,
-                      ),
-                      content: Padding(
-                        child: Text(
-                          'Reached minimum credit limit',
-                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              _showInfoDialog();
+                            },
+                            child: Text('More Info'),
+                          ),
+                        ]),
+                  if (snapshot.data['current_credits'] >= CreditLimit.creditSemMin &&
+                      showMinBanner) //green banner to show when 27 reached
+                    MaterialBanner(
+                        backgroundColor: Colors.green,
+                        leading: FaIcon(
+                          FontAwesomeIcons.checkCircle,
+                          color: Colors.white,
                         ),
-                        padding: EdgeInsets.all(10),
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            _dismissMinBanner();
-                          },
-                          child: Text('Dismiss'),
+                        content: Padding(
+                          child: Text(
+                            'Reached minimum credit limit',
+                            style: TextStyle(fontSize: 16, color: Colors.white),
+                          ),
+                          padding: EdgeInsets.all(10),
                         ),
-                      ]),
-                Flexible(child: getEnrolledCourses()),
-              ],
-            );
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              _dismissMinBanner();
+                            },
+                            child: Text('Dismiss'),
+                          ),
+                        ]),
+                  Flexible(child: getEnrolledCourses()),
+                ],
+              );
+            }
+
+            return Center(child: Text('Oops! Something went wrong.'));
           },
         ),
       ),
