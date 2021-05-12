@@ -45,15 +45,6 @@ class _EvaluationListState extends State<EvaluationList> {
             );
           }
           if (snapshot.connectionState == ConnectionState.active) {
-            /*  List<Widget> _evalList = List();
-            _evalList.add(blockDivider);
-
-            _evalList = snapshot.data.docs.map<Widget>((DocumentSnapshot documentSnapshot) {
-              return ListTile(
-                title: Text(documentSnapshot.data()['course_code'].toString()),
-              );
-            }).toList();
- */
             return ListView.separated(
               separatorBuilder: (context, index) => blockDivider,
               itemCount: snapshot.data.docs.length,
