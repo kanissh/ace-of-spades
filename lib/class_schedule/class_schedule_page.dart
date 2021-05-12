@@ -50,7 +50,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
         courseSchList.add(
           CourseSchedule.createCourseSchedule(
             scheduleDocument: schDoc,
-            backgroundColor: Colors.greenAccent[400],
+            //backgroundColor: Colors.greenAccent[400],
           ),
         );
       }
@@ -73,7 +73,7 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
       }
     } else if (details.targetElement == CalendarElement.viewHeader) {
       if (_calendarController.view == CalendarView.week) {
-        _calendarController.view = CalendarView.month;
+        _calendarController.view = CalendarView.day;
       } else if (_calendarController.view == CalendarView.day) {
         _calendarController.view = CalendarView.week;
       }
@@ -168,7 +168,11 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Text('waiting'); //TODO: add waiting indicator
+              return Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(redColor),
+                ),
+              );
             }
 
             if (snapshot.connectionState == ConnectionState.done) {
@@ -187,11 +191,15 @@ class _ClassSchedulePageState extends State<ClassSchedulePage> {
                     return Text('Data error occurred'); //TODO: handle
                   }
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Text('waiting');
+                    return Center(
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(redColor),
+                      ),
+                    );
                   }
                   if (snapshot.connectionState == ConnectionState.active) {
                     List<Map<String, dynamic>> list = [];
-                    print('active');
+
                     snapshot.data.docs.map((e) {
                       list.add(e.data());
                     }).toList();
