@@ -51,7 +51,9 @@ class _CourseEvaluationPageState extends State<CourseEvaluationPage> {
 
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
-                child: Text('Loading...'),
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(redColor),
+                ),
               );
             }
             if (snapshot.connectionState == ConnectionState.done) {
