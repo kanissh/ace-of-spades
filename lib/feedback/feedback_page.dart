@@ -91,7 +91,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     if (value.isEmpty) {
                       return '*Message is required';
                     } else if (value.length <= 10) {
-                      return '*Message length is low';
+                      return '*Please provide a meaning full message';
                     }
 
                     return null;
