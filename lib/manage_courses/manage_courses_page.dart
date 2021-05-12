@@ -195,7 +195,7 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
         body: StreamBuilder(
           stream: studentDocument.snapshots(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if (snapshot.hasError) {}
+            if (snapshot.hasError) {} //TODO: complete this
 
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
