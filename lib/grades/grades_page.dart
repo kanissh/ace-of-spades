@@ -49,7 +49,9 @@ class _GradesPageState extends State<GradesPage> {
 
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
-                child: Text('Loading'),
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(redColor),
+                ),
               );
             }
             if (snapshot.connectionState == ConnectionState.done) {
