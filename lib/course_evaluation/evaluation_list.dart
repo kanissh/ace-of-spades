@@ -36,15 +36,12 @@ class _EvaluationListState extends State<EvaluationList> {
               child: Text('Failed to load'),
             );
           }
-          if (!snapshot.hasData) {
-            return Center(
-              child: Text('No Evaluations posted!!'),
-            );
-          }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
-              child: Text('Loading...'),
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(redColor),
+              ),
             );
           }
           if (snapshot.connectionState == ConnectionState.active) {
