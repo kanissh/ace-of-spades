@@ -38,6 +38,7 @@ class _GradesPageState extends State<GradesPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(title: Text('Grades'), centerTitle: true),
         body: FutureBuilder(
           future: studentDocument.get(),
           builder: (context, AsyncSnapshot snapshot) {
@@ -107,8 +108,7 @@ class _GradesPageState extends State<GradesPage> {
 
               return Column(
                 children: [
-                  Expanded(
-                    flex: 1,
+                  SizedBox(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -121,7 +121,6 @@ class _GradesPageState extends State<GradesPage> {
                     ),
                   ),
                   Expanded(
-                    flex: 5,
                     child: ListView(
                       children: _courseTileList,
                     ),
