@@ -4,6 +4,8 @@ import 'package:ace_of_spades/schedules/exam_schedule_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
+
 class ExamScheduleList extends StatelessWidget {
   final List pendingCourseList;
   ExamScheduleList({this.pendingCourseList});
@@ -35,8 +37,11 @@ class ExamScheduleList extends StatelessWidget {
               }
 
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Text('waiting'); //TODO: add waiting indicator
-
+                return Center(
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(redColor),
+                  ),
+                );
               }
 
               if (snapshot.connectionState == ConnectionState.active) {

@@ -5,6 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
+
 class ExamSchedulePage extends StatefulWidget {
   @override
   _ExamScheduleState createState() => _ExamScheduleState();
@@ -36,7 +38,11 @@ class _ExamScheduleState extends State<ExamSchedulePage> {
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Text('waiting'); //TODO: add waiting indicator
+              return Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(redColor),
+                ),
+              );
             }
 
             if (snapshot.connectionState == ConnectionState.done) {
