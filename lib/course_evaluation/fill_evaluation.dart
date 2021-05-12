@@ -12,28 +12,6 @@ class FillEvaluation extends StatefulWidget {
 }
 
 class _FillEvaluationState extends State<FillEvaluation> {
-  /* @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => new AlertDialog(
-          title: Text("Important"),
-          content: Text("Message"),
-          actions: <Widget>[
-             FlatButton(
-              child: Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        ),
-      );
-    });
-  } */
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
