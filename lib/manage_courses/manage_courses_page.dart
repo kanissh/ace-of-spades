@@ -144,7 +144,8 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
       child: Scaffold(
         bottomSheet: Visibility(
           visible: (isRegistrationOpenAdd && !isRegistrationOpenRemove) ||
-              (!isRegistrationOpenAdd && !isRegistrationOpenRemove),
+              (!isRegistrationOpenAdd && !isRegistrationOpenRemove) ||
+              (!isRegistrationOpenAdd && isRegistrationOpenRemove),
           child: BottomSheet(
             elevation: 5,
             builder: (context) => Container(
@@ -156,7 +157,10 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
                     ? Text(
                         'Oops! you cannot remove courses but course enrollment is open...', //TODO: clip below floation action button
                         style: TextStyle(color: Colors.white))
-                    : Text('Course Registration is CLOSED!', style: TextStyle(color: Colors.white)),
+                    : ((!isRegistrationOpenAdd && !isRegistrationOpenRemove)
+                        ? Text('Course Registration is CLOSED!', style: TextStyle(color: Colors.white))
+                        : Text('Oops, course registration period is over but course removal is possible.',
+                            style: TextStyle(color: Colors.white))),
               ),
             ),
             onClosing: () {},
