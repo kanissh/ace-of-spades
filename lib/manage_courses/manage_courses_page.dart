@@ -231,6 +231,7 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
                           ),
                         ]),
                   if (snapshot.data['current_credits'] >= CreditLimit.creditSemMin &&
+                      snapshot.data['current_credits'] <= CreditLimit.creditSemMax &&
                       showMinBanner) //green banner to show when 27 reached
                     MaterialBanner(
                         backgroundColor: Colors.green,
