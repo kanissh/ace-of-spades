@@ -9,8 +9,11 @@ import '../constants.dart';
 class ManageCourseTileAdd extends StatefulWidget {
   final Course course;
   final bool isRegistrationOpenAdd;
+  final String semester;
+  final String year;
 
-  ManageCourseTileAdd({this.course, this.isRegistrationOpenAdd});
+  ManageCourseTileAdd(
+      {@required this.course, @required this.isRegistrationOpenAdd, @required this.semester, @required this.year});
 
   @override
   _ManageCourseTileAddState createState() => _ManageCourseTileAddState();
@@ -177,7 +180,7 @@ class _ManageCourseTileAddState extends State<ManageCourseTileAdd> {
                   print(addParam);
                   if (addParam[0]) {
                     try {
-                      await EnrolmentService.addCourse(widget.course, addParam[1]);
+                      await EnrolmentService.addCourse(widget.course, addParam[1], widget.semester, widget.year);
                     } on Exception catch (exception) {
                       await _showEnrolFailAlert(exception);
                       // ScaffoldMessenger.of(context).showSnackBar(snackBar);

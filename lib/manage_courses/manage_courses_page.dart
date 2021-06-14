@@ -26,6 +26,8 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
 
   bool isRegistrationOpenRemove = false;
   bool isRegistrationOpenAdd = false; //FIXME: default value, and is set dynamically
+  String semester = '';
+  String year = '';
 
   bool showMinBanner = true;
 
@@ -131,10 +133,14 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
     //get params from database
     bool add = await configRegistrationDocument.get().then((value) => value.data()['registration_add']);
     bool remove = await configRegistrationDocument.get().then((value) => value.data()['registration_remove']);
+    String sem = await configRegistrationDocument.get().then((value) => value.data()['semester']);
+    String yr = await configRegistrationDocument.get().then((value) => value.data()['year']);
 
     setState(() {
       isRegistrationOpenAdd = add;
       isRegistrationOpenRemove = remove;
+      semester = sem;
+      year = yr;
     });
   }
 
@@ -178,6 +184,8 @@ class _ManageCoursesPageState extends State<ManageCoursesPage> {
                       MaterialPageRoute(
                         builder: (context) => AddCoursePage(
                           isRegistrationOpenAdd: isRegistrationOpenAdd,
+                          semester: semester,
+                          year: year,
                         ),
                       ),
                     );

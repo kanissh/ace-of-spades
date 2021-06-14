@@ -8,7 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class EnrolmentService {
-  static addCourse(Course course, String remarks) async {
+  static addCourse(Course course, String remarks, String semester, String year) async {
     var studentDocument = FirebaseFirestore.instance
         .collection('${DbConfigPath.STUDENT}${FirebaseAuth.instance.currentUser.email.substring(0, 3).toLowerCase()}')
         .doc(FirebaseAuth.instance.currentUser.email.substring(3, 6).toString());
@@ -24,8 +24,8 @@ class EnrolmentService {
         name: course.name,
         credits: course.credits[course.credits.firstKey()],
         grade: Grades.O,
-        semester: '', //TODO: semester and year needed variable from db
-        year: '',
+        semester: semester, //TODO: semester and year needed variable from db
+        year: year,
         courseDocRef: FirebaseFirestore.instance
             .collection(DbConfigPath.COURSE)
             .doc(course.code.replaceAll(' ', '')), //FIXME: document names differ

@@ -8,8 +8,10 @@ import 'manage_course_tile.dart';
 
 class AddCoursePage extends StatefulWidget {
   final bool isRegistrationOpenAdd;
+  final String semester;
+  final String year;
 
-  AddCoursePage({@required this.isRegistrationOpenAdd});
+  AddCoursePage({@required this.isRegistrationOpenAdd, @required this.semester, @required this.year});
 
   @override
   _AddCoursePageState createState() => _AddCoursePageState();
@@ -42,6 +44,8 @@ class _AddCoursePageState extends State<AddCoursePage> {
             return ManageCourseTileAdd(
               course: Course.convertCourseDocToObject(documentSnapshot),
               isRegistrationOpenAdd: widget.isRegistrationOpenAdd,
+              semester: widget.semester,
+              year: widget.year,
             );
           }).toList();
 
@@ -64,10 +68,14 @@ class _AddCoursePageState extends State<AddCoursePage> {
           child: Icon(Icons.search),
           onPressed: () {
             showSearch(
-                context: context,
-                delegate: AddCourseSearch(
-                    addCourseList: _coursesCollectionReference.where('avail', isEqualTo: true).get(),
-                    isRegistrationOpenAdd: widget.isRegistrationOpenAdd));
+              context: context,
+              delegate: AddCourseSearch(
+                addCourseList: _coursesCollectionReference.where('avail', isEqualTo: true).get(),
+                isRegistrationOpenAdd: widget.isRegistrationOpenAdd,
+                semester: widget.semester,
+                year: widget.year,
+              ),
+            );
           },
         ),
         appBar: AppBar(

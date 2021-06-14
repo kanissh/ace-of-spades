@@ -6,8 +6,14 @@ import 'package:flutter/material.dart';
 class AddCourseSearch extends SearchDelegate {
   final Future<QuerySnapshot> addCourseList;
   final bool isRegistrationOpenAdd;
+  final String semester;
+  final String year;
 
-  AddCourseSearch({@required this.addCourseList, @required this.isRegistrationOpenAdd});
+  AddCourseSearch(
+      {@required this.addCourseList,
+      @required this.isRegistrationOpenAdd,
+      @required this.semester,
+      @required this.year});
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -64,6 +70,8 @@ class AddCourseSearch extends SearchDelegate {
                 return ManageCourseTileAdd(
                   course: Course.convertCourseMapToObject(documentSnapshot.data()),
                   isRegistrationOpenAdd: isRegistrationOpenAdd,
+                  semester: semester,
+                  year: year,
                 );
               },
             ).toList(),
@@ -110,6 +118,8 @@ class AddCourseSearch extends SearchDelegate {
                       return ManageCourseTileAdd(
                         course: Course.convertCourseMapToObject(documentSnapshot.data()),
                         isRegistrationOpenAdd: isRegistrationOpenAdd,
+                        semester: semester,
+                        year: year,
                       );
                     },
                   ).toList(),
