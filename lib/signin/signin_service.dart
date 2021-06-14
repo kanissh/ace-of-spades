@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 final _auth = FirebaseAuth.instance;
-final googleSignIn = GoogleSignIn();
+final googleSignIn = GoogleSignIn(hostedDomain: 'sci.pdn.ac.lk');
 
 //TODO: Add email authentication logic
 
