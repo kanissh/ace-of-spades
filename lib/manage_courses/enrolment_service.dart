@@ -23,7 +23,7 @@ class EnrolmentService {
         code: course.code,
         name: course.name,
         credits: course.credits[course.credits.firstKey()],
-        grade: 'pending',
+        grade: Grades.O,
         semester: '', //TODO: semester and year needed variable from db
         year: '',
         courseDocRef: FirebaseFirestore.instance
