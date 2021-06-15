@@ -58,13 +58,22 @@ class SignIn extends StatelessWidget {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Text('Falied to login'),
+                            buttonPadding: EdgeInsets.all(10),
+                            actionsPadding: EdgeInsets.all(10),
+                            title: Text(
+                              'Failed to login',
+                              style: TextStyle(color: Colors.red, fontSize: 22, fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
                             content: Text(
-                                'Please ensure that you use a G-suite email to log in.\n\n \"sxxxxx@sci.pdn.ac.lk\" were sxxxxx is your registration number'),
+                                'Please ensure that you use your university G-suite email to log in.\n\n \"sxxxxx@sci.pdn.ac.lk\" where sxxxxx is your registration number.'),
                             actions: [
                               RaisedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
                                 child: Text('Close'),
+                                color: redColor,
                               ),
                             ],
                           );
