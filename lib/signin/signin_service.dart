@@ -4,7 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 final _auth = FirebaseAuth.instance;
-final googleSignIn = GoogleSignIn(); //hostedDomain: 'sci.pdn.ac.lk');
+final googleSignIn = GoogleSignIn(hostedDomain: 'sci.pdn.ac.lk');
 
 //TODO: Add email authentication logic
 
