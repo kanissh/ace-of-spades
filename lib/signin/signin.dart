@@ -51,7 +51,28 @@ class SignIn extends StatelessWidget {
                   splashColor: Colors.grey.shade400,
                   onPressed: () async {
                     User _user = await signInWithGoogle();
-                    return ProfilePage(_user);
+                    if (_user != null) {
+                      return ProfilePage(_user);
+                    } else {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Falied to login'),
+                            content: Text(
+                                'Please ensure that you use a G-suite email to log in.\n\n \"sxxxxx@sci.pdn.ac.lk\" were sxxxxx is your registration number'),
+                            actions: [
+                              RaisedButton(
+                                onPressed: () {},
+                                child: Text('Close'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+
+                      googleDisconnect();
+                    }
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
