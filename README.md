@@ -1,6 +1,11 @@
 # ace_of_spades
-
-UOP FOS student mobile application
+This is a student mobile application for the Faculty of Science, University of Peradeniya. The main aim was to provide students with the following functionalities via this app. This project was created to fulfill credit requirements of the Computer science degree.
+- Course management
+- Course catalogue search
+- People search
+- View notices
+- View grades
+- Navigation (under development)
 
 ## Getting Started
 
