@@ -18,7 +18,7 @@ class NoticeDetails extends StatelessWidget {
     }
 
     final snackBar = SnackBar(content: Text(message));
-    _scaffoldKey.currentState.showSnackBar(snackBar);
+    _scaffoldKey.currentState.showSnackBar(snackBar); 
   }
 
   _launchUrl(String _url, BuildContext context) async {
