@@ -7,4 +7,6 @@ This is a concept of a student mobile application for the Faculty of Science, Un
 - View grades
 - Navigation (under development)
 
+This project uses Flutter 1.25.0-8.3.pre.
+
 Find the web implementation of the app [here](https://github.com/kanissh/ace-of-spades-web.git). This web-app has all up-to-date dependencies and flutter 2.
