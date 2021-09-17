@@ -4,6 +4,8 @@ import 'package:ace_of_spades/notices/notice_object.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
+
 class NoticePage extends StatefulWidget {
   @override
   _NoticePageState createState() => _NoticePageState();

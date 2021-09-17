@@ -1,5 +1,8 @@
 # ace-of-spades
 This is a concept of a student mobile application for the Faculty of Science, University of Peradeniya. The main aim was to provide students with the following functionalities via this app. This project was created to fulfill credit requirements of the Computer science degree.
+
+# Main features
+The app covers the following functionalities:
 - Course management
 - Course catalogue search
 - People search
@@ -9,4 +12,7 @@ This is a concept of a student mobile application for the Faculty of Science, Un
 
 This project uses Flutter 1.25.0-8.3.pre.
 
-Find the web implementation of the app [here](https://github.com/kanissh/ace-of-spades-web.git). This web-app has all up-to-date dependencies and flutter 2.
+Find the web implementation of the app [here](https://github.com/kanissh/ace-of-spades-web.git). This web-app has all up-to-date dependencies and flutter 2. _Data is managed by Cloud firestore_.
+
+## Screenshots
+![alt text]("Logo Title Text 1")
