@@ -15,4 +15,4 @@ This project uses Flutter 1.25.0-8.3.pre.
 Find the web implementation of the app [here](https://github.com/kanissh/ace-of-spades-web.git). This web-app has all up-to-date dependencies and flutter 2. _Data is managed by Cloud firestore_.
 
 ## Screenshots
-![alt text]("Logo Title Text 1")
+<img src="/screenshots/onboard-1.jpg" width="200"/> <img src="/screenshots/onboard-2.jpg" width="200"/> <img src="/screenshots/onboard-3.jpg" width="200"/> <img src="/screenshots/onboard-4.jpg" width="200"/>
